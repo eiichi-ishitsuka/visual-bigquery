@@ -1,7 +1,12 @@
 # Visual-BigQuery
 
+<img src="/asset/icon.png" width="150">
+
 Visual Studio Code extension for Google BigQuery SQL  
 Target extension: ".sql"
+
+# Snippets
+Snippets the syntax used by BigQuery SQL.
 
 # Syntax Highlight 
 All keywords are not case sensitive.
