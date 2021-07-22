@@ -26,12 +26,6 @@
 		"test": "node ./test/runTest.js"
 	},    
     "contributes": {
-        "commands": [
-			{
-				"command": "visual-bigquery",
-				"title": "Visual BigQuery Command"
-			}
-		],
         "languages": [
             {
                 "id": "sql",
