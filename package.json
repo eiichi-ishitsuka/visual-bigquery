@@ -5,6 +5,7 @@
         "type": "git",
         "url": "git://github.com/eiichi-ishitsuka/visual-bigquery.git"
     },
+    "icon": "asset/icon.png",
     "displayName": "Visual-BigQuery",
     "description": "Syntax Highlight Google BigQuery SQL",
     "version": "0.0.1",
