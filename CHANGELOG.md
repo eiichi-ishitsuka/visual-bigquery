@@ -4,4 +4,5 @@
 - Initial release
   - Syntax Highlight
   - Snippets
+  - Auto Complete
 
