@@ -12,7 +12,8 @@
         "vscode": "^1.58.0"
     },
     "categories": [
-        "Programming Languages"
+        "Programming Languages",
+        "Snippets"
     ],
     "contributes": {
         "languages": [
@@ -33,6 +34,12 @@
                 "language": "sql",
                 "scopeName": "source.bigquery.sql",
                 "path": "./syntaxes/sql.tmLanguage.json"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "sql",
+                "path": "./snippets/snippets.code-snippets"
             }
         ]
     },
