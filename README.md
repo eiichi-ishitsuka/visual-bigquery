@@ -1,4 +1,5 @@
-# visual-bigquery
+# Visual-BigQuery
+
 Visual Studio Code extension for Google BigQuery SQL  
 Target extension: ".sql"
 
