@@ -1,6 +1,10 @@
 {
     "name": "visual-bigquery",
     "publisher": "eiichi-ishitsuka",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/eiichi-ishitsuka/visual-bigquery.git"
+    },
     "displayName": "Visual-BigQuery",
     "description": "Syntax Highlight Google BigQuery SQL",
     "version": "0.0.1",
