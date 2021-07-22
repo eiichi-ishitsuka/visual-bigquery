@@ -1,0 +1,214 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "BigQuery SQL",
+	"patterns": [
+		{"include": "#keywords"},
+		{"include": "#entities"},
+		{"include": "#variables"},
+		{"include": "#constants"},
+		{"include": "#Strings"},
+		{"include": "#Comments"},
+		{"include": "#Invalid"}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"comment": "User-defined Function / Table Function",
+					"patterns": [
+						{
+							"name": "keyword.other.sql",
+							"match": "\\b(?i:(LANGUAGE|RETURNS))\\b"
+						},
+						{
+							"name": "keyword.other.sql",
+							"match": "\\b(?i:((CREATE|CREATE[[:space:]]+OR[[:space:]]+REPLACE)[[:space:]]+(TEMP|TEMPORARY)[[:space:]]+FUNCTION))\\b"
+						},
+						{
+							"name": "keyword.other.sql",
+							"match": "\\b(?i:((CREATE|CREATE[[:space:]]+OR[[:space:]]+REPLACE|DROP)[[:space:]]+(TABLE[[:space:]]+|)FUNCTION))\\b"
+						}
+					]
+				},
+				{
+					"comment": "DML",
+					"name": "keyword.other.sql",
+					"match": "\\b(?i:(INSERT|UPDATE|DELETE|TRUNCATE[[:space:]]+TABLE|VALUES|MERGE))\\b"
+				},
+				{
+					"comment": "DDL",
+					"patterns": [
+						{
+							"comment": "ADD COLUMN",
+							"name": "keyword.other.sql",
+							"match": "\\b(?i:(ADD[[:space:]]COLUMN))\\b"
+						},
+						{
+							"comment": "ALTER",
+							"name": "keyword.other.sql",
+							"match": "\\b(?i:(ALTER[[:space:]]+(COLUMN|MATERIALIZED[[:space:]]+VIEW|SCHEMA|TABLE|VIEW)))\\b"
+						},
+						{
+							"comment": "DROP",
+							"name": "keyword.other.sql",
+							"match": "\\b(?i:(DROP[[:space:]]+(COLUMN|EXTERNAL[[:space:]]+TABLE|FUNCTION|MATERIALIZED[[:space:]]+VIEW|NOT[[:space:]]+NULL|PROCEDURE|SCHEMA|TABLE|VIEW)))\\b"
+						},
+						{
+							"comment": "CREATE OR REPLACE",
+							"name": "keyword.other.sql",
+							"match": "\\b(?i:((CREATE|CREATE[[:space:]]+OR[[:space:]]+REPLACE)[[:space:]]+(EXTERNAL[[:space:]]+TABLE|FUNCTION|MATERIALIZED[[:space:]]+VIEW|PROCEDURE|SCHEMA|TABLE|VIEW)))\\b"
+						},
+						{
+							"comment": "SET OPTIONS",
+							"name": "keyword.other.sql",
+							"match": "\\b(?i:(SET[[:space:]]OPTIONS))\\b"
+						}
+					]
+				},
+				{
+					"comment": "DCL",
+					"name": "keyword.other.sql",
+					"match": "\\b(?i:(REVOKE|GRANT|SCHEMA))\\b"
+				},
+				{
+					"comment": "Reserved",
+					"name": "keyword.other.sql",
+					"match": "\\b(?i:ALL|AND|ANY|ARRAY|AS|ASC|ASSERT_ROWS_MODIFIED|AT|BETWEEN|BY|CASE|CAST|COLLATE|CONTAINS|CREATE|CROSS|CUBE|CURRENT|DEFAULT|DEFINE|DESC|DISTINCT|ELSE|END|ENUM|ESCAPE|EXCEPT|EXCLUDE|EXISTS|EXTRACT|FALSE|FETCH|FOLLOWING|FOR|FROM|FULL|GROUP|GROUPING|GROUPS|HASH|HAVING|IF|IGNORE|IN|INNER|INTERSECT|INTERVAL|INTO|IS|JOIN|LATERAL|LEFT|LIKE|LIMIT|LOOKUP|MERGE|NATURAL|NEW|NO|NOT|NULL|NULLS|OF|ON|OR|ORDER|OUTER|OVER|PARTITION|PRECEDING|PROTO|RANGE|RECURSIVE|RESPECT|RIGHT|ROLLUP|ROWS|SELECT|SET|SOME|STRUCT|TABLESAMPLE|THEN|TO|TREAT|TRUE|UNBOUNDED|UNION|UNNEST|USING|WHEN|WHERE|WINDOW|WITH|WITHIN|QUALIFY)\\b"
+				},
+				{
+					"comment": "External Query",
+					"name": "keyword.other.sql",
+					"match": "\\b(?i:EXTERNAL_QUERY)\\b"
+				},
+				{
+					"comment": "Scripts and stored procedures",
+					"name": "keyword.other.sql",
+					"match": "\\b(?i:(DECLARE|BEGIN|END|CALL))\\b"
+				},
+				{
+					"comment": "Pseudo Columns",
+					"name": "keyword.other.sql",
+					"match": "\\b(?i:_PARTITIONTIME|_TABLE_SUFFIX)\\b"
+				}
+			]
+		},
+		"entities": {
+			"patterns": [
+				{
+					"comment": "Types",
+					"name": "entity.name.type.sql",
+					"match": "\\b(?i:INT64|NUMERIC|BIGNUMERIC|FLOAT64|BOOL|STRING|BYTES|DATE|DATETIME|TIME|TIMESTAMP|ARRAY|STRUCT)\\b"
+				},
+				{
+					"comment": "Functions",
+					"name": "entity.name.function.sql",
+					"match": "\\b(?i:ABS|ACOS|ACOSH|ANY_VALUE|APPROX_COUNT_DISTINCT|APPROX_QUANTILES|APPROX_TOP_COUNT|APPROX_TOP_SUM|ARRAY|ARRAY_AGG|ARRAY_CONCAT|ARRAY_CONCAT_AGG|ARRAY_LENGTH|ARRAY_REVERSE|ARRAY_TO_STRING|ASIN|ASINH|ATAN|ATAN2|ATANH|AVG|BIT_AND|BIT_COUNT|BIT_OR|BIT_XOR|BYTE_LENGTH|CEIL|CEILING|CHARACTER_LENGTH|CHAR_LENGTH|COALESCE|CODE_POINTS_TO_BYTES|CODE_POINTS_TO_STRING|CONCAT|CORR|COS|COSH|COUNT|COUNTIF|COVAR_POP|COVAR_SAMP|CUME_DIST|CURRENT_DATE|CURRENT_DATETIME|CURRENT_TIME|CURRENT_TIMESTAMP|DATE|DATETIME|DATETIME_ADD|DATETIME_DIFF|DATETIME_SUB|DATETIME_TRUNC|DATE_ADD|DATE_DIFF|DATE_FROM_UNIX_DATE|DATE_SUB|DATE_TRUNC|DENSE_RANK|DIV|ENDS_WITH|EXP|EXTRACT|EXTRACT|EXTRACT|EXTRACT|FARM_FINGERPRINT|FLOOR|FORMAT|FORMAT_DATE|FORMAT_DATETIME|FORMAT_TIME|FORMAT_TIMESTAMP|FROM_BASE32|FROM_BASE64|FROM_HEX|GENERATE_ARRAY|GENERATE_DATE_ARRAY|GENERATE_TIMESTAMP_ARRAY|GENERATE_UUID|GREATEST|HLL_COUNT.EXTRACT|HLL_COUNT.INIT|HLL_COUNT.MERGE|HLL_COUNT.MERGE_PARTIAL|IEEE_DIVIDE|IF|IFNULL|IS_INF|IS_NAN|JSON_EXTRACT_ARRAY|LAG|LAST_VALUE|LEAD|LEAST|LENGTH|LN|LOG|LOG10|LOGICAL_AND|LOGICAL_OR|LOWER|LPAD|LTRIM|MAX|MD5|MIN|MOD|NET.HOST|NET.IPV4_FROM_INT64|NET.IPV4_TO_INT64|NET.IP_FROM_STRING|NET.IP_NET_MASK|NET.IP_TO_STRING|NET.IP_TRUNC|NET.PUBLIC_SUFFIX|NET.REG_DOMAIN|NET.SAFE_IP_FROM_STRING|NORMALIZE|NORMALIZE_AND_CASEFOLD|NTH_VALUE|NTILE|NULLIF|OFFSET|ORDINAL|PARSE_DATE|PARSE_DATETIME|PARSE_TIME|PARSE_TIMESTAMP|PERCENTILE_CONT|PERCENTILE_DISC|PERCENT_RANK|POW|POWER|RAND|RANGE_BUCKET|RANK|REGEXP_CONTAINS|REGEXP_EXTRACT|REGEXP_EXTRACT_ALL|REGEXP_REPLACE|REPEAT|REPLACE|REVERSE|ROUND|ROW_NUMBER|RPAD|RTRIM|SAFE_ADD|SAFE_CONVERT_BYTES_TO_STRING|SAFE_DIVIDE|SAFE_MULTIPLY|SAFE_NEGATE|SAFE_OFFSET|SAFE_ORDINAL|SAFE_SUBTRACT|SESSION_USER|SHA1|SHA256|SHA512|SIGN|SIN|SINH|SPLIT|SQRT|STARTS_WITH|STDDEV|STDDEV_POP|STDDEV_SAMP|STRING|STRING_AGG|STRPOS|ST_AREA|ST_ASBINARY|ST_ASGEOJSON|ST_ASTEXT|ST_BOUNDARY|ST_CENTROID|ST_CENTROID_AGG|ST_CLOSESTPOINT|ST_CLUSTERDBSCAN|ST_CONTAINS|ST_CONVEXHULL|ST_COVEREDBY|ST_COVERS|ST_DIFFERENCE|ST_DIMENSION|ST_DISJOINT|ST_DISTANCE|ST_DUMP|ST_DWITHIN|ST_EQUALS|ST_GEOGFROMGEOJSON|ST_GEOGFROMTEXT|ST_GEOGFROMWKB|ST_GEOGPOINT|ST_GEOGPOINTFROMGEOHASH|ST_GEOHASH|ST_INTERSECTION|ST_INTERSECTS|ST_INTERSECTSBOX|ST_ISCOLLECTION|ST_ISEMPTY|ST_LENGTH|ST_MAKELINE|ST_MAKEPOLYGON|ST_MAKEPOLYGONORIENTED|ST_MAXDISTANCE|ST_NUMPOINTS|ST_PERIMETER|ST_SIMPLIFY|ST_SNAPTOGRID|ST_TOUCHES|ST_UNION|ST_UNION_AGG|ST_WITHIN|ST_X|ST_Y|SUBSTR|TAN|TANH|TIME|TIMESTAMP|TIMESTAMP_ADD|TIMESTAMP_DIFF|TIMESTAMP_MICROS|TIMESTAMP_MILLIS|TIMESTAMP_SECONDS|TIMESTAMP_SUB|TIMESTAMP_TRUNC|TIME_ADD|TIME_DIFF|TIME_SUB|TIME_TRUNC|TO_BASE32|TO_BASE64|TO_CODE_POINTS|TO_HEX|TO_JSON_STRING|TRIM|TRUNC|UNIX_DATE|UNIX_MICROS|UNIX_MILLIS|UNIX_SECONDS|UPPER|VAR_POP|VAR_SAMP|VARIANCE)\\b"
+				},
+				{
+					"comment": "`project.dataset.table` OR `dataset.table`",
+					"name": "entity.other.attribute-name.sql",
+					"match": "\\`([[:alnum:]|_]+\\.[[:alnum:]|_|\\*]+)\\`|\\`([[:alnum:]|\\-|_]+\\.[[:alnum:]|_]+\\.[[:alnum:]|_|\\*]+)\\`"
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"name": "variable.parameter.sql",
+					"match": "@[[:alnum:]|_]+"
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"name": "constant.numeric.sql",
+					"match": "\\b([[:digit:]]+\\.*[[:digit:]]*)\\b"
+				}
+			]
+		},
+		"Strings": {
+			"patterns": [
+				{
+					"name": "string.quoted.triple.sql",
+					"begin": "'''",
+					"end": "'''",
+					"patterns": [
+						{
+							"name": "constant.character.escape.sql",
+							"match": "\\\\."
+						}
+					]
+				},
+				{
+					"name": "string.quoted.triple.sql",
+					"begin": "\"\"\"",
+					"end": "\"\"\"",
+					"patterns": [
+						{
+							"name": "constant.character.escape.sql",
+							"match": "\\\\."
+						}
+					]
+				},
+				{
+					"name": "string.quoted.single.sql",
+					"begin": "'",
+					"end": "'",
+					"patterns": [
+						{
+							"name": "constant.character.escape.sql",
+							"match": "\\\\."
+						}
+					]
+				},
+				{
+					"name": "string.quoted.double.sql",
+					"begin": "\"",
+					"end": "\"",
+					"patterns": [
+						{
+							"name": "constant.character.escape.sql",
+							"match": "\\\\."
+						}
+					]
+				}
+			]
+		},
+		"Comments": {
+			"patterns": [
+				{
+					"name": "comment.line.sql",
+					"begin": "--",
+					"beginCaptures": {
+						"0": { "name": "punctuation.definition.comment.sql" }
+					},
+					"end": "\n"
+				},
+				{
+					"name": "comment.line.sql",
+					"begin": "\\#",
+					"beginCaptures": {
+						"0": { "name": "punctuation.definition.comment.sql" }
+					},
+					"end": "\n"
+				},
+				{
+					"name": "comment.block.sql",
+					"begin": "\\/\\*",
+					"end": "\\*\\/"
+				}
+			]
+		},
+		"Invalid": {
+			"patterns": [
+				{
+					"comment": "Invalid words not in quote",
+					"name": "invalid.illegal.sql",
+					"match": "\\b([[:word:]]*[[:^ascii:]]+[[:word:]]*)\\b"
+				}
+			]
+		}
+	},
+	"scopeName": "source.bigquery.sql"
+}

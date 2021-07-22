@@ -1,0 +1,38 @@
+{
+    "name": "visual-bigquery",
+    "publisher": "eiichi-ishitsuka",
+    "displayName": "Visual-BigQuery",
+    "description": "Syntax Highlight Google BigQuery SQL",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.58.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "sql",
+                "aliases": [
+                    "BigQuery SQL",
+                    "sql"
+                ],
+                "extensions": [
+                    ".sql"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "sql",
+                "scopeName": "source.bigquery.sql",
+                "path": "./syntaxes/sql.tmLanguage.json"
+            }
+        ]
+    },
+    "dependencies": {
+        "vsce": "^1.96.1"
+    }
+}
