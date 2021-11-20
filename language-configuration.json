@@ -25,5 +25,12 @@
         ["\"", "\""],
         ["'", "'"],
         ["`", "`"]
+    ],
+    // on enter indent roles
+    "onEnterRules": [
+        {
+          "beforeText": "^\\s*(?:SELECT|FROM|WHERE|GROUP BY|HAVING|ORDER BY|QUALIFY|BETWEEN|WITH|CASE|WHEN|THEN|ELSE|DISTINCT|LIMIT|INSERT|UPDATE|DELETE|MERGE|)$",
+          "action": { "indent": "indent" }
+        }
     ]
 }
