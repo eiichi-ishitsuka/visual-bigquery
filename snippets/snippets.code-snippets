@@ -334,5 +334,21 @@
             "\t\"\"\";"
         ],
         "description": "Create templorary JavaScript UDF"
+    },
+    "GROUP BY" : {
+        "prefix": "GROUP BY",
+        "body": [
+            "GROUP BY",
+            "\t${1:expr}"
+        ],
+        "description": "GROUP BY"
+    },
+    "ORDER BY" : {
+        "prefix": "ORDER BY",
+        "body": [
+            "ORDER BY",
+            "\t${1:expr}"
+        ],
+        "description": "ORDER BY"
     }
 }
