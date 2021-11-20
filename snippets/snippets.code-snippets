@@ -212,6 +212,7 @@
     "ST_X": {"prefix": "ST_X", "body": ["ST_X($1)"],"description": ""},
     "ST_Y": {"prefix": "ST_Y", "body": ["ST_Y($1)"],"description": ""},
     "SUBSTR": {"prefix": "SUBSTR", "body": ["SUBSTR($1)"],"description": ""},
+    "SUM": {"prefix": "SUM", "body": ["SUM($1)"],"description": ""},
     "TAN": {"prefix": "TAN", "body": ["TAN($1)"],"description": ""},
     "TANH": {"prefix": "TANH", "body": ["TANH($1)"],"description": ""},
     "TIME": {"prefix": "TIME", "body": ["TIME($1)"],"description": ""},
