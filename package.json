@@ -8,7 +8,7 @@
     "icon": "asset/icon.png",
     "displayName": "Visual-BigQuery",
     "description": "Syntax Highlight Google BigQuery SQL",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "engines": {
         "vscode": "^1.58.0"
     },
