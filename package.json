@@ -49,7 +49,11 @@
         "snippets": [
             {
                 "language": "sql",
-                "path": "./snippets/snippets.code-snippets"
+                "path": "./snippets/functions.code-snippets"
+            },
+            {
+                "language": "sql",
+                "path": "./snippets/idioms.code-snippets"
             }
         ]
     },
