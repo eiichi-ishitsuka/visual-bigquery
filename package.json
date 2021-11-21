@@ -19,7 +19,7 @@
     "activationEvents": [
         "*"
     ],
-    "main": "./extension.js",
+    "main": "./src/extension.js",
     "scripts": {
         "lint": "eslint .",
         "pretest": "npm run lint",
