@@ -107,45 +107,5 @@
             "\t${1:expr}"
         ],
         "description": "ORDER BY"
-    },
-    "INNER JOIN" : {
-        "prefix": "INNER JOIN",
-        "body": [
-            "INNER JOIN ${1:dataset_id}.${2:table_id}",
-            "\tON ${3:expr} = ${4:expr}"
-        ],
-        "description": "INNER JOIN [dataset_id].[table_id] ON ..."
-    },
-    "LEFT OUTER JOIN" : {
-        "prefix": "LEFT OUTER JOIN",
-        "body": [
-            "LEFT OUTER JOIN ${1:dataset_id}.${2:table_id}",
-            "\tON ${3:expr} = ${4:expr}"
-        ],
-        "description": "LEFT OUTER JOIN [dataset_id].[table_id] ON ..."
-    },
-    "RIGHT OUTER JOIN" : {
-        "prefix": "RIGHT OUTER JOIN",
-        "body": [
-            "RIGHT OUTER JOIN ${1:dataset_id}.${2:table_id}",
-            "\tON ${3:expr} = ${4:expr}"
-        ],
-        "description": "RIGHT OUTER JOIN [dataset_id].[table_id] ON ..."
-    },
-    "FULL OUTER JOIN" : {
-        "prefix": "INNER JOIN",
-        "body": [
-            "FULL OUTER JOIN ${1:dataset_id}.${2:table_id}",
-            "\tON ${3:expr} = ${4:expr}"
-        ],
-        "description": "FULL OUTER JOIN [dataset_id].[table_id] ON ..."
-    },
-    "CROSS JOIN" : {
-        "prefix": "CROSS JOIN",
-        "body": [
-            "CROSS JOIN ${1:dataset_id}.${2:table_id}"
-        ],
-        "description": "CROSS JOIN [dataset_id].[table_id]"
-    },
-    
+    }
 }

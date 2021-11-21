@@ -54,6 +54,10 @@
             {
                 "language": "sql",
                 "path": "./snippets/idioms.code-snippets"
+            },
+            {
+                "language": "sql",
+                "path": "./snippets/idioms-join.code-snippets"
             }
         ]
     },
