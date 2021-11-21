@@ -1,0 +1,105 @@
+{
+    "INNER JOIN": {
+        "prefix": "INNER JOIN",
+        "body": [
+            "INNER JOIN ${1:dataset_id}.${2:table_id}",
+            "\tON ${3:expr} = ${4:expr}"
+        ],
+        "description": "INNER JOIN [dataset_id].[table_id] ON ..."
+    },
+    "INNER JOIN (Sub Query)": {
+        "prefix": "INNER JOIN (Sub Query)",
+        "body": [
+            "INNER JOIN (",
+            "\tSELECT",
+            "\t\t${3:expr}",
+            "\tFROM",
+            "\t\t${1:dataset_id}.${2:table_id}",
+            ") ${4:alias}",
+            "\tON ${5:expr} = ${6:expr}"
+        ],
+        "description": "INNER JOIN (Sub Query) ON ..."
+    },
+    "LEFT OUTER JOIN": {
+        "prefix": "LEFT OUTER JOIN",
+        "body": [
+            "LEFT OUTER JOIN ${1:dataset_id}.${2:table_id}",
+            "\tON ${3:expr} = ${4:expr}"
+        ],
+        "description": "LEFT OUTER JOIN [dataset_id].[table_id] ON ..."
+    },
+    "LEFT OUTER JOIN (Sub Query)": {
+        "prefix": "LEFT OUTER JOIN (Sub Query)",
+        "body": [
+            "LEFT OUTER JOIN (",
+            "\tSELECT",
+            "\t\t${3:expr}",
+            "\tFROM",
+            "\t\t${1:dataset_id}.${2:table_id}",
+            ") ${4:alias}",
+            "\tON ${5:expr} = ${6:expr}"
+        ],
+        "description": "LEFT OUTER JOIN (Sub Query) ON ..."
+    },
+    "RIGHT OUTER JOIN": {
+        "prefix": "RIGHT OUTER JOIN",
+        "body": [
+            "RIGHT OUTER JOIN ${1:dataset_id}.${2:table_id}",
+            "\tON ${3:expr} = ${4:expr}"
+        ],
+        "description": "RIGHT OUTER JOIN [dataset_id].[table_id] ON ..."
+    },
+    "RIGHT OUTER JOIN (Sub Query)": {
+        "prefix": "RIGHT OUTER JOIN (Sub Query)",
+        "body": [
+            "RIGHT OUTER JOIN (",
+            "\tSELECT",
+            "\t\t${3:expr}",
+            "\tFROM",
+            "\t\t${1:dataset_id}.${2:table_id}",
+            ") ${4:alias}",
+            "\tON ${5:expr} = ${6:expr}"
+        ],
+        "description": "RIGHT OUTER JOIN (Sub Query) ON ..."
+    },
+    "FULL OUTER JOIN": {
+        "prefix": "INNER JOIN",
+        "body": [
+            "FULL OUTER JOIN ${1:dataset_id}.${2:table_id}",
+            "\tON ${3:expr} = ${4:expr}"
+        ],
+        "description": "FULL OUTER JOIN [dataset_id].[table_id] ON ..."
+    },
+    "FULL OUTER JOIN (Sub Query)": {
+        "prefix": "FULL OUTER JOIN (Sub Query)",
+        "body": [
+            "FULL OUTER JOIN (",
+            "\tSELECT",
+            "\t\t${3:expr}",
+            "\tFROM",
+            "\t\t${1:dataset_id}.${2:table_id}",
+            ") ${4:alias}",
+            "\tON ${5:expr} = ${6:expr}"
+        ],
+        "description": "FULL OUTER JOIN (Sub Query) ON ..."
+    },
+    "CROSS JOIN": {
+        "prefix": "CROSS JOIN",
+        "body": [
+            "CROSS JOIN ${1:dataset_id}.${2:table_id}"
+        ],
+        "description": "CROSS JOIN [dataset_id].[table_id]"
+    },
+    "CROSS JOIN (Sub Query)": {
+        "prefix": "CROSS JOIN (Sub Query)",
+        "body": [
+            "CROSS JOIN (",
+            "\tSELECT",
+            "\t\t${3:expr}",
+            "\tFROM",
+            "\t\t${1:dataset_id}.${2:table_id}",
+            ") ${4:alias}"
+        ],
+        "description": "CROSS JOIN (Sub Query)"
+    }
+}

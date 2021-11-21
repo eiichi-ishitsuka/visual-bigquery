@@ -1,0 +1,91 @@
+{
+    "SELECT FROM": {
+        "prefix": "SELECT expr FROM table",
+        "body": [
+            "SELECT",
+            "\t${2:expr}",
+            "FROM",
+            "\t${1:table}"
+        ],
+        "description": "SELECT expr FROM table"
+    },
+    "SELECT FROM WHERE": {
+        "prefix": "SELECT expr FROM table WHERE expr",
+        "body": [
+            "SELECT",
+            "\t${2:expr}",
+            "FROM",
+            "\t${1:table}",
+            "WHERE",
+            "\t${3:expr}"
+        ],
+        "description": "SELECT expr FROM table WHERE expr"
+    },
+    "CASE WHEN (inline)": {
+        "prefix": "CASE WHEN",
+        "body": ["CASE WHEN ${1:bool_expr} THEN ${2:expr} ELSE ${3:expr} END"],
+        "description": "CASE(inline)"
+    },
+    "CASE WHEN ": {
+        "prefix": "CASE WHEN",
+        "body": [
+            "CASE WHEN ${1:bool_expr} THEN",
+            "\t${2:expr}",
+            "ELSE",
+            "\t${3:expr}",
+            "END"],
+        "description": "CASE"
+    },
+    "WITH": {
+        "prefix": "WITH",
+        "body": [
+            "WITH ${1:queryname} AS (",
+            "\tSELECT",
+            "\t\t",
+            "\tFROM",
+            "\t\t${2:table}",
+            ")"
+        ],
+        "description": "WITH subquery"
+    },
+    "GROUP BY": {
+        "prefix": "GROUP BY",
+        "body": [
+            "GROUP BY",
+            "\t${1:expr}"
+        ],
+        "description": "GROUP BY"
+    },
+    "HAVING": {
+        "prefix": "HAVING",
+        "body": [
+            "HAVING",
+            "\t${1:expr}"
+        ],
+        "description": "HAVING"
+    },
+    "QUALIFY": {
+        "prefix": "QUALIFY",
+        "body": [
+            "QUALIFY",
+            "\t${1:expr}"
+        ],
+        "description": "QUALIFY"
+    },
+    "LIMIT": {
+        "prefix": "LIMIT",
+        "body": [
+            "LIMIT",
+            "\t${1:expr}"
+        ],
+        "description": "LIMIT"
+    },
+    "ORDER BY": {
+        "prefix": "ORDER BY",
+        "body": [
+            "ORDER BY",
+            "\t${1:expr}"
+        ],
+        "description": "ORDER BY"
+    }
+}

@@ -8,7 +8,7 @@
     "icon": "asset/icon.png",
     "displayName": "Visual-BigQuery",
     "description": "Syntax Highlight Google BigQuery SQL",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "engines": {
         "vscode": "^1.58.0"
     },
@@ -19,7 +19,7 @@
     "activationEvents": [
         "*"
     ],
-    "main": "./extension.js",
+    "main": "./src/extension.js",
     "scripts": {
         "lint": "eslint .",
         "pretest": "npm run lint",
@@ -49,7 +49,23 @@
         "snippets": [
             {
                 "language": "sql",
-                "path": "./snippets/snippets.code-snippets"
+                "path": "./snippets/functions.code-snippets"
+            },
+            {
+                "language": "sql",
+                "path": "./snippets/idioms.code-snippets"
+            },
+            {
+                "language": "sql",
+                "path": "./snippets/idioms-join.code-snippets"
+            },
+            {
+                "language": "sql",
+                "path": "./snippets/idioms-others.code-snippets"
+            },
+            {
+                "language": "sql",
+                "path": "./snippets/idioms-window-functions.code-snippets"
             }
         ]
     },
