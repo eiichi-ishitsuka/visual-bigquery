@@ -58,6 +58,10 @@
             {
                 "language": "sql",
                 "path": "./snippets/idioms-join.code-snippets"
+            },
+            {
+                "language": "sql",
+                "path": "./snippets/idioms-window-functions.code-snippets"
             }
         ]
     },
