@@ -1,5 +1,5 @@
 {
-    "INNER JOIN" : {
+    "INNER JOIN": {
         "prefix": "INNER JOIN",
         "body": [
             "INNER JOIN ${1:dataset_id}.${2:table_id}",
@@ -7,8 +7,8 @@
         ],
         "description": "INNER JOIN [dataset_id].[table_id] ON ..."
     },
-    "INNER JOIN (Sub Query)" : {
-        "prefix": "INNER JOIN",
+    "INNER JOIN (Sub Query)": {
+        "prefix": "INNER JOIN (Sub Query)",
         "body": [
             "INNER JOIN (",
             "\tSELECT",
@@ -20,7 +20,7 @@
         ],
         "description": "INNER JOIN (Sub Query) ON ..."
     },
-    "LEFT OUTER JOIN" : {
+    "LEFT OUTER JOIN": {
         "prefix": "LEFT OUTER JOIN",
         "body": [
             "LEFT OUTER JOIN ${1:dataset_id}.${2:table_id}",
@@ -28,8 +28,8 @@
         ],
         "description": "LEFT OUTER JOIN [dataset_id].[table_id] ON ..."
     },
-    "LEFT OUTER JOIN (Sub Query)" : {
-        "prefix": "LEFT OUTER JOIN",
+    "LEFT OUTER JOIN (Sub Query)": {
+        "prefix": "LEFT OUTER JOIN (Sub Query)",
         "body": [
             "LEFT OUTER JOIN (",
             "\tSELECT",
@@ -41,7 +41,7 @@
         ],
         "description": "LEFT OUTER JOIN (Sub Query) ON ..."
     },
-    "RIGHT OUTER JOIN" : {
+    "RIGHT OUTER JOIN": {
         "prefix": "RIGHT OUTER JOIN",
         "body": [
             "RIGHT OUTER JOIN ${1:dataset_id}.${2:table_id}",
@@ -49,8 +49,8 @@
         ],
         "description": "RIGHT OUTER JOIN [dataset_id].[table_id] ON ..."
     },
-    "RIGHT OUTER JOIN (Sub Query)" : {
-        "prefix": "RIGHT OUTER JOIN",
+    "RIGHT OUTER JOIN (Sub Query)": {
+        "prefix": "RIGHT OUTER JOIN (Sub Query)",
         "body": [
             "RIGHT OUTER JOIN (",
             "\tSELECT",
@@ -62,7 +62,7 @@
         ],
         "description": "RIGHT OUTER JOIN (Sub Query) ON ..."
     },
-    "FULL OUTER JOIN" : {
+    "FULL OUTER JOIN": {
         "prefix": "INNER JOIN",
         "body": [
             "FULL OUTER JOIN ${1:dataset_id}.${2:table_id}",
@@ -70,8 +70,8 @@
         ],
         "description": "FULL OUTER JOIN [dataset_id].[table_id] ON ..."
     },
-    "FULL OUTER JOIN (Sub Query)" : {
-        "prefix": "FULL OUTER JOIN",
+    "FULL OUTER JOIN (Sub Query)": {
+        "prefix": "FULL OUTER JOIN (Sub Query)",
         "body": [
             "FULL OUTER JOIN (",
             "\tSELECT",
@@ -83,15 +83,15 @@
         ],
         "description": "FULL OUTER JOIN (Sub Query) ON ..."
     },
-    "CROSS JOIN" : {
+    "CROSS JOIN": {
         "prefix": "CROSS JOIN",
         "body": [
             "CROSS JOIN ${1:dataset_id}.${2:table_id}"
         ],
         "description": "CROSS JOIN [dataset_id].[table_id]"
     },
-    "CROSS JOIN (Sub Query)" : {
-        "prefix": "CROSS JOIN",
+    "CROSS JOIN (Sub Query)": {
+        "prefix": "CROSS JOIN (Sub Query)",
         "body": [
             "CROSS JOIN (",
             "\tSELECT",

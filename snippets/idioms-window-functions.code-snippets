@@ -1,21 +1,21 @@
 {
     "RANK() OVER(ORDER BY)": {
-        "prefix": "RANK",
+        "prefix": "RANK() OVER(ORDER BY)",
         "body": ["RANK() OVER(PARTITION BY ${1:expr})"],
         "description": "RANK() OVER(ORDER BY)"
     },
     "RANK() OVER(PARTITION BY ORDER BY)": {
-        "prefix": "RANK",
+        "prefix": "RANK() OVER(PARTITION BY ORDER BY)",
         "body": ["RANK() OVER(PARTITION BY ${1:expr} ORDER BY ${2:expr})"],
         "description": "RANK() OVER(PARTITION BY ORDER BY)"
     },
     "ROW_NUMBER() OVER(ORDER BY)": {
-        "prefix": "ROW_NUMBER",
+        "prefix": "ROW_NUMBER() OVER(ORDER BY)",
         "body": ["ROW_NUMBER() OVER(PARTITION BY ${1:expr})"],
         "description": "ROW_NUMBER() OVER(ORDER BY)"
     },
     "ROW_NUMBER() OVER(PARTITION BY ORDER BY)": {
-        "prefix": "ROW_NUMBER",
+        "prefix": "ROW_NUMBER() OVER(PARTITION BY ORDER BY)",
         "body": ["ROW_NUMBER() OVER(PARTITION BY ${1:expr} ORDER BY ${2:expr})"],
         "description": "ROW_NUMBER() OVER(PARTITION BY ORDER BY)"
     }
