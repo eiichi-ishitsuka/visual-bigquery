@@ -1,0 +1,44 @@
+name: Types
+description: |-
+  BigQuery data types
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#comparison_chart
+data:
+  - label: INT64
+    body: INT64
+    documentation: BigQuery Type
+  - label: NUMERIC
+    body: NUMERIC
+    documentation: BigQuery Type
+  - label: BIGNUMERIC
+    body: BIGNUMERIC
+    documentation: BigQuery Type
+  - label: FLOAT64
+    body: FLOAT64
+    documentation: BigQuery Type
+  - label: BOOL
+    body: BOOL
+    documentation: BigQuery Type
+  - label: STRING
+    body: STRING
+    documentation: BigQuery Type
+  - label: BYTES
+    body: BYTES
+    documentation: BigQuery Type
+  - label: DATE
+    body: DATE
+    documentation: BigQuery Type
+  - label: DATETIME
+    body: DATETIME
+    documentation: BigQuery Type
+  - label: TIME
+    body: TIME
+    documentation: BigQuery Type
+  - label: TIMESTAMP
+    body: TIMESTAMP
+    documentation: BigQuery Type
+  - label: ARRAY
+    body: ARRAY
+    documentation: BigQuery Type
+  - label: STRUCT
+    body: STRUCT
+    documentation: BigQuery Type

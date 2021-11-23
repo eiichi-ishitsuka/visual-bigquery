@@ -1,178 +1,69 @@
 import {
 	languages,
+	workspace,
 	CompletionItemKind,
 	CompletionList,
 	ExtensionContext,
+	SnippetString
 } from 'vscode';
+
+const path = require("path");
+const yaml = require('js-yaml');
+const fs = require('fs');
 
 class SqlCompletionItemProvider {
 	completionItems: any[];
 	completionList: any;
-	constructor (){
-		this.completionItems = []
+	timezone: string;
 
-		// Reserved Keywords(not used snippets)
-		const keywords = [
-			'ALL',
-			'AND',
-			'ANY',
-			'ARRAY',
-			'AS',
-			'ASC',
-			'ASSERT_ROWS_MODIFIED',
-			'AT',
-			// 'BETWEEN',
-			// 'BY',
-			// 'CASE',
-			// 'CAST',
-			'COLLATE',
-			'CONTAINS',
-			// 'CREATE',
-			// 'CROSS',
-			'CUBE',
-			'CURRENT',
-			'DEFAULT',
-			'DEFINE',
-			'DESC',
-			'DISTINCT',
-			// 'ELSE',
-			// 'END',
-			'ENUM',
-			'ESCAPE',
-			'EXCEPT',
-			'EXCLUDE',
-			'EXISTS',
-			'EXTRACT',
-			'FALSE',
-			'FETCH',
-			'FOLLOWING',
-			'FOR',
-			// 'FROM',
-			// 'FULL',
-			// 'GROUP',
-			'GROUPING',
-			'GROUPS',
-			'HASH',
-			// 'HAVING',
-			'IF',
-			'IGNORE',
-			'IN',
-			// 'INNER',
-			'INTERSECT',
-			'INTERVAL',
-			'INTO',
-			'IS',
-			// 'JOIN',
-			'LATERAL',
-			// 'LEFT',
-			'LIKE',
-			// 'LIMIT',
-			'LOOKUP',
-			'MERGE',
-			'NATURAL',
-			'NEW',
-			'NO',
-			'NOT',
-			'NULL',
-			'NULLS',
-			'OF',
-			// 'ON',
-			'OR',
-			// 'ORDER',
-			// 'OUTER',
-			// 'OVER',
-			// 'PARTITION',
-			'PRECEDING',
-			'PROTO',
-			'RANGE',
-			'RECURSIVE',
-			'RESPECT',
-			// 'RIGHT',
-			'ROLLUP',
-			'ROWS',
-			// 'SELECT',
-			'SET',
-			'SOME',
-			'STRUCT',
-			'TABLESAMPLE',
-			// 'THEN',
-			'TO',
-			'TREAT',
-			'TRUE',
-			'UNBOUNDED',
-			'UNION',
-			'UNNEST',
-			'USING',
-			// 'WHEN',
-			// 'WHERE',
-			'WINDOW',
-			// 'WITH',
-			'WITHIN',
-			// 'QUALIFY'
-		];
-		for (let i = 0; i < keywords.length; i++) {
-			this.completionItems.push(
-				{
-					label: keywords[i],
-					kind: CompletionItemKind.Keyword,
-					documentation: 'Visual BigQuery - Reserved Keywords'
-				}
-			)
-		}
+	constructor () {
+		this.completionItems = [];
+		this.timezone = (workspace.getConfiguration('visual-bigquery').get('defaultTimezone') as string);
 
-		// Other Keywords
-		const subKeywords = [
-			'EXTERNAL_QUERY',
-			'_PARTITIONTIME',
-			'_TABLE_SUFFIX',
-			'REVOKE','GRANT',
-			'SCHEMA',
-			'DECLARE',
-			'BEGIN',
-			'CALL'
-		];
-		for (let i = 0; i < subKeywords.length; i++) {
-			this.completionItems.push(
-				{
-					label: subKeywords[i],
-					kind: CompletionItemKind.Property,
-					documentation: 'Visual BigQuery - Sub Keywords'
-				}
-			)
-		}
+		// Read snippets yaml and Register Snippets 
+		this.pushCompletionItems('keywords.yaml', CompletionItemKind.Keyword);
+		this.pushCompletionItems('subkeywords.yaml', CompletionItemKind.Property);
+		this.pushCompletionItems('types.yaml', CompletionItemKind.Field);
+		this.pushCompletionItems('functions.yaml', CompletionItemKind.Function);
 
-		// BigQuery Types
-		const types = [
-			'INT64',
-			'NUMERIC',
-			'BIGNUMERIC',
-			'FLOAT64',
-			'BOOL',
-			'STRING',
-			'BYTES',
-			'DATE',
-			'DATETIME',
-			'TIME',
-			'TIMESTAMP',
-			'ARRAY',
-			'STRUCT'
-		];
-		for (let i = 0; i < types.length; i++) {
-			this.completionItems.push(
-				{
-					label: types[i],
-					kind: CompletionItemKind.Field,
-					documentation: 'Visual BigQuery - Types'
-				}
-			)
-		}
+		this.pushCompletionItems('idioms-basic.yaml', CompletionItemKind.Snippet);
+		this.pushCompletionItems('idioms-join.yaml', CompletionItemKind.Snippet);
+		this.pushCompletionItems('idioms-window-functions.yaml', CompletionItemKind.Snippet);
+		this.pushCompletionItems('idioms-others.yaml', CompletionItemKind.Snippet);
 
 		this.completionList = new CompletionList(this.completionItems, false);
 	}
 	
-    provideCompletionItems(document, position, token) {
+
+    provideCompletionItems(document: any, position: any, token: any) {
         return Promise.resolve(this.completionList);
     }
+
+	/**
+	* Read snippets yaml and Register Snippets 
+	*
+	* @param yamlFile snippets yaml file name
+	* @param kind CompletionItemKind
+	*/
+	private pushCompletionItems(yamlFile: string, kind: CompletionItemKind) {
+		let yml: any;
+		yml = yaml.safeLoad(
+			fs.readFileSync(path.resolve(__dirname, '../snippets/' + yamlFile),
+			'utf-8'
+		));
+
+		for (let i = 0; i < yml.data.length; i++) {
+			this.completionItems.push(
+				{
+					label: yml.data[i].label,
+					kind: kind,
+					insertText: new SnippetString(yml.data[i].body.replace('{{ timezone }}', this.timezone)),
+					detail: yml.data[i].label + ' -- Visual-BigQuery ' + yml.name,
+					documentation: yml.data[i].documentation
+				}
+			);
+		}
+	}
 }
 
 

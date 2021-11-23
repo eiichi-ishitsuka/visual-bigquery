@@ -1,0 +1,30 @@
+name: Sub Keywords
+description: Sub Keywords
+data:    
+  - label: EXTERNAL_QUERY
+    body: EXTERNAL_QUERY
+    documentation: Sub Keyword
+  - label: _PARTITIONTIME
+    body: _PARTITIONTIME
+    documentation: Sub Keyword
+  - label: _TABLE_SUFFIX
+    body: _TABLE_SUFFIX
+    documentation: Sub Keyword
+  - label: REVOKE
+    body: REVOKE
+    documentation: Sub Keyword
+  - label: GRANT
+    body: GRANT
+    documentation: Sub Keyword
+  - label: SCHEMA
+    body: SCHEMA
+    documentation: Sub Keyword
+  - label: DECLARE
+    body: DECLARE
+    documentation: Sub Keyword
+  - label: BEGIN
+    body: BEGIN
+    documentation: Sub Keyword
+  - label: CAL
+    body: CAL
+    documentation: Sub Keyword

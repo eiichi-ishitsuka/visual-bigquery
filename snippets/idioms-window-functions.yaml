@@ -1,0 +1,30 @@
+name: Idioms (Window Functions)
+description: Idioms (Window Functions)
+data:
+  - label: RANK() OVER(ORDER BY expr)
+    body: RANK() OVER(ORDER BY ${1:expr})
+    documentation: |-
+      * SQL Idiom
+
+      RANK() OVER(ORDER BY expr)
+
+  - label: RANK() OVER(PARTITION BY expr ORDER BY expr)
+    body: RANK() OVER(PARTITION BY ${1:expr} ORDER BY ${2:expr})
+    documentation: |-
+      * SQL Idiom
+
+      RANK() OVER(PARTITION BY expr ORDER BY expr)
+
+  - label: ROW_NUMBER() OVER(ORDER BY expr)
+    body: ROW_NUMBER() OVER(ORDER BY ${1:expr})
+    documentation: |-
+      * SQL Idiom
+
+      ROW_NUMBER() OVER(ORDER BY expr)
+
+  - label: ROW_NUMBER() OVER(PARTITION BY expr ORDER BY expr)
+    body: ROW_NUMBER() OVER(PARTITION BY ${1:expr} ORDER BY ${2:expr})
+    documentation: |-
+      * SQL Idiom
+
+      ROW_NUMBER() OVER(PARTITION BY expr ORDER BY expr)

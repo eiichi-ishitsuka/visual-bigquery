@@ -1,0 +1,59 @@
+name: Idioms
+description: Idioms (Others)
+data:
+  - label: IS NULL
+    body: IS NULL
+    documentation: |-
+      * SQL Idiom
+
+  - label: IS NOT NULL
+    body: IS NOT NULL
+    documentation: |-
+      * SQL Idiom
+
+  - label: BETWEEN expr AND expr
+    body: BETWEEN ${1:expr} AND ${2:expr}
+    documentation: |-
+      * SQL Idiom
+
+  - label: CAST(expr AS type)
+    body: CAST(${1:expr} AS ${2:type})
+    documentation: |-
+      * SQL Idiom
+      
+      CAST(expr AS type)
+
+  - label: EXTERNAL_QUERY(connection_id, query)
+    body: |-
+      EXTERNAL_QUERY(
+          '${1:connection_id}''
+          '''
+          ${2:query}
+          '''
+      )
+    documentation: |-
+      * SQL Idiom
+      
+      EXTERNAL_QUERY(connection_id, query)
+
+  - label: CREATE TEMPORARY FUNCTION (SQL UDF)
+    body: |-
+      CREATE TEMPORARY FUNCTION ${1:func}(${2:param} ${3:type}) RETURNS ${4:type} AS (
+          ${5:logic}
+      );
+    documentation: |-
+      * SQL Idiom
+      
+      CREATE TEMPORARY FUNCTION (SQL UDF)
+
+  - label: CREATE TEMPORARY FUNCTION (JavaScript UDF)
+    body: |-
+      CREATE TEMPORARY FUNCTION ${1:func}(${2:param} ${3:type}) RETURNS ${4:type} LANGUAGE js AS
+          """
+          ${5:logic}
+          """
+      );
+    documentation: |-
+      * SQL Idiom
+      
+      CREATE TEMPORARY FUNCTION (JavaScript UDF)

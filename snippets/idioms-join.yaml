@@ -1,0 +1,147 @@
+name: Idioms
+description: Idioms (Basic)
+data:
+  - label: INNER JOIN table,
+    body: |-
+      INNER JOIN ${1:table}
+          ON ${2:expr} = ${3:expr}
+    documentation: |-
+      * SQL Idiom
+
+      INNER JOIN table
+          ON expr = expr
+
+  - label: INNER JOIN subquery,
+    body: |-
+      INNER JOIN (
+          SELECT
+              ${2:expr}
+          FROM
+              ${1:table}
+      ) ${3:alias}
+          ON ${4:expr} = ${5:expr}
+    documentation: |-
+      * SQL Idiom
+
+      INNER JOIN (
+          SELECT
+              expr
+          FROM
+              table
+      ) alias
+          ON expr = expr
+
+  - label: LEFT OUTER JOIN table,
+    body: |-
+      LEFT OUTER JOIN ${1:table}
+          ON ${2:expr} = ${3:expr}
+    documentation: |-
+      * SQL Idiom
+
+      LEFT OUTER JOIN table
+          ON expr = expr
+
+  - label: LEFT OUTER JOIN subquery,
+    body: |-
+      LEFT OUTER JOIN (
+          SELECT
+              ${2:expr}
+          FROM
+              ${1:table}
+      ) ${3:alias}
+          ON ${4:expr} = ${5:expr}
+    documentation: |-
+      * SQL Idiom
+
+      LEFT OUTER JOIN (
+          SELECT
+              expr
+          FROM
+              table
+      ) alias
+          ON expr = expr
+
+  - label: RIGHT OUTER JOIN table,
+    body: |-
+      RIGHT OUTER JOIN ${1:table}
+          ON ${2:expr} = ${3:expr}
+    documentation: |-
+      * SQL Idiom
+
+      RIGHT OUTER JOIN table
+          ON expr = expr
+
+  - label: RIGHT OUTER JOIN subquery,
+    body: |-
+      RIGHT OUTER JOIN (
+          SELECT
+              ${2:expr}
+          FROM
+              ${1:table}
+      ) ${3:alias}
+          ON ${4:expr} = ${5:expr}
+    documentation: |-
+      * SQL Idiom
+
+      RIGHT OUTER JOIN (
+          SELECT
+              expr
+          FROM
+              table
+      ) alias
+          ON expr = expr
+
+  - label: FULL OUTER JOIN table,
+    body: |-
+      FULL OUTER JOIN ${1:table}
+          ON ${2:expr} = ${3:expr}
+    documentation: |-
+      * SQL Idiom
+
+      FULL OUTER JOIN table
+          ON expr = expr
+
+  - label: FULL OUTER JOIN subquery,
+    body: |-
+      FULL OUTER JOIN (
+          SELECT
+              ${2:expr}
+          FROM
+              ${1:table}
+      ) ${3:alias}
+          ON ${4:expr} = ${5:expr}
+    documentation: |-
+      * SQL Idiom
+
+      FULL OUTER JOIN (
+          SELECT
+              expr
+          FROM
+              table
+      ) alias
+          ON expr = expr
+
+  - label: CROSS JOIN table,
+    body: CROSS JOIN ${1:table}
+    documentation: |-
+      * SQL Idiom
+
+      CROSS JOIN table
+
+  - label: CROSS JOIN subquery,
+    body: |-
+      CROSS JOIN (
+          SELECT
+              ${2:expr}
+          FROM
+              ${1:table}
+      ) ${3:alias}
+    documentation: |-
+      * SQL Idiom
+
+      CROSS JOIN (
+          SELECT
+              expr
+          FROM
+              table
+      ) alias
