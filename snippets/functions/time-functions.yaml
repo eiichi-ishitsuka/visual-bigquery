@@ -1,0 +1,169 @@
+name: Time Functions
+description: |-
+  Time関数
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+  - label: CURRENT_TIME(timezone)
+    body: CURRENT_TIME('{{ timezone }}')
+    documentation: |-
+      CURRENT_TIME([timezone])
+      
+      #### Description
+      現在時刻を `TIME` オブジェクトとして返します。
+      
+      この関数では、省略可能な `timezone` パラメータを使用できます。タイムゾーンの指定方法については、タイムゾーンの定義をご覧ください。
+      
+      #### Return Data Types
+      `TIME`
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TIME(expr)
+    body: TIME(${1:expr})
+    documentation: |-
+      1. TIME(hour, minute, second)
+      2. TIME(timestamp, [timezone])
+      3. TIME(datetime)
+      
+      #### Description
+      時、分、秒を表す `INT64` 値を使用して、`TIME` オブジェクトを構築します。
+      `TIMESTAMP` オブジェクトを使用して、`TIME` オブジェクトを構築します。タイムゾーンを指定するには省略可能なパラメータを使用できます。タイムゾーンが指定されていない場合、デフォルトのタイムゾーンの UTC が使用されます。
+      `DATETIME` オブジェクトを使用して、`TIME` オブジェクトを構築します。
+      
+      #### Return Data Types
+      `TIME`
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TIME_ADD(time_expression, INTERVAL int64_expression part)
+    body: TIME_ADD(${1:time_expression}, INTERVAL ${2:int64_expression} ${3:part})
+    documentation: |-
+      TIME_ADD(time_expression, INTERVAL int64_expression part)
+      
+      #### Description
+      `part` の `int64_expression` 単位を `TIME` オブジェクトに追加します。
+      `TIME_ADD` は、`part` の次の値をサポートします。
+      
+      - `MICROSECOND`
+      - `MILLISECOND`
+      - `SECOND`
+      - `MINUTE`
+      - `HOUR`
+      
+      この関数は、値が 00:00:00 から 24:00:00 の範囲外になった場合に自動調整を行います。たとえば、`23:30:00` に 1 時間を追加すると、値 `00:30:00` が返されます。
+      
+      #### Return Data Types
+      `TIME`
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TIME_SUB(time_expression, INTERVAL int64_expression part)
+    body: TIME_SUB(${1:time_expression}, INTERVAL ${2:int64_expression} ${3:part})
+    documentation: |-
+      TIME_SUB(time_expression, INTERVAL int64_expression part)
+      
+      #### Description
+      `TIME` オブジェクトから `part` の `int64_expression` 単位を減算します。
+      `TIME_SUB` は、`part` の次の値をサポートします。
+      
+      - `MICROSECOND`
+      - `MILLISECOND`
+      - `SECOND`
+      - `MINUTE`
+      - `HOUR`
+      
+      この関数は、値が 00:00:00 から 24:00:00 の範囲外になった場合に自動調整を行います。たとえば、`00:30:00` から 1 時間を減算すると、`23:30:00` の値が返されます。
+      
+      #### Return Data Types
+      `TIME`
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TIME_DIFF(time_expression_a, time_expression_b, part)
+    body: TIME_DIFF(${1:time_expression_a}, ${2:time_expression_b}, ${3:part})
+    documentation: |-
+      TIME_DIFF(time_expression_a, time_expression_b, part)
+      
+      #### Description
+      2 つの `TIME` オブジェクト（`time_expression_a`～`time_expression_b`）間に存在する、全体が指定された `part` の間隔を示す数を返します。最初の `TIME` が 2 番目のオブジェクトよりも前に存在する場合、出力は負になります。2 つの `TIME` オブジェクト間のマイクロ秒単位の差異が `INT64` 値をオーバーフローするなど、計算によって得られた型がオーバーフローする場合はエラーをスローします。
+      `TIME_DIFF` は、`part` の次の値をサポートします。
+      
+      - `MICROSECOND`
+      - `MILLISECOND`
+      - `SECOND`
+      - `MINUTE`
+      - `HOUR`
+      
+      #### Return Data Types
+      `INT64`
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TIME_TRUNC(time_expression, part)
+    body: TIME_TRUNC(${1:time_expression}, ${2:part})
+    documentation: |-
+      TIME_TRUNC(time_expression, part)
+      
+      #### Description
+      `part` の粒度で `TIME` オブジェクトを切り詰めます。
+      `TIME_TRUNC` は、`part` の次の値をサポートします。
+      
+      - `MICROSECOND`
+      - `MILLISECOND`
+      - `SECOND`
+      - `MINUTE`
+      - `HOUR`
+      
+      #### Return Data Types
+      `TIME`
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: FORMAT_TIME(format_string, time_object)
+    body: FORMAT_TIME(${1:format_string}, ${2:time_object})
+    documentation: |-
+      FORMAT_TIME(format_string, time_object)
+      
+      #### Description
+      指定された format_string に従って TIME オブジェクトを形式設定します。この関数でサポートされる形式設定要素のリストについては、TIME でサポートされる形式設定要素をご覧ください。
+      
+      #### Return Data Types
+      `STRING`
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: PARSE_TIME(format_string, time_string)
+    body: PARSE_TIME(${1:format_string}, ${2:time_string})
+    documentation: |-
+      PARSE_TIME(format_string, time_string)
+      
+      #### Description
+      時間の文字列表現を `TIME` オブジェクトに変換します。
+      `format_string` には、`time_string` のフォーマット方法を定義する形式設定要素が含まれます。`time_string` 内の各要素については、対応する要素が `format_string` 内に存在することが必要です。`format_string` 内の各要素のロケーションは、`time_string` 内の各要素のロケーションと一致する必要があります。
+      形式設定文字列は、`%P` を除く大部分の形式設定要素を完全にサポートしています。
+      `PARSE_TIME` を使用する場合、次の点に注意してください。
+      
+      - 指定されていないフィールド。指定されていないフィールドはすべて、`00:00:00.0` から初期設定されます。たとえば、`seconds` を指定しないと、デフォルトで `00` が使用されます。
+      - 空白文字。形式設定文字列内の 1 つ以上の連続する空白文字は `TIME` 文字列内の 0 個以上の連続する空白文字と同じです。また、`TIME` 文字列の先頭と末尾の空白は、形式設定文字列に含まれていなくても常に許可されます。
+      - 形式設定の優先度。2 つ以上の形式設定要素に重複する情報がある場合、最後の設定によって前の設定がオーバーライドされます。
+      
+      #### Return Data Types
+      `TIME`
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)

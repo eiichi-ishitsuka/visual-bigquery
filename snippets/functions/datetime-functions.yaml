@@ -1,0 +1,198 @@
+name: Datetime Functions
+description: |-
+  日時関数
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+  - label: CURRENT_DATETIME(timezone)
+    body: CURRENT_DATETIME('{{ timezone }}')
+    documentation: |-
+      CURRENT_DATETIME([timezone])
+      
+      #### Description
+      現在時刻を `DATETIME` オブジェクトとして返します。
+      この関数では、省略可能な `timezone` パラメータを使用できます。タイムゾーンの指定方法については、タイムゾーンの定義をご覧ください。
+      
+      #### Return Data Types
+      `DATETIME`
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: DATETIME(expr)
+    body: DATETIME(${1:expr})
+    documentation: |-
+      1. DATETIME(year, month, day, hour, minute, second)
+      2. DATETIME(date_expression[, time_expression])
+      3. DATETIME(timestamp_expression [, timezone])
+      
+      #### Description
+      年、月、日、時、分、秒を表す INT64 値を使用して `DATETIME` オブジェクトを構築します。
+      DATE オブジェクトとオプションの TIME オブジェクトを使用して、`DATETIME` オブジェクトを構築します。
+      TIMESTAMP オブジェクトを使用して `DATETIME` オブジェクトを構築します。タイムゾーンを指定するには省略可能なパラメータを使用できます。タイムゾーンが指定されていない場合、デフォルトのタイムゾーンの UTC が使用されます。
+      
+      #### Return Data Types
+      `DATETIME`
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: DATETIME_ADD(datetime_expression, INTERVAL int64_expression part)
+    body: DATETIME_ADD(${1:datetime_expression}, INTERVAL ${2:int64_expression} ${3:part})
+    documentation: |-
+      DATETIME_ADD(datetime_expression, INTERVAL int64_expression part)
+      
+      #### Description
+      `part` の `int64_expression` 単位を `DATETIME` オブジェクトに追加します。
+      `DATETIME_ADD` は、`part` の次の値をサポートします。
+      
+      - `MICROSECOND`
+      - `MILLISECOND`
+      - `SECOND`
+      - `MINUTE`
+      - `HOUR`
+      - `DAY`
+      - `WEEK`。7 `DAY` と等価。
+      - `MONTH`
+      - `QUARTER`
+      - `YEAR`
+      
+      日付が月の最後の日である（または最後の日に近い）場合、MONTH、QUARTER、YEAR のパーツには特別な処理が必要です。結果の月の日数が元の DATETIME の日付よりも少ない場合、結果の日はその新しい月の最終日になります。
+      
+      #### Return Data Types
+      `DATETIME`
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: DATETIME_SUB(datetime_expression, INTERVAL int64_expression part)
+    body: DATETIME_SUB(${1:datetime_expression}, INTERVAL ${2:int64_expression} ${3:part})
+    documentation: |-
+      DATETIME_SUB(datetime_expression, INTERVAL int64_expression part)
+      
+      #### Description
+      `DATETIME` から `part` の `int64_expression` 単位を減算します。
+      `DATETIME_SUB` は、`part` の次の値をサポートします。
+      
+      - `MICROSECOND`
+      - `MILLISECOND`
+      - `SECOND`
+      - `MINUTE`
+      - `HOUR`
+      - `DAY`
+      - `WEEK`。7 `DAY` と等価。
+      - `MONTH`
+      - `QUARTER`
+      - `YEAR`
+      
+      日付が月の最後の日である（または最後の日に近い）場合、`MONTH`、`QUARTER`、`YEAR` の各部分には特別な処理が必要です。結果の月の日数が元の `DATETIME` 日よりも少ない場合、結果の日は新しい月の最終日です。
+      
+      #### Return Data Types
+      `DATETIME`
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: DATETIME_DIFF(datetime_expression_a, datetime_expression_b, part)
+    body: DATETIME_DIFF(${1:datetime_expression_a}, ${2:datetime_expression_b}, ${3:part})
+    documentation: |-
+      DATETIME_DIFF(datetime_expression_a, datetime_expression_b, part)
+      
+      #### Description
+      2 つの `DATETIME` オブジェクト（`datetime_expression_a`～`datetime_expression_b`）間に存在する、全体が指定された `part` の間隔を示す数を返します。最初の `DATETIME` が 2 番目のオブジェクトよりも前に存在する場合、出力は負になります。2 つの `DATETIME` オブジェクト間のマイクロ秒単位の差異が `INT64` 値をオーバーフローするなど、計算によって得られた型がオーバーフローする場合はエラーをスローします。
+      `DATETIME_DIFF` は、`part` の次の値をサポートします。
+      
+      - `MICROSECOND`
+      - `MILLISECOND`
+      - `SECOND`
+      - `MINUTE`
+      - `HOUR`
+      - `DAY`
+      - `WEEK`: この日付パーツは日曜日から始まります。
+      - `WEEK(&lt;WEEKDAY&gt;)`: この日付パートは `WEEKDAY` から始まります。`WEEKDAY` の有効な値は、`SUNDAY`、`MONDAY`、`TUESDAY`、`WEDNESDAY`、`THURSDAY`、`FRIDAY`、`SATURDAY` です。
+      - `ISOWEEK`: ISO 8601 の週の境界を使用します。ISO 週は月曜日から始まります。
+      - `MONTH`
+      - `QUARTER`
+      - `YEAR`
+      - `ISOYEAR`: ISO 8601 の週番号が付いた年の境界を使用します。ISO 年の境界は、対応するグレゴリオ暦年に木曜日が属している最初の週の月曜日です。
+      
+      #### Return Data Types
+      `INT64`
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: DATETIME_TRUNC(datetime_expression, part)
+    body: DATETIME_TRUNC(${1:datetime_expression}, ${2:part})
+    documentation: |-
+      DATETIME_TRUNC(datetime_expression, part)
+      
+      #### Description
+      `part` の粒度で `DATETIME` オブジェクトを切り詰めます。
+      `DATETIME_TRUNC` は、`part` の次の値をサポートします。
+      
+      - `MICROSECOND`
+      - `MILLISECOND`
+      - `SECOND`
+      - `MINUTE`
+      - `HOUR`
+      - `DAY`
+      - `WEEK`
+      - `WEEK(&lt;WEEKDAY&gt;)`: `datetime_expression` を、`WEEKDAY` で週が始まる先行する週の境界に切り詰めます。`WEEKDAY` の有効な値は、`SUNDAY`、`MONDAY`、`TUESDAY`、`WEDNESDAY`、`THURSDAY`、`FRIDAY`、`SATURDAY` です。
+      - `ISOWEEK`: `datetime_expression` を、先行する ISO 8601 の週の境界に切り詰めます。`ISOWEEK` は月曜日に始まります。各 ISO 年の最初の `ISOWEEK` には、対応するグレゴリオ暦年の最初の木曜日が含まれます。これより前の `date_expression` を前の月曜日に切り詰めます。
+      - `MONTH`
+      - `QUARTER`
+      - `YEAR`
+      - `ISOYEAR`: `datetime_expression` を ISO 8601 形式の週番号が付けられた先行年の境界に切り詰めます。ISO 年の境界は、対応するグレゴリオ暦年に木曜日が属している最初の週の月曜日です。
+      
+      #### Return Data Types
+      `DATETIME`
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: FORMAT_DATETIME(format_string, datetime_expression)
+    body: FORMAT_DATETIME(${1:format_string}, ${2:datetime_expression})
+    documentation: |-
+      FORMAT_DATETIME(format_string, datetime_expression)
+      
+      #### Description
+      指定された `format_string` に従って `DATETIME` オブジェクトをフォーマットします。この関数でサポートされる形式設定要素のリストについては、DATETIME でサポートされる形式設定要素をご覧ください。
+      
+      #### Return Data Types
+      `STRING`
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: PARSE_DATETIME(format_string, datetime_string)
+    body: PARSE_DATETIME(${1:format_string}, ${2:datetime_string})
+    documentation: |-
+      PARSE_DATETIME(format_string, datetime_string)
+      
+      #### Description
+      日時の文字列表現を `DATETIME` オブジェクトに変換します。
+      
+      `format_string` には、`datetime_string` のフォーマット方法を定義する形式設定要素が含まれます。`datetime_string` 内の各要素については、対応する要素が `format_string` 内に存在することが必要です。`format_string` 内の各要素のロケーションは、`datetime_string` 内の各要素のロケーションと一致する必要があります。
+      
+      形式設定文字列は、`%Q`、`%a`、`%A`、`%g`、`%G`、`%j`、`%P`、`%u`、`%U`、`%V`、`%w`、`%W` を除く大部分の形式設定要素を完全にサポートしています。
+      
+      `PARSE_DATETIME` は、次のルールに従って `string` を解析します。
+      
+      - 指定されていないフィールド。指定されていないフィールドはすべて、`1970-01-01 00:00:00.0` から初期設定されます。たとえば、年が指定されていない場合、デフォルトは `1970` です。
+      - 大文字と小文字の区別がない名前。`Monday` や `February` などの名前は、大文字と小文字が区別されません。
+      - 空白文字。形式設定文字列内の 1 つ以上の連続する空白文字は `DATETIME` 文字列内の 0 個以上の連続する空白文字と同じです。`DATETIME` 文字列の先頭と末尾の空白は、形式設定文字列に含まれていなくても常に許可されます。
+      - 形式設定の優先度。2 つ以上の形式設定要素に重複する情報がある場合、一部の例外を除き、最後の設定によって前の設定がオーバーライドされます。たとえば、`%F` と `%Y` は両方とも年に影響するので、前者は後者をオーバーライドします。`%s`、`%C`、`%y` の説明については、DATETIME でサポートされる形式設定要素をご覧ください。
+      
+      #### Return Data Types
+      `DATETIME`
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)

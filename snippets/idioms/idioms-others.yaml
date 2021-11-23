@@ -21,7 +21,9 @@ data:
     documentation: |-
       * SQL Idiom
       
+      ```sql      
       CAST(expr AS type)
+      ```
 
   - label: EXTERNAL_QUERY(connection_id, query)
     body: |-
@@ -34,7 +36,9 @@ data:
     documentation: |-
       * SQL Idiom
       
+      ```sql      
       EXTERNAL_QUERY(connection_id, query)
+      ```
 
   - label: CREATE TEMPORARY FUNCTION (SQL UDF)
     body: |-
@@ -43,7 +47,7 @@ data:
       );
     documentation: |-
       * SQL Idiom
-      
+
       CREATE TEMPORARY FUNCTION (SQL UDF)
 
   - label: CREATE TEMPORARY FUNCTION (JavaScript UDF)

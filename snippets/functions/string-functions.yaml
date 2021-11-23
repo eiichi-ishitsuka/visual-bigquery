@@ -1,0 +1,616 @@
+name: String Functions
+description: |-
+  文字列関数
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+  - label: ASCII(value)
+    body: ASCII(${1:value})
+    documentation: |-
+      ASCII(value)
+      
+      #### Description
+      Returns the ASCII code for the first character or byte in value. Returns 0 if value is empty or the ASCII code is 0 for the first character or byte.
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: BYTE_LENGTH(value)
+    body: BYTE_LENGTH(${1:value})
+    documentation: |-
+      BYTE_LENGTH(value)
+      
+      #### Description
+      値の型が `STRING` または `BYTES` のどちらであるかにかかわらず、`BYTES` の `STRING` 値または `BYTES` 値の長さを返します。
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: CHAR_LENGTH(value)
+    body: CHAR_LENGTH(${1:value})
+    documentation: |-
+      CHAR_LENGTH(value)
+      
+      #### Description
+      `STRING` の長さを文字数で返します。
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: CHARACTER_LENGTH(value)
+    body: CHARACTER_LENGTH(${1:value})
+    documentation: |-
+      CHARACTER_LENGTH(value)
+      
+      #### Description
+      CHAR_LENGTH の類義語です。
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: CODE_POINTS_TO_BYTES(ascii_values)
+    body: CODE_POINTS_TO_BYTES(${1:ascii_values})
+    documentation: |-
+      CODE_POINTS_TO_BYTES(ascii_values)
+      
+      #### Description
+      拡張 ASCII コードポイントの配列（`INT64` の `ARRAY`）を取り、`BYTES` を返します。
+      
+      `BYTES` からコードポイントの配列への変換については、TO_CODE_POINTS をご覧ください。
+      
+      #### Return Data Types
+      BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: CODE_POINTS_TO_STRING(value)
+    body: CODE_POINTS_TO_STRING(${1:value})
+    documentation: |-
+      CODE_POINTS_TO_STRING(value)
+      
+      #### Description
+      Unicode コードポイントの配列（`INT64` の `ARRAY`）を取り、`STRING` を返します。コードポイントが 0 の場合、`STRING` に文字を返しません。
+      
+      文字列からコードポイントの配列への変換については、TO_CODE_POINTS をご覧ください。
+      
+      #### Return Data Types
+      STRING
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: CONCAT(value1)
+    body: CONCAT(${1:value1})
+    documentation: |-
+      CONCAT(value1[, ...])
+      
+      #### Description
+      1 つ以上の値を 1 つに連結します。すべての値が `BYTES` か、`STRING` にキャスト可能なデータ型である必要があります。
+      
+      入力引数が `NULL` の場合、この関数は `NULL` を返します。注: また、|| 連結演算子を使用して、値を文字列に連結することもできます。
+      
+      #### Return Data Types
+      STRING または BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ENDS_WITH(value1, value2)
+    body: ENDS_WITH(${1:value1}, ${2:value2})
+    documentation: |-
+      ENDS_WITH(value1, value2)
+      
+      #### Description
+      2 つの `STRING` 値または `BYTES` 値を取ります。2 番目の値が 1 番目の値の接尾辞である場合は、`TRUE` を返します。
+      
+      #### Return Data Types
+      BOOL
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: FORMAT(expr)
+    body: FORMAT(${1:expr})
+    documentation: |-
+      FORMAT(expr)
+
+      #### Description
+      BigQuery では、文字列の形式設定として FORMAT() 関数がサポートされます。この関数は C の printf 関数に似ています。これは、ゼロ個以上の形式指定子を含む形式設定文字列から STRING を生成し、さらに、形式指定子と一致する追加引数の可変長リストを生成します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: FROM_BASE32(string_expr)
+    body: FROM_BASE32(${1:string_expr})
+    documentation: |-
+      FROM_BASE32(string_expr)
+      
+      #### Description
+      base32 でエンコードされた入力 `string_expr` を `BYTES` 形式に変換します。`BYTES` を base32 でエンコードされた `STRING` に変換するには、TO_BASE32 を使用します。
+      
+      #### Return Data Types
+      BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: FROM_BASE64(string_expr)
+    body: FROM_BASE64(${1:string_expr})
+    documentation: |-
+      FROM_BASE64(string_expr)
+      
+      #### Description
+      base64 でエンコードされた入力 `string_expr` を `BYTES` 形式に変換します。`BYTES` を base64 でエンコードされた `STRING` に変換するには、TO_BASE64 を使用します。
+      
+      #### Return Data Types
+      BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: FROM_HEX(string)
+    body: FROM_HEX(${1:string})
+    documentation: |-
+      FROM_HEX(string)
+      
+      #### Description
+      16 進数でエンコードされた `STRING` を `BYTES` 形式に変換します。入力 `STRING` に `(0..9, A..F, a..f)` の範囲外の文字が含まれている場合はエラーを返します。文字の大文字と小文字は区別されません。入力 `STRING` の文字数が奇数の場合は、入力の先頭に `0` が追加されているものとして処理されます。`BYTES` を 16 進数でエンコードされた `STRING` に変換するには、TO_HEX を使用します。
+      
+      #### Return Data Types
+      BYTES
+
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: LENGTH(value)
+    body: LENGTH(${1:value})
+    documentation: |-
+      LENGTH(value)
+      
+      #### Description
+      `STRING` 値または `BYTES` 値の長さを返します。戻り値は `STRING` 引数の場合は文字数、`BYTES` 引数の場合はバイト数で示されます。
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: LPAD(original_value, return_length)
+    body: LPAD(${1:original_value}, ${2:return_length})
+    documentation: |-
+      LPAD(original_value, return_length[, pattern])
+      
+      #### Description
+      先頭に `pattern` が追加された `original_value` で構成される `STRING` 値または `BYTES` 値を返します。`return_length` は、戻り値の長さを指定する `INT64` です。`original_value` が `BYTES` 型の場合、`return_length` はバイト数です。`original_value` が `STRING` 型の場合、`return_length` は文字数です。
+      `pattern` のデフォルト値はスペースです。
+      `original_value` と `pattern` は同じデータ型にする必要があります。
+      `return_length` が `original_value` 以下である場合、この関数は `original_value` の値を `return_length` の値まで切り詰めて返します。たとえば、`LPAD(&quot;hello world&quot;, 7);` は `&quot;hello w&quot;` を返します。
+      `original_value`、`return_length`、または `pattern` が `NULL` の場合、この関数は `NULL` を返します。
+      次の場合、この関数はエラーを返します。
+      `return_length` が負の値である
+      `pattern` が空白である
+      
+      #### Return Data Types
+      STRING または BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: LOWER(value)
+    body: LOWER(${1:value})
+    documentation: |-
+      LOWER(value)
+      
+      #### Description
+      `STRING` 引数の場合は、元の文字列をすべて小文字の英字で返します。小文字と大文字の間のマッピングは、言語固有のマッピングを考慮せずに、Unicode 文字データベースに従って行われます。
+      `BYTES` 引数の場合、引数は ASCII テキストとして処理され、127 を超えるすべてのバイトはそのまま残ります。
+      
+      #### Return Data Types
+      STRING または BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: LTRIM(value1)
+    body: LTRIM(${1:value1})
+    documentation: |-
+      LTRIM(value1[, value2])
+      
+      #### Description
+      TRIM と同じですが、先頭からのみ文字を削除します。
+      
+      #### Return Data Types
+      STRING または BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: NORMALIZE(value)
+    body: NORMALIZE(${1:value})
+    documentation: |-
+      NORMALIZE(value[, normalization_mode])
+      
+      #### Description
+      文字列値を取り、正規化された文字列として返します。
+      正規化は、2 つの文字列を同等にするために使用されます。画面上で同じように表示される 2 つの文字列が、実際には異なる Unicode コードポイントを持つような状況で、正規化がよく使用されます。
+      
+      #### Return Data Types
+      STRING
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: NORMALIZE_AND_CASEFOLD(value)
+    body: NORMALIZE_AND_CASEFOLD(${1:value})
+    documentation: |-
+      NORMALIZE_AND_CASEFOLD(value[, normalization_mode])
+      
+      #### Description
+      `STRING` `value` を取り、`NORMALIZE` と同じ処理を行います。さらに、大文字と小文字を区別しないオペレーション向けにケースフォールディングを行います。
+      
+      #### Return Data Types
+      STRING
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: REGEXP_CONTAINS(value, regexp)
+    body: REGEXP_CONTAINS(${1:value}, ${2:regexp})
+    documentation: |-
+      REGEXP_CONTAINS(value, regexp)
+      
+      #### Description
+      `value` が正規表現 `regexp` に対して部分一致である場合は、`TRUE` を返します。
+      `regexp` の引数が無効な場合は、関数はエラーを返します。
+      完全一致を検索するには、`^`（テキストの先頭）と `$`（テキストの末尾）を使用します。正規表現演算子が優先されるため、`^` と `$` 間のすべてのものを括弧で囲むことをおすすめします。
+      
+      #### Return Data Types
+      BOOL
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: REGEXP_EXTRACT(value, regexp)
+    body: REGEXP_EXTRACT(${1:value}, ${2:regexp})
+    documentation: |-
+      REGEXP_EXTRACT(value, regexp)
+      
+      #### Description
+      正規表現 `regexp` と一致する `value` 内の最初の部分文字列を返します。一致がない場合、`NULL` を返します。
+      正規表現がキャプチャ グループを含む場合、この関数はそのキャプチャ グループによって照合された部分文字列を返します。式にキャプチャ グループが含まれていない場合、この関数によって一致しているすべての部分文字列が返されます。
+      次の場合にエラーを返します。
+      正規表現が無効の場合。
+      正規表現に複数のキャプチャ グループがある場合。
+      
+      #### Return Data Types
+      STRING または BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: REGEXP_EXTRACT_ALL(value, regexp)
+    body: REGEXP_EXTRACT_ALL(${1:value}, ${2:regexp})
+    documentation: |-
+      REGEXP_EXTRACT_ALL(value, regexp)
+      
+      #### Description
+      正規表現 `regexp` と一致する `value` のすべての部分文字列の配列を返します。
+      `REGEXP_EXTRACT_ALL` 関数は、重複しない一致のみを返します。たとえば、この関数を使用して `banana` から `ana` を抽出した場合、返される部分文字列は 2 つではなく、1 つのみです。
+      
+      #### Return Data Types
+      STRING または BYTES の ARRAY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: REGEXP_REPLACE(value, regexp, replacement)
+    body: REGEXP_REPLACE(${1:value}, ${2:regexp}, ${3:replacement})
+    documentation: |-
+      REGEXP_REPLACE(value, regexp, replacement)
+      
+      #### Description
+      正規表現 `regexp` と一致する `value` のすべての部分文字列を `replacement` に置き換えた `STRING` を返します。
+      `replacement` 引数内でバックスラッシュでエスケープされた数字（\1～\9）を使用して、対応する括弧で囲まれたグループと一致するテキストを `regexp` パターン内に挿入できます。一致するテキスト全体を参照するには、\0 を使用します。
+      `regexp` の引数が有効な正規表現でない場合、この関数はエラーを返します。
+
+      #### Return Data Types
+      STRING または BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: REPLACE(original_value, from_value, to_value)
+    body: REPLACE(${1:original_value}, ${2:from_value}, ${3:to_value})
+    documentation: |-
+      REPLACE(original_value, from_value, to_value)
+      
+      #### Description
+      `original_value` 内に出現するすべての `from_value` を `to_value` に置き換えます`from_value` が空の場合、置き換えは行われません。
+      
+      #### Return Data Types
+      STRING または BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: REPEAT(original_value, repetitions)
+    body: REPEAT(${1:original_value}, ${1:repetitions})
+    documentation: |-
+      REPEAT(original_value, repetitions)
+      
+      #### Description
+      `original_value` の繰り返しで構成される `STRING` 値または `BYTES` 値を返します。`repetitions` パラメータで、`original_value` の繰り返しの数を指定します。`original_value` または `repetitions` のいずれかが `NULL` の場合は、`NULL` を返します。
+      `repetitions` の値が負の数の場合、この関数はエラーを返します。
+      
+      #### Return Data Types
+      STRING または BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: REVERSE(value)
+    body: REVERSE(${1:value})
+    documentation: |-
+      REVERSE(value)
+      
+      #### Description
+      入力の `STRING` または `BYTES` を逆順で返します。
+      
+      #### Return Data Types
+      STRING または BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: RPAD(original_value, return_length)
+    body: RPAD(${1:original_value}, ${1:return_length})
+    documentation: |-
+      RPAD(original_value, return_length[, pattern])
+      
+      #### Description
+      `pattern` が追加された `original_value` で構成される `STRING` 値または `BYTES` 値を返します。`return_length` パラメータは、戻り値の長さを指定する `INT64` です。`original_value` が `BYTES` の場合、`return_length` はバイト数です。`original_value` が `STRING` の場合、`return_length` は文字数です。
+      `pattern` のデフォルト値はスペースです。
+      `original_value` と `pattern` は同じデータ型にする必要があります。
+      `return_length` が `original_value` 以下である場合、この関数は `original_value` の値を `return_length` の値まで切り詰めて返します。たとえば、`RPAD(&quot;hello world&quot;, 7);` は `&quot;hello w&quot;` を返します。
+      `original_value`、`return_length`、または `pattern` が `NULL` の場合、この関数は `NULL` を返します。
+      次の場合、この関数はエラーを返します。
+      `return_length` が負の値である
+      `pattern` が空白である
+      
+      #### Return Data Types
+      STRING または BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: RTRIM(value1)
+    body: RTRIM(${1:value1})
+    documentation: |-
+      RTRIM(value1[, value2])
+      
+      #### Description
+      TRIM と同一ですが、文字を末尾からのみ削除します。
+      
+      #### Return Data Types
+      STRING または BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: SAFE_CONVERT_BYTES_TO_STRING(value)
+    body: SAFE_CONVERT_BYTES_TO_STRING(${1:value})
+    documentation: |-
+      SAFE_CONVERT_BYTES_TO_STRING(value)
+      
+      #### Description
+      `BYTES` のシーケンスを `STRING` に変換します。無効な UTF-8 文字列は Unicode 置換文字 `U+FFFD` に置き換えられます。
+      
+      #### Return Data Types
+      STRING
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: SPLIT(value)
+    body: SPLIT(${1:value})
+    documentation: |-
+      SPLIT(value[, delimiter])
+      
+      #### Description
+      `delimiter` 引数を使用して `value` を分割します。
+      `STRING` の場合、デフォルトの区切り文字はカンマ（`,`）です。
+      `BYTES` の場合は、区切り文字を指定する必要があります。
+      空の区切り文字で分割すると、`STRING` 値の場合は UTF-8 文字の配列が生成され、`BYTES` 値の場合は `BYTES` の配列が生成されます。
+      空の `STRING` を分割すると、1 つの空の `STRING` を持つ `ARRAY` が返されます。
+      
+      #### Return Data Types
+      STRING 型の ARRAY、または BYTES 型の ARRAY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: STARTS_WITH(value1, value2)
+    body: STARTS_WITH(${1:value1}, ${2:value2})
+    documentation: |-
+      STARTS_WITH(value1, value2)
+      
+      #### Description
+      2 つの `STRING` 値または `BYTES` 値を取ります。2 番目の値が 1 番目の値の接頭辞である場合は、`TRUE` を返します。
+      
+      #### Return Data Types
+      BOOL
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: STRPOS(string, substring)
+    body: STRPOS(${1:string}, ${2:substring})
+    documentation: |-
+      STRPOS(string, substring)
+      
+      #### Description
+      `string` 内で最初に `substring` が出現する位置のインデックス（開始値 1）を返します。`substring` が見つからない場合は `0` を返します。
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: SUBSTR(value, position)
+    body: SUBSTR(${1:value}, ${2:position})
+    documentation: |-
+      SUBSTR(value, position[, length])
+      
+      #### Description
+      指定された `STRING` 値または `BYTES` 値の部分文字列を返します。`position` 引数は、部分文字列の開始位置を指定する整数であり、position = 1 は最初の文字またはバイトを指します。`length` 引数は、`STRING` 引数の場合は最大文字数、`BYTES` 引数の場合はバイト数です。
+      `position` が負の値である場合、`value` の最後からカウントします（-1 は最後の文字を示す）。
+      `position` が `STRING` の左端の外の位置にある場合（`position` = 0 または `position` &lt; `-LENGTH(value)`）、position = 1 から開始します。`length` が `value` の長さを超える場合、この関数は `length` 文字より少ない値を返します。
+      `length` が 0 より小さい場合、関数はエラーを返します。
+      
+      #### Return Data Types
+      STRING または BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TO_BASE32(bytes_expr)
+    body: TO_BASE32(${1:bytes_expr})
+    documentation: |-
+      TO_BASE32(bytes_expr)
+      
+      #### Description
+      `BYTES` のシーケンスを base32 でエンコードされた `STRING` に変換します。base32 でエンコードされた `STRING` を `BYTES` に変換するには、FROM_BASE32 を使用します。
+      
+      
+      #### Return Data Types
+      STRING
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TO_BASE64(bytes_expr)
+    body: TO_BASE64(${1:bytes_expr})
+    documentation: |-
+      TO_BASE64(bytes_expr)
+      
+      #### Description
+      `BYTES` のシーケンスを base64 でエンコードされた `STRING` に変換します。base64 でエンコードされた `STRING` を `BYTES` に変換するには、FROM_BASE64 を使用します。
+      
+      #### Return Data Types
+      STRING
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TO_CODE_POINTS(value)
+    body: TO_CODE_POINTS(${1:value})
+    documentation: |-
+      TO_CODE_POINTS(value)
+      
+      #### Description
+      value を取り、`INT64` の配列を返します。
+      `value` が `STRING` の場合、返される配列の各要素はコードポイントを表します。各コードポイントは、[0, 0xD7FF] から [0xE000, 0x10FFFF] の範囲になります。
+      `value` が `BYTES` の場合、配列内の各要素は拡張 ASCII 文字の値で、範囲は [0, 255] です。
+      
+      #### Return Data Types
+      ARRAY/INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TO_HEX(bytes)
+    body: TO_HEX(${1:bytes})
+    documentation: |-
+      TO_HEX(bytes)
+      
+      #### Description
+      `BYTES` のシーケンスを 16 進数の `STRING` に変換します。`STRING` 内の各バイトを範囲 `(0..9, a..f)` 内の 2 つの 16 進数文字に変換します。16 進数でエンコードされた `STRING` を `BYTES` に変換するには、FROM_HEX を使用します。
+      
+      #### Return Data Types
+      STRING
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TRIM(value1)
+    body: TRIM(${1:value1})
+    documentation: |-
+      TRIM(value1[, value2])
+      
+      #### Description
+      `value2` に一致するすべての先頭と末尾の文字を削除します。`value2` が指定されていない場合は、すべての先頭と末尾の（Unicode 標準で定義されている）空白文字が削除されます。最初の引数が `BYTES` 型の場合、2 番目の引数は必須です。
+      `value2` が複数の文字またはバイトを含む場合、この関数は `value2` に含まれている文字が先頭または末尾の文字またはバイトに存在した場合にこれらをすべて削除します。
+      
+      
+      #### Return Data Types
+      STRING または BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: UPPER(value)
+    body: UPPER(${1:value})
+    documentation: |-
+      UPPER(value)
+      
+      #### Description
+      `STRING` 引数の場合は、元の文字列をすべて大文字の英字で返します。大文字と小文字の間のマッピングは、言語固有のマッピングを考慮せずに Unicode 文字データベースに従って行われます。
+      `BYTES` 引数の場合、引数は ASCII テキストとして処理され、127 を超えるすべてのバイトはそのまま残ります。
+      
+      #### Return Data Types
+      STRING または BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)

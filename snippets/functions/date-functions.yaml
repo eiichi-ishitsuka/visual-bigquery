@@ -1,0 +1,241 @@
+name: Date Functions
+description: |-
+  DATE関数
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+  - label: CURRENT_DATE(timezone)
+    body: CURRENT_DATE('{{ timezone }}')
+    documentation: |-
+      CURRENT_DATE([time_zone])
+      
+      #### Description
+      指定した、またはデフォルトのタイムゾーンの今現在の日付を返します。
+      この関数では、省略可能な `time_zone` パラメータを使用できます。このパラメータは、使用するタイムゾーンを示す文字列です。タイムゾーンが指定されていない場合、デフォルトのタイムゾーンの UTC が使用されます。タイムゾーンの指定方法の詳細については、タイムゾーンの定義をご覧ください。
+      `time_zone` パラメータが `NULL` と評価されると、この関数は `NULL` を返します。
+      
+      #### Return Data Types
+      DATE
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: EXTRACT(part FROM expr)
+    body: EXTRACT(${1:part} FROM ${2:expr})
+    documentation: |-
+      EXTRACT(part FROM expr)
+      
+      #### Description
+      指定した日付、時間の一部に対応する値が返されます。`part` は、以下のいずれかにする必要があります。
+      
+      - `DAYOFWEEK`: 週の最初の曜日が日曜日である範囲 [1,7] 内の値を返します。
+      - `DAY`
+      - `DAYOFYEAR`
+      - `WEEK`: 範囲 [0, 53] 内の日付の週番号を返します。週は日曜日から始まり、年の最初の日曜日より前の日付は 0 週目です。
+      - `WEEK(&lt;WEEKDAY&gt;)`: 範囲 [0, 53] 内の日付の週番号を返します。週は `WEEKDAY` から始まります。最初の `WEEKDAY` より前の日付は、第 0 週になります。`WEEKDAY` の有効な値は、`SUNDAY`、`MONDAY`、`TUESDAY`、`WEDNESDAY`、`THURSDAY`、`FRIDAY`、`SATURDAY` です。
+      - `ISOWEEK`: ISO 8601 形式で `date_expression` の週番号を返します。`ISOWEEK` は月曜日から始まります。戻り値は範囲 [1, 53] 内に存在します。各 ISO 年の最初の `ISOWEEK` は、グレゴリオ暦年の最初の木曜日より前の月曜日から始まります。
+      - `MONTH`
+      - `QUARTER`: 範囲 [1,4] 内の値を返します。
+      - `YEAR`
+      - `ISOYEAR`: ISO 8601 形式の週番号が付いた年を返します。これは `date_expression` が属している週の木曜日が含まれるグレゴリオ暦年です。
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: DATE(expr)
+    body: DATE(${1:expr})
+    documentation: |-
+      1. DATE(year, month, day)
+      2. DATE(timestamp_expression[, timezone])
+      3. DATE(datetime_expression)
+      
+      #### Description
+      年、月、日を表す DATE を INT64 値から構築します。
+      TIMESTAMP 式から DATE を抽出します。タイムゾーンを指定するには省略可能なパラメータを使用できます。タイムゾーンが指定されていない場合、デフォルトのタイムゾーンの UTC が使用されます。
+      DATETIME 式から DATE を抽出します。
+      
+      #### Return Data Types
+      DATE
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: DATE_ADD(date_expression, INTERVAL int64_expression date_part)
+    body: DATE_ADD(${1:date_expression}, INTERVAL ${2:int64_expression}, ${3:date_part})
+    documentation: |-
+      DATE_ADD(date_expression, INTERVAL int64_expression date_part)
+      
+      #### Description
+      指定した時間間隔を DATE に追加します。
+      
+      `DATE_ADD` は、次の `date_part` 値をサポートします。
+
+      - `DAY`
+      - `WEEK`。7 `DAY` と等価。
+      - `MONTH`
+      - `QUARTER`
+      - `YEAR`
+      
+      日付が月の最後の日である（または最後の日に近い）場合、MONTH、QUARTER、YEAR のパーツには特別な処理が必要です。結果の月の日数が元の日付よりも少ない場合、結果の日はその新しい月の最終日になります。
+      
+      #### Return Data Types
+      DATE
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: DATE_SUB(date_expression, INTERVAL int64_expression date_part)
+    body: DATE_SUB(${1:date_expression}, INTERVAL ${2:int64_expression}, ${3:date_part})
+    documentation: |-
+      DATE_SUB(date_expression, INTERVAL int64_expression date_part)
+      
+      #### Description
+      DATE から指定した期間を減算します。
+      
+      `DATE_SUB` は、次の `date_part` 値をサポートします。
+      
+      - `DAY`
+      - `WEEK`。7 `DAY` と等価。
+      - `MONTH`
+      - `QUARTER`
+      - `YEAR`
+      
+      日付が月の最後の日である（または最後の日に近い）場合、MONTH、QUARTER、YEAR のパーツには特別な処理が必要です。結果の月の日数が元の日付よりも少ない場合、結果の日はその新しい月の最終日になります。
+      
+      #### Return Data Types
+      DATE
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: DATE_DIFF(date_expression_a, date_expression_b, date_part)
+    body: DATE_DIFF(${1:date_expression_a}, ${2:date_expression_b}, ${3:date_part})
+    documentation: |-
+      DATE_DIFF(date_expression_a, date_expression_b, date_part)
+      
+      #### Description
+      2 つの `DATE` オブジェクト（`date_expression_a`～`date_expression_b`）間に存在する、全体が指定された `date_part` の間隔を示す数を返します。最初の `DATE` が 2 番目のオブジェクトよりも前に存在する場合、出力は負になります。
+      
+      `DATE_DIFF` は、次の `date_part` 値をサポートします。
+      
+      - `DAY`
+      - `WEEK`: この日付パーツは日曜日から始まります。
+      - `WEEK(&lt;WEEKDAY&gt;)`: この日付パートは `WEEKDAY` から始まります。`WEEKDAY` の有効な値は、`SUNDAY`、`MONDAY`、`TUESDAY`、`WEDNESDAY`、`THURSDAY`、`FRIDAY`、`SATURDAY` です。
+      - `ISOWEEK`: ISO 8601 の週の境界を使用します。ISO 週は月曜日から始まります。
+      - `MONTH`
+      - `QUARTER`
+      - `YEAR`
+      - `ISOYEAR`: ISO 8601 の週番号が付いた年の境界を使用します。ISO 年の境界は、対応するグレゴリオ暦年に木曜日が属している最初の週の月曜日です。
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: DATE_TRUNC(date_expression, date_part)
+    body: DATE_TRUNC(${1:date_expression}, ${2:date_part})
+    documentation: |-
+      DATE_TRUNC(date_expression, date_part)
+      
+      #### Description
+      指定した粒度まで日付を切り詰めます。
+      
+      `DATE_TRUNC` は、`date_part` の次の値をサポートします。
+      
+      - `DAY`
+      - `WEEK`
+      - `WEEK(&lt;WEEKDAY&gt;)`: `date_expression` を、`WEEKDAY` で週が始まる先行する週の境界に切り詰めます。`WEEKDAY` の有効な値は、`SUNDAY`、`MONDAY`、`TUESDAY`、`WEDNESDAY`、`THURSDAY`、`FRIDAY`、`SATURDAY` です。
+      - `ISOWEEK`: `date_expression` を、先行する ISO 8601 の週の境界に切り詰めます。`ISOWEEK` は月曜日に始まります。各 ISO 年の最初の `ISOWEEK` には、対応するグレゴリオ暦年の最初の木曜日が含まれます。これより前の `date_expression` を前の月曜日に切り詰めます。
+      - `MONTH`
+      - `QUARTER`
+      - `YEAR`
+      - `ISOYEAR`: `date_expression` を ISO 8601 形式の週番号が付けられた先行年の境界に切り詰めます。ISO 年の境界は、対応するグレゴリオ暦年に木曜日が属している最初の週の月曜日です。
+      
+      #### Return Data Types
+      
+      
+      DATE
+      
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: DATE_FROM_UNIX_DATE(int64_expression)
+    body: DATE_FROM_UNIX_DATE(${1:int64_expression})
+    documentation: |-
+      DATE_FROM_UNIX_DATE(int64_expression)
+      
+      #### Description
+      `int64_expression` は、1970-01-01 からの日数です。
+      
+      #### Return Data Types
+      DATE
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: FORMAT_DATE(expr, date_expr)
+    body: FORMAT_DATE(${1:format_string}, ${1:date_expr})
+    documentation: |-
+      FORMAT_DATE(format_string, date_expr)
+      
+      #### Description
+      指定された `format_string` に従って `date_expr` をフォーマットします。
+      この関数でサポートされる形式設定要素のリストについては、DATE でサポートされる形式設定要素をご覧ください。
+      
+      #### Return Data Types
+      STRING
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: PARSE_DATE(expr)
+    body: PARSE_DATE(${1:expr})
+    documentation: |-
+      PARSE_DATE(format_string, date_string)
+      
+      #### Description
+      日付の文字列表現を `DATE` オブジェクトに変換します。
+      `format_string` には、`date_string` のフォーマット方法を定義する形式設定要素が含まれます。`date_string` 内の各要素については、対応する要素が `format_string` 内に存在することが必要です。`format_string` 内の各要素のロケーションは、`date_string` 内の各要素のロケーションと一致する必要があります。
+      形式設定文字列は、`%Q`、`%a`、`%A`、`%g`、`%G`、`%j`、`%u`、`%U`、`%V`、`%w`、`%W` を除く大部分の形式設定要素を完全にサポートしています。
+      
+      `PARSE_DATE` を使用する場合、次の点に注意してください。
+      
+      - 指定されていないフィールド。指定されていないフィールドはすべて、`1970-01-01` から初期設定されます。
+      - 大文字と小文字の区別がない名前。`Monday` や `February` などの名前は、大文字と小文字が区別されません。
+      - 空白文字。形式設定文字列内の 1 つ以上の連続する空白文字は、日付文字列内のゼロ以上の連続する空白文字と同じです。また、日付文字列内の先頭および末尾の空白文字は、それらが形式設定文字列内にない場合でも常に許可されます。
+      - 形式設定の優先度。2 つ（またはそれ以上）の形式設定要素が重複する情報を持つ場合（たとえば、`%F` と `%Y` の両方が年に影響を及ぼす場合など）、一般に、最後に指定した内容によって、前に指定した内容がオーバーライドされます。
+      
+      #### Return Data Types
+      DATE
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: UNIX_DATE(expr)
+    body: UNIX_DATE(${1:expr})
+    documentation: |-
+      UNIX_DATE(date_expression)
+      
+      #### Description
+      1970-01-01 からの日数を返します。
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)

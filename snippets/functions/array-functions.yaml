@@ -1,0 +1,176 @@
+name: Array Functions
+description: |-
+  配列関数
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+  - label: OFFSET(zero_based_offset)
+    body: OFFSET(${1:zero_based_offset})
+    documentation: |-
+      ARRAY 要素にアクセスし、その要素を返します。OFFSET は番号付けがゼロから始まることを意味します。
+
+  - label: ORDINAL(one_based_offset)
+    body: ORDINAL(${1:one_based_offset})
+    documentation: |-
+      ARRAY 要素にアクセスし、その要素を返します。ORDINAL は番号付けが1から始まることを意味します。
+
+  - label: SAFE_OFFSET(zero_based_offset)
+    body: SAFE_OFFSET(${1:zero_based_offset})
+    documentation: |-
+      ARRAY 要素にアクセスし、その要素を返します。SAFE_OFFSET は番号付けがゼロから始まることを意味します。
+      OFFSET と同じですが、インデックスが範囲外の場合に NULL を返す点が異なります。
+
+  - label: SAFE_ORDINAL(one_based_offset)
+    body: SAFE_ORDINAL(${1:one_based_offset})
+    documentation: |-
+      ARRAY 要素にアクセスし、その要素を返します。SAFE_ORDINAL は番号付けが1から始まることを意味します。
+      ORDINAL と同じですが、インデックスが範囲外の場合に NULL を返す点が異なります。
+
+  - label: ARRAY(subquery)
+    body: ARRAY(${1:subquery})
+    documentation: |-
+      ARRAY(subquery)
+      
+      #### Description
+      `ARRAY` 関数は、サブクエリによって返される行ごとに 1 つの要素を含む `ARRAY` を返します。
+      `subquery` によって SQL テーブルが生成される場合、そのテーブルの列数は 1 つである必要があります。出力 `ARRAY` の各要素は、テーブルの行に 1 つだけある列の値となります。
+      `subquery` によって値テーブルが生成される場合、出力 `ARRAY` の各要素は、値テーブルの対応する行全体となります。
+      
+      #### Return Data Types
+      ARRAY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ARRAY_CONCAT(array_expression_1)
+    body: ARRAY_CONCAT(${1:array_expression_1})
+    documentation: |-
+      ARRAY_CONCAT(array_expression_1 [, array_expression_n])
+      
+      #### Description
+      同じ要素型の 1 つまたは複数の配列を 1 つの配列に連結します。注: || 連結演算子を使用して配列を連結することもできます。
+      
+      #### Return Data Types
+      ARRAY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ARRAY_LENGTH(array_expression)
+    body: ARRAY_LENGTH(${1:array_expression})
+    documentation: |-
+      ARRAY_LENGTH(array_expression)
+      
+      #### Description
+      配列のサイズを返します。空の配列の場合は 0 を返します。`array_expression` が `NULL` である場合、`NULL` を返します。
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ARRAY_TO_STRING(array_expression, delimiter)
+    body: ARRAY_TO_STRING(${1:array_expression}, ${2:delimiter})
+    documentation: |-
+      ARRAY_TO_STRING(array_expression, delimiter[, null_text])
+      
+      #### Description
+      `array_expression` 内の要素の連結を STRING として返します。`array_expression` の値は STRING または BYTES データ型のいずれかの配列にできます。
+      `null_text` パラメータが使用されている場合、この関数によって、配列内のすべての `NULL` 値が `null_text` の値に置き換えられます。
+      `null_text` パラメータが使用されていない場合、この関数は `NULL` 値とその前にある区切り文字を無視します。
+      
+      #### Return Data Types
+      STRING
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: GENERATE_ARRAY(start_expression, end_expression)
+    body: GENERATE_ARRAY(${1:start_expression}, ${2:end_expression})
+    documentation: |-
+      GENERATE_ARRAY(start_expression, end_expression[, step_expression])
+      
+      #### Description
+      値の配列を返します。`start_expression` と `end_expression` のパラメータは、配列の包括的な開始点と終了点を示します。
+      
+      `GENERATE_ARRAY` 関数は、入力として次のデータ型を受け入れます。
+      
+      - INT64
+      - NUMERIC
+      - FLOAT64
+      
+      `step_expression` パラメータは、配列の値を生成するために使用される増分を示します。このパラメータのデフォルト値は `1` です。
+      この関数は、`step_expression` が 0 に設定されているか入力が `NaN` の場合、エラーを返します。
+      引数が `NULL` の場合、関数は `NULL` 配列を返します。
+      
+      
+      #### Return Data Types
+      ARRAY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: GENERATE_DATE_ARRAY(start_date, end_date)
+    body: GENERATE_DATE_ARRAY(${1:start_date}, ${2:end_date})
+    documentation: |-
+      GENERATE_DATE_ARRAY(start_date, end_date[, INTERVAL INT64_expr date_part])
+      
+      #### Description
+      日付の配列を返します。`start_date` と `end_date` のパラメータは、配列の包括的な開始点と終了点を示します。
+      `GENERATE_DATE_ARRAY` 関数は、入力として次のデータ型を受け入れます。
+      `start_date` は DATE にする必要があります。
+      `end_date` は DATE にする必要があります。
+      `INT64_expr` には INT64 にする必要があります。
+      `date_part` は、DAY、WEEK、MONTH、QUARTER または YEAR にする必要があります。
+      `INT64_expr` パラメータは、日付の生成に使用される増分を示します。このパラメータのデフォルト値は 1 日です。
+      この関数は、`INT64_expr` が 0 に設定されている場合、エラーを返します。
+      
+      #### Return Data Types
+      0 個以上の DATE 値が含まれている配列。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: GENERATE_TIMESTAMP_ARRAY(start_timestamp, end_timestamp, INTERVAL step_expression date_part)
+    body: GENERATE_TIMESTAMP_ARRAY(${1:start_date}, ${2:end_date} INTERVAL (${3:step_expression}, ${4:date_part}))
+    documentation: |-
+      GENERATE_TIMESTAMP_ARRAY(start_timestamp, end_timestamp,
+                               INTERVAL step_expression date_part)
+      
+      #### Description
+      指定の間隔で区切られた `TIMESTAMPS` の `ARRAY` を返します。`start_timestamp` と `end_timestamp` のパラメータは、`ARRAY` の包括的な上限と下限を示します。
+      `GENERATE_TIMESTAMP_ARRAY` 関数は、入力として次のデータ型を受け入れます。
+      `start_timestamp`: `TIMESTAMP`
+      `end_timestamp`: `TIMESTAMP`
+      `step_expression`: `INT64`
+      `date_part` に使用できる値は、`MICROSECOND`、`MILLISECOND`、`SECOND`、`MINUTE`、`HOUR`、`DAY` です。
+      `step_expression` パラメータは、タイムスタンプの生成に使用される増分を示します。
+      
+      #### Return Data Types
+      0 個以上の `TIMESTAMP` 値が含まれている `ARRAY`。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ARRAY_REVERSE(value)
+    body: ARRAY_REVERSE(${1:value})
+    documentation: |-
+      ARRAY_REVERSE(value)
+      
+      #### Description
+      要素のある ARRAY 入力を逆順で返します。
+      
+      #### Return Data Types
+      ARRAY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+

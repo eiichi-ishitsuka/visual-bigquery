@@ -1,0 +1,155 @@
+name: Navigation Functions
+description: |-
+  ナビゲーション関数
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+  - label: FIRST_VALUE(value_expression)
+    body: FIRST_VALUE(${1:value_expression})
+    documentation: |-
+      FIRST_VALUE (value_expression [{RESPECT | IGNORE} NULLS])
+      
+      #### Description
+      現在のウィンドウ フレーム内の最初の行の `value_expression` の値を返します。
+      
+      この関数は、`IGNORE NULLS` が使用されていない場合は、計算に `NULL` 値が含まれます。`IGNORE NULLS` が使用されている場合、関数の計算から `NULL` 値が除外されます。
+      
+      #### Supported Argument Types
+      `value_expression` には、式から返すことができる任意のデータ型を指定できます。
+      
+      #### Return Data Types
+      ANY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: LAST_VALUE(value_expression)
+    body: LAST_VALUE(${1:value_expression})
+    documentation: |-
+      LAST_VALUE (value_expression [{RESPECT | IGNORE} NULLS])
+      
+      #### Description
+      現在のウィンドウ フレーム内の最後の行に対する `value_expression` の値を返します。
+      
+      `IGNORE NULLS` が使用されていない場合、この関数の計算には `NULL` 値が含まれます。`IGNORE NULLS` が使用されている場合、関数の計算から `NULL` 値が除外されます。
+      
+      #### Supported Argument Types
+      `value_expression` には、式から返すことができる任意のデータ型を指定できます。
+      
+      #### Return Data Types
+      ANY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: NTH_VALUE(value_expression, constant_integer_expression)
+    body: NTH_VALUE(${1:value_expression}, ${2:constant_integer_expression})
+    documentation: |-
+      NTH_VALUE (value_expression, constant_integer_expression [{RESPECT | IGNORE} NULLS])
+      
+      #### Description
+      現在のウィンドウ フレーム内の N 番目の行の `value_expression` の値を返します。N は `constant_integer_expression` によって定義されます。該当する行がない場合、NULL を返します。
+      
+      `IGNORE NULLS` が使用されていない場合、この関数の計算には `NULL` 値が含まれます。`IGNORE NULLS` が使用されている場合、関数の計算から `NULL` 値が除外されます。
+      
+      #### Supported Argument Types
+      `value_expression` には、式から返すことができる任意のデータ型を指定できます。
+      `constant_integer_expression` には、整数を返す任意の定数式を指定できます。
+      
+      #### Return Data Types
+      ANY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: LEAD(value_expression)
+    body: LEAD(${1:value_expression})
+    documentation: |-
+      LEAD (value_expression[, offset [, default_expression]])
+      
+      #### Description
+      後続の 1 つの行の `value_expression` の値を返します。`offset` の値を変更すると、どれだけ後の行が返されるかが変更されます。デフォルト値は `1` で、ウィンドウ枠内の直後の行を示します。`offset` が NULL または負の値の場合はエラーになります。
+      
+      指定したオフセットの行がウィンドウ枠内に存在しない場合は、オプションの `default_expression` が使用されます。この式は定数式である必要があり、その型を `value_expression` の型に暗黙的に強制型変換できる必要があります。指定されていない場合、`default_expression` はデフォルトで NULL になります。
+      
+      #### Supported Argument Types
+      `value_expression` には、式から返すことができる任意のデータ型を指定できます。
+      `offset` は、負の値ではない整数値のリテラルまたはパラメータである必要があります。
+      `default_expression` は、value_expression の型との間で互換性が必要です。
+      
+      #### Return Data Types
+      ANY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: LAG(value_expression)
+    body: LAG(${1:value_expression})
+    documentation: |-
+      LAG (value_expression[, offset [, default_expression]])
+      
+      #### Description
+      先行する 1 つの行の `value_expression` の値を返します。`offset` の値を変更すると、どれだけ前の行が返されるかが変更されます。デフォルト値は `1` で、ウィンドウ枠内の直前の行を示します。`offset` が NULL または負の値の場合はエラーになります。
+      
+      指定したオフセットの行がウィンドウ枠内に存在しない場合は、オプションの `default_expression` が使用されます。この式は定数式である必要があり、その型を `value_expression` の型に暗黙的に強制型変換できる必要があります。指定されていない場合、`default_expression` はデフォルトで NULL になります。
+      
+      #### Supported Argument Types
+      `value_expression` には、式から返すことができる任意のデータ型を指定できます。
+      `offset` は、負の値ではない整数値のリテラルまたはパラメータである必要があります。
+      `default_expression` は、value_expression の型との間で互換性が必要です。
+      
+      #### Return Data Types
+      ANY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: PERCENTILE_CONT(value_expression, percentile)
+    body: PERCENTILE_CONT(${1:value_expression}, ${2:percentile})
+    documentation: |-
+      PERCENTILE_CONT (value_expression, percentile [{RESPECT | IGNORE} NULLS])
+      
+      #### Description
+      線形補間を使用して、value_expression に対して指定されたパーセンタイル値を計算します。
+      
+      `RESPECT NULLS` が存在しない場合、この関数は NULL 値を無視します。`RESPECT
+      NULLS` が存在する場合:
+      
+      2 つの `NULL` 値の間の補間は `NULL` を返します。
+      `NULL` 値と非 `NULL` 値の間の補間は非 `NULL` 値を返します。
+      
+      #### Supported Argument Types
+      `value_expression` は数値式です。
+      `percentile` は、`[0, 1]` の範囲内の `FLOAT64` リテラルです。
+      
+      #### Return Data Types
+      `FLOAT64`
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: PERCENTILE_DISC(value_expression, percentile)
+    body: PERCENTILE_DISC(${1:value_expression}, ${2:percentile})
+    documentation: |-
+      PERCENTILE_DISC (value_expression, percentile [{RESPECT | IGNORE} NULLS])
+      
+      #### Description
+      個別の `value_expression` に対する指定されたパーセンタイル値を計算します。返される値は、特定の `percentile` と等しいかそれ以上の累積分布を持つ `value_expression` の最初に並べ替えられた値です。
+      
+      `RESPECT NULLS` が存在しない場合、この関数は `NULL` 値を無視します。
+      
+      #### Supported Argument Types
+      `value_expression` は、任意の順序付け可能な型にできます。
+      `percentile` は、`[0, 1]` の範囲内の `FLOAT64` リテラルです。
+      
+      #### Return Data Types
+      `ANY`
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)

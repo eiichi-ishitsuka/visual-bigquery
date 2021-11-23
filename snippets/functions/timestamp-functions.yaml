@@ -1,0 +1,287 @@
+name: Timestamp Functions
+description: |-
+  Timestamp 関数
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+  - label: CURRENT_TIMESTAMP()
+    body: CURRENT_TIMESTAMP())
+    documentation: |-
+      CURRENT_TIMESTAMP()
+      
+      #### Description
+      括弧は省略可能です。この関数は、挿入されたうるう秒の前後 20 時間にわたってうるう秒を分散することで、うるう秒を処理します。`CURRENT_TIMESTAMP()` は、連続し、明確であり、1 分あたり正確に 60 秒が含まれ、うるう秒に対して値を繰り返さない TIMESTAMP 値を生成します。
+      
+      #### Return Data Types
+      TIMESTAMP
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TIMESTAMP(expr)
+    body: TIMESTAMP(${1:expr})
+    documentation: |-
+      TIMESTAMP(string_expression[, timezone])
+      TIMESTAMP(date_expression[, timezone])
+      TIMESTAMP(datetime_expression[, timezone])
+      
+      #### Description
+      `string_expression[, timezone]`: STRING 表現を TIMESTAMP データ型に変換します。`string_expression` にはタイムスタンプのリテラルを含める必要があります。`string_expression` のタイムスタンプ リテラルにタイムゾーンが含まれている場合は、明示的な `timezone` 引数を含めないでください。
+      `date_expression[, timezone]`: DATE オブジェクトを TIMESTAMP データ型に変換します。
+      `datetime_expression[, timezone]`: DATETIME オブジェクトを TIMESTAMP データ型に変換します。
+      
+      この関数では、タイムゾーンを指定するためのパラメータがサポートされています（省略可能）。タイムゾーンが指定されていない場合、デフォルトのタイムゾーンの UTC が使用されます。
+      
+      #### Return Data Types
+      TIMESTAMP
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TIMESTAMP_ADD(timestamp_expression, INTERVAL int64_expression date_part)
+    body: TIMESTAMP_ADD(${1:timestamp_expression}, INTERVAL ${2:int64_expression} ${3:date_part})
+    documentation: |-
+      TIMESTAMP_ADD(timestamp_expression, INTERVAL int64_expression date_part)
+      
+      #### Description
+      タイムゾーンに関係なく、`date_part` の `int64_expression` 単位をタイムスタンプに加算します。
+      `TIMESTAMP_ADD` は、`date_part` の次の値をサポートします。
+      
+      - `MICROSECOND`
+      - `MILLISECOND`
+      - `SECOND`
+      - `MINUTE`
+      - `HOUR`。60 `MINUTE` と等価。
+      - `DAY`。24 `HOUR` と等価。
+      
+      #### Return Data Types
+      TIMESTAMP
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TIMESTAMP_SUB(timestamp_expression, INTERVAL int64_expression date_part)
+    body: TIMESTAMP_SUB(${1:timestamp_expression}, INTERVAL ${2:int64_expression} ${3:date_part})
+    documentation: |-
+      TIMESTAMP_SUB(timestamp_expression, INTERVAL int64_expression date_part)
+      
+      #### Description
+      タイムゾーンに関係なく、タイムスタンプから `date_part` の `int64_expression` 単位を減算します。
+      `TIMESTAMP_SUB` は、`date_part` の次の値をサポートします。
+   
+      - `MICROSECOND`
+      - `MILLISECOND`
+      - `SECOND`
+      - `MINUTE`
+      - `HOUR`。60 `MINUTE` と等価。
+      - `DAY`。24 `HOUR` と等価。
+      
+      #### Return Data Types
+      TIMESTAMP
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TIMESTAMP_DIFF(timestamp_expression_a, timestamp_expression_b, date_part)
+    body: TIMESTAMP_DIFF(${1:timestamp_expression_a}, ${2:timestamp_expression_b}, ${3:date_part})
+    documentation: |-
+      TIMESTAMP_DIFF(timestamp_expression_a, timestamp_expression_b, date_part)
+      
+      #### Description
+      2 つの `TIMESTAMP` オブジェクト（`timestamp_expression_a`～`timestamp_expression_b`）間に存在する、全体が指定された `date_part` の間隔を示す数を返します。最初の `TIMESTAMP` が 2 番目のオブジェクトよりも前に存在する場合、出力は負になります。2 つの `TIMESTAMP` オブジェクト間のマイクロ秒単位の差異が `INT64` 値をオーバーフローするなど、計算によって得られた型がオーバーフローする場合はエラーをスローします。
+      `TIMESTAMP_DIFF` は、`date_part` の次の値をサポートします。
+      
+      - `MICROSECOND`
+      - `MILLISECOND`
+      - `SECOND`
+      - `MINUTE`
+      - `HOUR`。60 `MINUTE` と等価。
+      - `DAY`。24 `HOUR` と等価。
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TIMESTAMP_TRUNC(timestamp_expression, date_part)
+    body: TIMESTAMP_TRUNC(${1:timestamp_expression}, ${2:date_part})
+    documentation: |-
+      TIMESTAMP_TRUNC(timestamp_expression, date_part[, timezone])
+      
+      #### Description
+      `date_part` の粒度までタイムスタンプを切り詰めます。
+      `TIMESTAMP_TRUNC` は、`date_part` の次の値をサポートします。
+      
+      - `MICROSECOND`
+      - `MILLISECOND`
+      - `SECOND`
+      - `MINUTE`
+      - `HOUR`
+      - `DAY`
+      - `WEEK`
+      - `WEEK(&lt;WEEKDAY&gt;):`: `timestamp_expression` を週が `WEEKDAY` で始まる前の週の境界に切り詰めます。`WEEKDAY` の有効な値は、`SUNDAY`、`MONDAY`、`TUESDAY`、`WEDNESDAY`、`THURSDAY`、`FRIDAY`、`SATURDAY` です。
+      - `ISOWEEK`: `timestamp_expression` を、先行する ISO 8601 の週の境界に切り詰めます。`ISOWEEK` は月曜日に始まります。各 ISO 年の最初の `ISOWEEK` には、対応するグレゴリオ暦年の最初の木曜日が含まれます。これより前の `date_expression` を前の月曜日に切り詰めます。
+      - `MONTH`
+      - `QUARTER`
+      - `YEAR`
+      - `ISOYEAR`: `timestamp_expression` を ISO 8601 形式の週番号が付けられた先行年の境界に切り詰めます。ISO 年の境界は、対応するグレゴリオ暦年に木曜日が属している最初の週の月曜日です。
+      
+      `TIMESTAMP_TRUNC` 関数は、省略可能な `timezone` パラメータをサポートしています。このパラメータは、次の `date_parts` に適用されます。
+      
+      - `MINUTE`
+      - `HOUR`
+      - `DAY`
+      - `WEEK`
+      - `WEEK(&lt;WEEKDAY&gt;)`
+      - `ISOWEEK`
+      - `MONTH`
+      - `QUARTER`
+      - `YEAR`
+      - `ISOYEAR`
+      
+      このパラメータは、デフォルトのタイムゾーンである UTC 以外のタイムゾーンを切り詰めオペレーションの一部として使用する場合に使用します。
+      
+      `TIMESTAMP` を `MINUTE` あるいは `HOUR` に切り詰める場合、`TIMESTAMP_TRUNC` は指定された（あるいはデフォルトの）タイムゾーンでの `TIMESTAMP` の常用時を計算し、そこから分と秒（HOUR に切り詰める場合）あるいは秒（MINUTE に切り詰める場合）をその `TIMESTAMP` から減じます。これは、ほとんどの場合に直観に合う結果となりますが、夏時間の移行が時間境界に合っていない場合、その近辺で直観に合わない結果となります。
+      
+      #### Return Data Types
+      TIMESTAMP
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: FORMAT_TIMESTAMP(format_string, timestamp)
+    body: FORMAT_TIMESTAMP(${1:format_string}, ${2:timestamp})
+    documentation: |-
+      FORMAT_TIMESTAMP(format_string, timestamp[, timezone])
+      
+      #### Description
+      タイムスタンプを指定された `format_string` に従ってフォーマットします。
+      この関数でサポートされる形式設定要素のリストについては、TIMESTAMP でサポートされる形式設定要素をご覧ください。
+      
+      #### Return Data Types
+      STRING
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: PARSE_TIMESTAMP(format_string, timestamp_string)
+    body: PARSE_TIMESTAMP(${1:format_string}, ${2:timestamp_string})
+    documentation: |-
+      PARSE_TIMESTAMP(format_string, timestamp_string[, timezone])
+      
+      #### Description
+      タイムスタンプの文字列表現を `TIMESTAMP` オブジェクトに変換します。
+      
+      `format_string` には、`timestamp_string` のフォーマット方法を定義する形式設定要素が含まれます。`timestamp_string` 内の各要素については、対応する要素が `format_string` 内に存在することが必要です。`format_string` 内の各要素のロケーションは、`timestamp_string` 内の各要素のロケーションと一致する必要があります。
+      形式設定文字列は、`%Q`、`%a`、`%A`、`%g`、`%G`、`%j`、`%P`、`%u`、`%U`、`%V`、`%w`、`%W` を除く大部分の形式設定要素を完全にサポートしています。
+      `PARSE_TIMESTAMP` を使用する場合、次の点に注意してください。
+      
+      - 指定されていないフィールド。指定されていないフィールドはすべて、`1970-01-01
+      - 00:00:00.0` から初期設定されます。この初期設定値は、関数のタイムゾーン引数によって指定されたタイムゾーンを使用します（存在する場合）。存在しない場合、初期設定値はデフォルトのタイムゾーンである UTC を使用します。たとえば、年が指定されていない場合、デフォルトで `1970` に設定されます。
+      - 大文字と小文字の区別がない名前。`Monday` や `February` などの名前は、大文字と小文字が区別されません。
+      - 空白文字。形式設定文字列内の 1 つ以上の連続する空白文字は、タイムスタンプ文字列内のゼロ以上の連続する空白文字と同じです。また、タイムスタンプ文字列内の先頭および末尾の空白文字は、それらが形式設定文字列内にない場合でも常に許可されます。
+      - 形式設定の優先度。2 つ以上の形式設定要素に重複する情報がある場合（たとえば、`%F` と `%Y` の両方が年に影響を及ぼす場合など）、一部の例外を除き、最後の設定によって前の設定がオーバーライドされます（`%s`、`%C`、`%y` の説明を参照）。
+      
+      #### Return Data Types
+      TIMESTAMP
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TIMESTAMP_SECONDS(int64_expression)
+    body: TIMESTAMP_SECONDS(${1:int64_expression})
+    documentation: |-
+      TIMESTAMP_SECONDS(int64_expression)
+      
+      #### Description
+      `int64_expression` は 1970-01-01 00:00:00 UTC からの秒数として解釈します。
+      
+      #### Return Data Types
+      TIMESTAMP
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TIMESTAMP_MILLIS(int64_expression)
+    body: TIMESTAMP_MILLIS(${1:int64_expression})
+    documentation: |-
+      TIMESTAMP_MILLIS(int64_expression)
+      
+      #### Description
+      `int64_expression` は 1970-01-01 00:00:00 UTC からのミリ秒数として解釈します。
+      
+      #### Return Data Types
+      TIMESTAMP
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TIMESTAMP_MICROS(int64_expression)
+    body: TIMESTAMP_MICROS(${1:int64_expression})
+    documentation: |-
+      TIMESTAMP_MICROS(int64_expression)
+      
+      #### Description
+      `int64_expression` は 1970-01-01 00:00:00 UTC からのマイクロ秒数として解釈されます。
+      
+      #### Return Data Types
+      TIMESTAMP
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: UNIX_SECONDS(timestamp_expression)
+    body: UNIX_SECONDS(${1:timestamp_expression})
+    documentation: |-
+      UNIX_SECONDS(timestamp_expression)
+      
+      #### Description
+      1970-01-01 00:00:00 UTC 以降の秒数を返します。これよりも高い精度のレベルは切り捨てます。
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: UNIX_MILLIS(timestamp_expression)
+    body: UNIX_MILLIS(${1:timestamp_expression})
+    documentation: |-
+      UNIX_MILLIS(timestamp_expression)
+      
+      #### Description
+      1970-01-01 00:00:00 UTC 以降のミリ秒数を返します。これよりも高い精度のレベルは切り捨てます。
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: UNIX_MICROS(timestamp_expression)
+    body: UNIX_MICROS(${1:timestamp_expression})
+    documentation: |-
+      UNIX_MICROS(timestamp_expression)
+      
+      #### Description
+      1970-01-01 00:00:00 UTC 以降のマイクロ秒数を返します。これよりも高い精度のレベルは切り捨てます。
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)

@@ -1,0 +1,21 @@
+name: Debugging Functions
+description: |-
+  デバッグ関数
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+  - label: ERROR(error_message)
+    body: ERROR(${1:error_message})
+    documentation: |-
+      ERROR(error_message)
+      
+      #### Description
+      エラーを返します。`error_message` 引数は `STRING` です。
+      
+      BigQuery は、エラーが発生する可能性のある式と同じ方法で `ERROR` を処理します。評価順序の特別な保証はありません。
+      
+      #### Return Data Types
+      BigQuery によってコンテキスト内で戻り値の型が推論されます。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)

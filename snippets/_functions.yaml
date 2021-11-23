@@ -1,11 +1,24 @@
+# 削除予定
 name: Functions
 description: |-
   Expressions, functions, and operators in Standard SQL  
   https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
 data:
   - label: CURRENT_DATE('{{ timezone }}')
-    body: label
-    documentation: TODO
+    body: CURRENT_DATE('{{ timezone }}')
+    documentation: |-
+      #### Description
+      指定した、またはデフォルトのタイムゾーンの今現在の日付を返します。
+
+      この関数では、省略可能な time_zone パラメータを使用できます。このパラメータは、使用するタイムゾーンを示す文字列です。タイムゾーンが指定されていない場合、デフォルトのタイムゾーンの UTC が使用されます。タイムゾーンの指定方法の詳細については、タイムゾーンの定義をご覧ください。
+
+      time_zone パラメータが NULL と評価されると、この関数は NULL を返します。
+      #### Return Data Type
+      DATE
+      #### Referenced
+      Updated 2021-11-23  
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#current_date)
+
   - label: CURRENT_DATETIME('{{ timezone }}')
     body: CURRENT_DATETIME('{{ timezone }}')
     documentation: TODO

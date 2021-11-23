@@ -1,0 +1,87 @@
+name: Numbering Functions
+description: |-
+  番号付け関数
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+  - label: RANK()
+    body: RANK()
+    documentation: |-
+      RANK()
+      
+      #### Description
+      順序付けされたパーティション内の各行の（1 から始まる）序数ランクを返します。すべてのピア行は同じランク値を受け取ります。次の行、またはピア行のセットは、常に 1 ずつ増加する DENSE_RANK ではなく、前のランク値を持つピアの数だけ増加するランク値を受け取ります。
+      
+      #### Supported Argument Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: DENSE_RANK()
+    body: DENSE_RANK()
+    documentation: |-
+      DENSE_RANK()
+      
+      #### Description
+      順序付けされたパーティション内の各行の（1 から始まる）序数ランクを返します。すべてのピア行は同じランク値を受け取ります。次の行、またはピア行のセットは、常に 1 ずつ増加する `DENSE_RANK` ではなく、前のランク値を持つピアの数だけ増加するランク値を受け取ります。
+      
+      #### Supported Argument Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: PERCENT_RANK()
+    body: PERCENT_RANK()
+    documentation: |-
+      PERCENT_RANK()
+
+      #### Description
+      (RK-1)/(NR-1)として定義される行のパーセンタイル ランクを返します。RK は行の `RANK` であり、NR はパーティション内の行数です。NR=1 の場合、0 を返します。
+      
+      #### Supported Argument Types
+      FLOAT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: CUME_DIST()
+    body: CUME_DIST()
+    documentation: |-
+      CUME_DIST()
+
+      #### Description
+      NP/NR として定義される行の相対的ランクを返します。NP は、現在の行に先行するか、ピアになっている行数に定義されます。NR はパーティション内の行数です。
+      
+      #### Supported Argument Types
+      FLOAT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: NTILE(constant_integer_expression)
+    body: NTILE(${1:constant_integer_expression})
+    documentation: |-
+      NTILE(constant_integer_expression)
+      
+      #### Description
+      この関数は行の順序付けに基づいて行を `constant_integer_expression` で指定された数のバケットに分割し、各行に割り当てられた 1 ベースのバケット番号を返します。バケット内の行数は、最大で 1 ずつ変えることができます。
+      余りの値（行数をバケットで割った余り）は、バケット 1 で開始するバケットごとに 1 が分配されます。`constant_integer_expression` が NULL、0、または負の値に評価されると、エラーが出されます。
+      
+      #### Supported Argument Types
+      INT64
+      
+  - label: ROW_NUMBER()
+    body: ROW_NUMBER()
+    documentation: |-
+      ROW_NUMBER()
+
+      #### Description
+      `ORDER BY` 句は必要ありません。順序付けされた各パーティションの各行の順次行序数（1 ベース）を返します。`ORDER BY` 句が指定されていない場合、結果は変動する可能性があります。
+        
+      #### Supported Argument Types
+      INT64

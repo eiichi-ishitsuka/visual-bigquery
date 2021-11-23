@@ -1,0 +1,88 @@
+name: HyperLogLog Functions
+description: |-
+  HyperLogLog++関数
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+
+  - label: HLL_COUNT.INIT(input)
+    body: HLL_COUNT.INIT(${1:input})
+    documentation: |-
+      HLL_COUNT.INIT(input [, precision])
+      
+      #### Description
+      1 つ以上の `input` 値を取り、それらの値を HLL++ スケッチに集約する集計関数です。各スケッチは `BYTES` データ型で表現されます。スケッチは、`HLL_COUNT.MERGE` または `HLL_COUNT.MERGE_PARTIAL` で結合できます。結合の必要がない場合には、`HLL_COUNT.EXTRACT` で個別の値の最終カウントを抽出できます。
+      
+      この関数では、省略可能なパラメータ `precision` を使用できます。このパラメータは推測値の精度を定義しますが、スケッチの処理やディスクへの保存をするための追加のメモリが必要になります。
+      入力が NULL の場合、この関数は NULL を返します。
+      
+      #### Supported Argument Types
+      INT64、NUMERIC、STRING、BYTES
+      
+      #### Return Data Types
+      BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: HLL_COUNT.MERGE(sketch)
+    body: HLL_COUNT.MERGE(${1:sketch})
+    documentation: |-
+      HLL_COUNT.MERGE(sketch)
+      
+      #### Description
+      複数の HLL++ セットスケッチを結合してカーディナリティを返す集計関数です。
+      
+      各 `sketch` は同じ精度にし、同じ型で初期化する必要があります。精度や型が異なるスケッチを結合すると、エラーが発生します。たとえば、INT64 データから初期化したスケッチと STRING データから初期化したスケッチは結合できません。
+      
+      この関数は、スケッチを結合するときに NULL 値を無視します。行がない場合や NULL 値しか存在しない場合には、`0` を返します。
+      
+      #### Supported Argument Types
+      BYTES
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: HLL_COUNT.MERGE_PARTIAL(sketch)
+    body: HLL_COUNT.MERGE_PARTIAL(${1:sketch})
+    documentation: |-
+      HLL_COUNT.MERGE_PARTIAL(sketch)
+      
+      #### Description
+      1 つ以上の HLL++ `sketch` 入力を取り、それらの値を新しいスケッチに結合する集計関数です。
+      
+      入力がないか、すべての入力が NULL の場合、この関数は NULL を返します。
+      
+      #### Supported Argument Types
+      BYTES
+      
+      #### Return Data Types
+      BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: HLL_COUNT.EXTRACT(sketch)
+    body: HLL_COUNT.EXTRACT(${1:sketch})
+    documentation: |-
+      HLL_COUNT.EXTRACT(sketch)
+      
+      #### Description
+      1 つの HLL++ スケッチからカーディナリティの推測値を抽出するスカラー関数です。
+      
+      `sketch` が NULL の場合、この関数はカーディナリティの推測値として `0` を返します。
+      
+      #### Supported Argument Types
+      BYTES
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
