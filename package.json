@@ -7,7 +7,7 @@
     },
     "icon": "asset/icon.png",
     "displayName": "Visual-BigQuery",
-    "description": "Syntax Highlight Google BigQuery SQL",
+    "description": "Support Google BigQuery SQL",
     "version": "0.0.2",
     "engines": {
         "vscode": "^1.58.0"
@@ -19,12 +19,23 @@
     "activationEvents": [
         "*"
     ],
-    "main": "./src/extension.js",
-    "scripts": {
-        "lint": "eslint .",
-        "pretest": "npm run lint",
-        "test": "node ./test/runTest.js"
-    },
+    "keywords": [
+        "BigQuery",
+        "GCP",
+        "bq",
+        "Google Cloud",
+        "SQL"
+    ],
+    "preview": true,
+    "main": "./out/extension.js",
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
     "contributes": {
         "languages": [
             {
@@ -75,6 +86,8 @@
         "@types/mocha": "^8.2.2",
         "@types/node": "14.x",
         "eslint": "^7.27.0",
+        "@typescript-eslint/eslint-plugin": "^4.26.0",
+        "@typescript-eslint/parser": "^4.26.0",
         "glob": "^7.1.7",
         "mocha": "^8.4.0",
         "typescript": "^4.3.2",

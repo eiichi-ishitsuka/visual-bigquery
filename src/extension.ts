@@ -1,6 +1,13 @@
-const vscode = require('vscode');
+import {
+	languages,
+	CompletionItemKind,
+	CompletionList,
+	ExtensionContext,
+} from 'vscode';
 
 class SqlCompletionItemProvider {
+	completionItems: any[];
+	completionList: any;
 	constructor (){
 		this.completionItems = []
 
@@ -107,7 +114,7 @@ class SqlCompletionItemProvider {
 			this.completionItems.push(
 				{
 					label: keywords[i],
-					kind: vscode.CompletionItemKind.Keyword,
+					kind: CompletionItemKind.Keyword,
 					documentation: 'Visual BigQuery - Reserved Keywords'
 				}
 			)
@@ -128,7 +135,7 @@ class SqlCompletionItemProvider {
 			this.completionItems.push(
 				{
 					label: subKeywords[i],
-					kind: vscode.CompletionItemKind.Property,
+					kind: CompletionItemKind.Property,
 					documentation: 'Visual BigQuery - Sub Keywords'
 				}
 			)
@@ -154,13 +161,13 @@ class SqlCompletionItemProvider {
 			this.completionItems.push(
 				{
 					label: types[i],
-					kind: vscode.CompletionItemKind.Field,
+					kind: CompletionItemKind.Field,
 					documentation: 'Visual BigQuery - Types'
 				}
 			)
 		}
 
-		this.completionList = new vscode.CompletionList(this.completionItems, false);
+		this.completionList = new CompletionList(this.completionItems, false);
 	}
 	
     provideCompletionItems(document, position, token) {
@@ -168,20 +175,15 @@ class SqlCompletionItemProvider {
     }
 }
 
-function activate(context) {
+
+export function activate(context: ExtensionContext) {
 	context.subscriptions.push(
-		vscode.languages.registerCompletionItemProvider(
+		languages.registerCompletionItemProvider(
 			{ scheme: 'file', language: 'sql' },
 			new SqlCompletionItemProvider(),
 			'.'
 		)
 	);
-
 }
 
-function deactivate() {}
-
-module.exports = {
-	activate,
-	deactivate
-}
+export function deactivate() {}
