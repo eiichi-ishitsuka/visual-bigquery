@@ -1,0 +1,152 @@
+name: Statistical Aggregate Functions
+description: |-
+  統計集計関数
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+
+  - label: CORR(X1, X2)
+    body: CORR(${1:X1}, ${2:X2})
+    documentation: |-
+      CORR(X1, X2)  [OVER (...)]
+      
+      #### Description
+      一連の数値ペアのピアソン相関係数を返します。それぞれの数値ペアでは、最初の数値が従属変数であり、2 番目の数値が独立変数です。返される結果は `-1` から `1` の間になります。結果が `0` の場合、相関がないことを意味します。
+      
+      入力されたペアに NULL の値が 1 つ以上あると、この関数はそのペアを無視します。NULL 値のない入力ペアが 2 つ未満の場合、この関数は NULL を返します。
+      
+      #### Return Data Types
+      FLOAT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: COVAR_POP(X1, X2)
+    body: COVAR_POP(${1:X1}, ${2:X2})
+    documentation: |-
+      COVAR_POP(X1, X2)  [OVER (...)]
+      
+      #### Description
+      一連の数値ペアの母共分散を返します。最初の数値は従属変数です。2 番目の数値は独立変数です。返される結果は `-Inf` から `+Inf` の間になります。
+      
+      入力されたペアに NULL の値が 1 つ以上あると、この関数はそのペアを無視します。NULL 値のない入力ペアがない場合、この関数は NULL を返します。NULL 値のない入力ペアが 1 つだけの場合は 0 を返します。
+      
+      #### Return Data Types
+      FLOAT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: COVAR_SAMP(X1, X2)
+    body: COVAR_SAMP(${1:X1}, ${2:X2})
+    documentation: |-
+      COVAR_SAMP(X1, X2)  [OVER (...)]
+      
+      #### Description
+      一連の数値ペアの標本共分散を返します。最初の数値は従属変数です。2 番目の数値は独立変数です。返される結果は `-Inf` から `+Inf` の間になります。
+      
+      入力されたペアに NULL の値が 1 つ以上あると、この関数はそのペアを無視します。NULL 値のない入力ペアが 2 つ未満の場合、この関数は NULL を返します。
+      
+      #### Return Data Types
+      FLOAT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: STDDEV_POP(expr)
+    body: STDDEV_POP(${1:expr})
+    documentation: |-
+      STDDEV_POP([DISTINCT] expression)  [OVER (...)]
+      
+      #### Description
+      バイアスをかけた母集団の標準偏差値を返します。返される結果は `0` から `+Inf` の間になります。
+      
+      この関数は NULL 入力を無視します。すべての入力が無視されると、この関数は NULL を返します。
+      
+      この関数は、NULL 以外の入力を 1 つでも受け取ると `0` を返します。
+      
+      #### Return Data Types
+      FLOAT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: STDDEV_SAMP(expr)
+    body: STDDEV_SAMP(${1:expr})
+    documentation: |-
+      STDDEV_SAMP([DISTINCT] expression)  [OVER (...)]
+      
+      #### Description
+      バイアスをかけない、値の標本標準偏差を返します。返される結果は `0` から `+Inf` の間になります。
+      
+      この関数は NULL 入力を無視します。NULL 以外の入力が 2 つ未満の場合、この関数は NULL を返します。
+      
+      #### Return Data Types
+      FLOAT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: STDDEV(expr)
+    body: STDDEV(${1:expr})
+    documentation: |-
+      STDDEV([DISTINCT] expression)  [OVER (...)]
+      
+      #### Description
+      `STDDEV_SAMP`のエイリアスです。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: VAR_POP(expr)
+    body: VAR_POP(${1:expr})
+    documentation: |-
+      VAR_POP([DISTINCT] expression)  [OVER (...)]
+      
+      #### Description
+      バイアスをかけた、値の母分散を返します。返される結果は `0` から `+Inf` の間になります。
+      
+      この関数は NULL 入力を無視します。すべての入力が無視されると、この関数は NULL を返します。
+      
+      この関数は、NULL 以外の入力を 1 つでも受け取ると `0` を返します。
+      
+      #### Return Data Types
+      FLOAT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: VAR_SAMP(expr)
+    body: VAR_SAMP(${1:expr})
+    documentation: |-
+      VAR_SAMP([DISTINCT] expression)  [OVER (...)]
+      
+      #### Description
+      バイアスをかけない標本分散値を返します。返される結果は `0` から `+Inf` の間になります。
+      
+      この関数は NULL 入力を無視します。NULL 以外の入力が 2 つ未満の場合、この関数は NULL を返します。
+      
+      #### Return Data Types
+      FLOAT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: VARIANCE(expr)
+    body: VARIANCE(${1:expr})
+    documentation: |-
+      VARIANCE([DISTINCT] expression)  [OVER (...)]
+      
+      #### Description
+      VAR_SAMP のエイリアスです。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)

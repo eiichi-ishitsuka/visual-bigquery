@@ -1,0 +1,860 @@
+name: Geography Functions
+description: |-
+  地理関数
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+  - label: ST_AREA(geography_expression)
+    body: ST_AREA(${1:geography_expression})
+    documentation: |-
+      ST_AREA(geography_expression[, use_spheroid])
+      
+      #### Description
+      入力 `GEOGRAPHY` に含まれるポリゴンでカバーされている面積を平方メートル単位で返します。
+      
+      `geography_expression` がポイントまたはラインの場合は、ゼロを返します。`geography_expression` が集合の場合、その集合に含まれるポリゴンの面積を返します。集合にポリゴンが含まれていない場合はゼロを返します。
+      
+      任意の `use_spheroid` パラメータにより、この関数で距離が測定される方法が決まります。`use_spheroid` が `FALSE` の場合、完全な球体の表面上の距離が測定されます。
+      
+      `use_spheroid` パラメータで現在サポートされている値は `FALSE` だけです。`use_spheroid` のデフォルト値は `FALSE` です。
+      
+      #### Return Data Types
+      FLOAT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_ASBINARY(geography_expression)
+    body: ST_ASBINARY(${1:geography_expression})
+    documentation: |-
+      ST_ASBINARY(geography_expression)
+      
+      #### Description
+      入力された `GEOGRAPHY` の WKB 表現を返します。
+      
+      WKB から `GEOGRAPHY` を作成する場合には、`ST_GEOGFROMWKB` をご覧ください。
+      
+      #### Return Data Types
+      BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_ASGEOJSON(geography_expression)
+    body: ST_ASGEOJSON(${1:geography_expression})
+    documentation: |-
+      ST_ASGEOJSON(geography_expression)
+      
+      #### Description
+      入力された `GEOGRAPHY` を、RFC 7946 準拠の GeoJSON 表現で返します。
+      
+      BigQuery の `GEOGRAPHY` には球状の測地線エッジがありますが、GeoJSON の `Geometry` オブジェクトには明確な平面エッジがあります。この 2 種類のエッジ間の変換を行う目的で、BigQuery では必要に応じてラインにポイントを追加し、結果として得られるエッジのシーケンスが元のエッジの 10 m 以内に収まるようにします。
+      
+      GeoJSON から `GEOGRAPHY` を作成する場合には、`ST_GEOGFROMGEOJSON` をご覧ください。
+      
+      #### Return Data Types
+      STRING
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_ASTEXT(geography_expression)
+    body: ST_ASTEXT(${1:geography_expression})
+    documentation: |-
+      ST_ASTEXT(geography_expression)
+      
+      #### Description
+      入力された `GEOGRAPHY` の WKT 表現を返します。
+      
+      WKT から `GEOGRAPHY` を作成する場合には、`ST_GEOGFROMTEXT` をご覧ください。
+      
+      #### Return Data Types
+      STRING
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_BOUNDARY(geography_expression)
+    body: ST_BOUNDARY(${1:geography_expression})
+    documentation: |-
+      ST_BOUNDARY(geography_expression)
+      
+      #### Description
+      指定された入力 `GEOGRAPHY` 内の各コンポーネントの境界のユニオンを格納する、単一の `GEOGRAPHY` を返します。
+      
+      `GEOGRAPHY` を構成する各コンポーネントの境界は、次のように定義されます。
+      
+      - ポイントの境界は空です。
+      - LineString の境界は、その LineString の端点で構成されます。
+      - ポリゴンの境界は、ポリゴンシェルと各ポリゴンホールを形成する LineString で構成されます。
+      
+      #### Return Data Types
+      GEOGRAPHY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_CENTROID(geography_expression)
+    body: ST_CENTROID(${1:geography_expression})
+    documentation: |-
+      ST_CENTROID(geography_expression)
+      
+      #### Description
+      入力 `GEOGRAPHY` のセントロイドを単一点の `GEOGRAPHY` として返します。
+      
+      `GEOGRAPHY` のセントロイドとは、その `GEOGRAPHY` 内にある最高次元のコンポーネントのセントロイドを加重平均したものです。各次元のコンポーネントのセントロイドは次のように定義されます。
+      
+      - ポイントのセントロイドは、入力された座標の算術平均です。
+      - LineString のセントロイドは、長さによって重み付けされたすべてのエッジのセントロイドです。各エッジのセントロイドは、そのエッジの測地線の中間点です。
+      - ポリゴンのセントロイドはその質量の中心です。
+      
+      入力された `GEOGRAPHY` が空の場合、空の `GEOGRAPHY` が返されます。
+      
+      #### Return Data Types
+      GEOGRAPHY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_CENTROID_AGG(geography)
+    body: ST_CENTROID_AGG(${1:geography})
+    documentation: |-
+      ST_CENTROID_AGG(geography)
+      
+      #### Description
+      入力された `GEOGRAPHY` セットのセントロイドを単一点の `GEOGRAPHY` として計算します。
+      
+      各 `GEOGRAPHY` のセントロイドの加重平均値が、入力 `GEOGRAPHY` のセットとしてのセントロイドになります。その入力内に存在する最高次元の `GEOGRAPHY` だけが、セット全体のセントロイドの計算に使用されます。たとえば、ラインを含む `GEOGRAPHY` とポイントだけを含む `GEOGRAPHY` の両方が入力に含まれている場合、`ST_CENTROID_AGG` では、ラインを含む `GEOGRAPHY` の加重平均値が返されます。ラインの次元が最高であるためです。この例の場合、`ST_CENTROID_AGG` では、セントロイド集計の計算時にポイントだけを含む `GEOGRAPHY` は無視されます。
+      
+      `ST_CENTROID_AGG` は、`NULL` 入力の `GEOGRAPHY` 値を無視します。
+      
+      `ST_CENTROID_AGG` の非集計バージョンと、個々の `GEOGRAPHY` 値のセントロイドの定義については、`ST_CENTROID` をご覧ください。
+      
+      #### Return Data Types
+      GEOGRAPHY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_CLOSESTPOINT(geography_1, geography_2)
+    body: ST_CLOSESTPOINT(${1:geography_1}, ${2:geography_2})
+    documentation: |-
+      ST_CLOSESTPOINT(geography_1, geography_2[, use_spheroid])
+      
+      #### Description
+      `geography_2` との距離を可能な限り小さくした `geography_1` 上のポイントを含む `GEOGRAPHY` を返します。これは、`ST_CLOSESTPOINT` によって返されたポイントと `geography_2` との間の距離が、`geography_1` 上の他のあらゆるポイントと `geography_2` との間の距離以下であることを暗黙的に示します。
+      
+      入力された `GEOGRAPHY` のいずれかが空の場合、`ST_CLOSESTPOINT` から `NULL` が返されます。
+      
+      任意指定の `use_spheroid` パラメータは、この関数で距離が測定される方法を決定します。`use_spheroid` が `FALSE` の場合、完全な球体の表面上の距離が測定されます。
+      
+      `use_spheroid` パラメータで現在サポートされている値は `FALSE` だけです。`use_spheroid` のデフォルト値は `FALSE` です。
+      
+      #### Return Data Types
+      GEOGRAPHY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_CLUSTERDBSCAN(geography_column, epsilon, minimum_geographies)
+    body: ST_CLUSTERDBSCAN(${1:geography_column}, ${2:epsilon}, ${3:minimum_geographies})
+    documentation: |-
+      ST_CLUSTERDBSCAN(geography_column, epsilon, minimum_geographies) OVER (...)
+      
+      #### Description
+      geography の列で DBSCAN クラスタリングを実行します。0 ベースのクラスタ番号を返します。
+      
+      #### Return Data Types
+      geography 列の geography ごとに INT64 が戻ります。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_CONTAINS(geography_1, geography_2)
+    body: ST_CONTAINS(${1:geography_1}, ${2:geography_2})
+    documentation: |-
+      ST_CONTAINS(geography_1, geography_2)
+      
+      #### Description
+      `geography_2` のどのポイントも `geography_1` の外部になく、内部が交差している場合は `TRUE` を返し、それ以外の場合は `FALSE` を返します。
+      
+      #### Return Data Types
+      BOOL
+
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_CONVEXHULL(geography_expression)
+    body: ST_CONVEXHULL(${1:geography_expression})
+    documentation: |-
+      ST_CONVEXHULL(geography_expression)
+      
+      #### Description
+      入力 `GEOGRAPHY` の凸包を返します。凸包は、入力を含む `GEOGRAPHY` の最小の凸集合です。`GEOGRAPHY` 内のどのポイントのペアでも、そのポイントを結んだ測地線エッジも同じ `GEOGRAPHY` に含まれる場合、`GEOGRAPHY` は凸集合です。
+      
+      ほとんどの場合、凸包は単一のポリゴンで構成されます。典型的なエッジの例には、次のものがあります。
+      
+      - 単一のポイントの凸包もポイントです。
+      - 同一線上の 2 つ以上のポイントの凸包は、その LineString が凸包である限り LineString です。
+      - 入力 `GEOGRAPHY` が半球を超える範囲に及ぶ場合、凸包は球全体になります。これには、正反対のポイントのペアを含む入力も含まれます。
+      - `ST_CONVEXHULL` は、入力が `NULL` または空の `GEOGRAPHY` である場合、`NULL` を返します。
+      
+      #### Return Data Types
+      GEOGRAPHY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_COVEREDBY(geography_1, geography_2)
+    body: ST_COVEREDBY(${1:geography_1}, ${2:geography_2})
+    documentation: |-
+      ST_COVEREDBY(geography_1, geography_2)
+      
+      #### Description
+      `geography_1` または `geography_2` が空の場合、`FALSE` を返します。`geography_1` に `geography_2` の外部のポイントがない場合、`TRUE` を返します。
+      
+      `a` と `b` の 2 つの `GEOGRAPHY` がある場合、`ST_COVEREDBY(a, b)` は同じ結果を `ST_COVERS``(b, a)` として返します。引数の順序が逆になっている点に注意してください。
+      
+      #### Return Data Types
+      BOOL
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_COVERS(geography_1, geography_2)
+    body: ST_COVERS(${1:geography_1}, ${2:geography_2})
+    documentation: |-
+      ST_COVERS(geography_1, geography_2)
+      
+      #### Description
+      `geography_1` または `geography_2` が空の場合、`FALSE` を返します。`geography_2` に `geography_1` の外部のポイントがない場合、`TRUE` を返します。
+      
+      #### Return Data Types
+      BOOL
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_DIFFERENCE(geography_1, geography_2)
+    body: ST_DIFFERENCE(${1:geography_1}, ${2:geography_2})
+    documentation: |-
+      ST_DIFFERENCE(geography_1, geography_2)
+      
+      #### Description
+      `geography_1` と `geography_2` のポイントセットの相違部分を表す `GEOGRAPHY` を返します。
+      
+      `geometry_1` が `geometry_2` 内に完全に包含されている場合、`ST_DIFFERENCE` から空の `GEOGRAPHY` が返されます。
+      
+      #### Return Data Types
+      GEOGRAPHY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_DIMENSION(geography_expression)
+    body: ST_DIMENSION(${1:geography_expression})
+    documentation: |-
+      ST_DIMENSION(geography_expression)
+      
+      #### Description
+      入力された `GEOGRAPHY` に含まれる要素のうち、最高次元の要素の次元を返します。
+      
+      各要素の次元は次のとおりです。
+      
+      - ポイントの次元は `0` です。
+      - LineString の次元は `1` です。
+      - ポリゴンの次元は `2` です。
+      
+      入力された `GEOGRAPHY` が空の場合、`ST_DIMENSION` から `-1` が返されます。
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_DISJOINT(geography_1, geography_2)
+    body: ST_DISJOINT(${1:geography_1}, ${2:geography_2})
+    documentation: |-
+      ST_DISJOINT(geography_1, geography_2)
+      
+      #### Description
+      `geography_1` と `geography_2` の交差が空の場合、つまり `geography_1` に、`geography_2` にも存在するポイントがない場合、`TRUE` を返します。
+      
+      `ST_DISJOINT` は `ST_INTERSECTS` の論理否定です。
+      
+      #### Return Data Types
+      BOOL
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_DISTANCE(geography_1, geography_2)
+    body: ST_DISTANCE(${1:geography_1}, ${2:geography_2})
+    documentation: |-
+      ST_DISTANCE(geography_1, geography_2[, use_spheroid])
+      
+      #### Description
+      空でない 2 つの `GEOGRAPHY` の間の最短距離をメートル単位で返します。
+      
+      入力された `GEOGRAPHY` のいずれかが空の場合、`ST_DISTANCE` から `NULL` が返されます。
+      
+      任意指定の `use_spheroid` パラメータは、この関数で距離が測定される方法を決定します。`use_spheroid` が `FALSE` の場合、完全な球体の表面上の距離が測定されます。
+      
+      `use_spheroid` パラメータで現在サポートされている値は `FALSE` だけです。`use_spheroid` のデフォルト値は `FALSE` です。
+      
+      #### Return Data Types
+      FLOAT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_DUMP(geography)
+    body: ST_DUMP(${1:geography})
+    documentation: |-
+      ST_DUMP(geography[, dimension])
+      
+      #### Description
+      各要素が入力 `GEOGRAPHY` のコンポーネントである単純な `GEOGRAPHY` の `ARRAY` を返します。単純な `GEOGRAPHY` は、単一のポイント、LineString、またはポリゴンで構成されます。入力 `GEOGRAPHY` が単純な場合、結果は 1 つの要素になります。入力 `GEOGRAPHY` がコレクションの場合、`ST_DUMP` は、コレクション内の各コンポーネントに対して 1 つの単純な `GEOGRAPHY` を含む `ARRAY` を返します。
+      
+      `dimension` を指定すると、この関数は、対応するディメンションの `GEOGRAPHY` のみを返します。ディメンションで -1 を指定することは、`dimension` を省略することと同じです。
+      
+      #### Return Data Types
+      ARRAY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_DWITHIN(geography_1, geography_2, distance)
+    body: ST_DWITHIN(${1:geography_1}, ${2:geography_2}, ${3:distance})
+    documentation: |-
+      ST_DWITHIN(geography_1, geography_2, distance[, use_spheroid])
+      
+      #### Description
+      `geography_1` の少なくとも 1 つのポイントと `geography_2` のいずれかのポイントとの間の距離が、`distance` 引数で指定された距離以下の場合は `TRUE` を返し、それ以外の場合は `FALSE` を返します。入力された `GEOGRAPHY` のいずれかが空の場合、`ST_DWithin` から `FALSE` が返されます。`distance` は、地球表面上でのメートル数で指定します。
+      
+      任意の `use_spheroid` パラメータにより、この関数で距離が測定される方法が決まります。`use_spheroid` が `FALSE` の場合、完全な球体の表面上の距離が測定されます。
+      
+      `use_spheroid` パラメータで現在サポートされている値は `FALSE` だけです。`use_spheroid` のデフォルト値は `FALSE` です。
+      
+      #### Return Data Types
+      BOOL
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_EQUALS(geography_1, geography_2)
+    body: ST_EQUALS(${1:geography_1}, ${2:geography_2})
+    documentation: |-
+      ST_EQUALS(geography_1, geography_2)
+      
+      #### Description
+      `geography_1` と `geography_2` が同じ場合、`TRUE` を返します。
+      
+      `GEOGRAPHY` 値。厳密には、次の条件が満たされていることを意味します。`ST_COVERS(geography_1, geography_2) = TRUE` かつ `ST_COVERS(geography_2,
+          geography_1) = TRUE`、または、`geography_1` と `geography_2` が両方とも空である。
+      
+      そのため、この 2 つの `GEOGRAPHY` は、同じジオメトリ構造を表している限り、ポイントや頂点の順序が異なっていても等しいと判断されます。
+      
+      #### Return Data Types
+      BOOL
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_GEOGFROMGEOJSON(geojson_string)
+    body: ST_GEOGFROMGEOJSON(${1:geojson_string})
+    documentation: |-
+      ST_GEOGFROMGEOJSON(geojson_string [, make_valid =&gt; constant_expression])
+      
+      #### Description
+      入力された GeoJSON 表現に対応する `GEOGRAPHY` 値を返します。
+      
+      `ST_GEOGFROMGEOJSON` では、RFC 7946 に準拠した入力が受け入れられます。
+      
+      パラメータ `make_valid` が `TRUE` に設定されている場合、この関数は、Open Geospatial Consortium セマンティクスに準拠していないポリゴンを修復しようとします。
+      
+      BigQuery の `GEOGRAPHY` には球状の測地線エッジがありますが、GeoJSON の `Geometry` オブジェクトには明確な平面エッジがあります。この 2 種類のエッジ間の変換を行う目的で、BigQuery では必要に応じてラインにポイントを追加し、結果として得られるエッジのシーケンスが元のエッジの 10 m 以内に収まるようにします。
+      
+      `GEOGRAPHY` を GeoJSON としてフォーマットする場合には、`ST_ASGEOJSON` をご覧ください。
+      
+      
+      #### Return Data Types
+      GEOGRAPHY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_GEOGFROMTEXT(wkt_string)
+    body: ST_GEOGFROMTEXT(${1:wkt_string})
+    documentation: |-
+      ST_GEOGFROMTEXT(wkt_string[, oriented])
+      
+      #### Description
+      入力された WKT 表現に対応する `GEOGRAPHY` 値を返します。
+      
+      この関数は、`BOOL` 型の省略可能なパラメータ `oriented` をサポートします。このパラメータが `TRUE` に設定されると、入力に含まれるポリゴンは次のように方向付けられていると想定されます。すなわち、入力された頂点の順序でポリゴンの境界に沿って進んだ場合、ポリゴンの内部は左側になります。これにより、WKT で半球よりも大きいポリゴンを表現できます。`oriented` が `FALSE` であるか指定されていない場合、この関数はより小さい領域のポリゴンを返します。`ST_MAKEPOLYGONORIENTED` もご覧ください。これは、`oriented=TRUE` が指定された `ST_GEOGFROMTEXT` と類似しています。
+      
+      `GEOGRAPHY` を WKT としてフォーマットするには、`ST_ASTEXT` を使用します。
+      
+      #### Return Data Types
+      GEOGRAPHY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_GEOGFROMWKB(wkb_bytes)
+    body: ST_GEOGFROMWKB(${1:wkb_bytes})
+    documentation: |-
+      ST_GEOGFROMWKB(wkb_bytes)
+      
+      #### Description
+      入力された WKB 表現に対応する `GEOGRAPHY` 値を返します。
+      
+      `GEOGRAPHY` を WKB としてフォーマットするには、`ST_ASBINARY` を使用します。
+      
+      #### Return Data Types
+      GEOGRAPHY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_GEOGPOINT(longitude, latitude)
+    body: ST_GEOGPOINT(${1:longitude}, ${2:longitude})
+    documentation: |-
+      ST_GEOGPOINT(longitude, latitude)
+      
+      #### Description
+      単一のポイントを含む `GEOGRAPHY` を作成します。`ST_GEOGPOINT` は、指定された `FLOAT64` の経度と緯度のパラメータからポイントを作成し、そのポイントを `GEOGRAPHY` 値に含めて返します。
+      
+      #### Return Data Types
+      GEOGRAPHY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_GEOGPOINTFROMGEOHASH(geohash)
+    body: ST_GEOGPOINTFROMGEOHASH(${1:geohash})
+    documentation: |-
+      ST_GEOGPOINTFROMGEOHASH(geohash)
+      
+      #### Description
+      GeoHash で定義された境界ボックスの中央のポイントに対応する `GEOGRAPHY` 値を返します。
+      
+      #### Return Data Types
+      GEOGRAPHY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_GEOHASH(geography_expression, maxchars)
+    body: ST_GEOHASH(${1:geography_expression}, ${2:maxchars})
+    documentation: |-
+      ST_GEOHASH(geography_expression, maxchars)
+      
+      #### Description
+      `geography_expression` の GeoHash 表現を返します。生成される GeoHash には最大で `maxchars` 文字が組み込まれます。文字数が少ないほど、それに応じて精度が低くなります（言い換えると、境界ボックスが大きくなります）。
+      
+      空の `GEOGRAPHY` オブジェクトに対して ST_GeoHash を使用すると、`NULL` が返されます。
+      
+      #### Return Data Types
+      STRING
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_INTERSECTION(geography_1, geography_2)
+    body: ST_INTERSECTION(${1:geography_1}, ${2:geography_2})
+    documentation: |-
+      ST_INTERSECTION(geography_1, geography_2)
+      
+      #### Description
+      入力された 2 つの `GEOGRAPHY` のポイントセット交差を表す `GEOGRAPHY` を返します。したがって、その交差内のすべてのポイントが `geography_1` と `geography_2` の両方に存在します。
+      
+      入力された 2 つの `GEOGRAPHY` が共通部分を持たない場合（つまり、入力された `geometry_1` と `geometry_2` の両方に存在するポイントがない場合）、空の `GEOGRAPHY` が返されます。
+      
+      関連する述語関数については、ST_INTERSECTS と ST_DISJOINT をご覧ください。
+      
+      #### Return Data Types
+      GEOGRAPHY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_INTERSECTS(geography_1, geography_2)
+    body: ST_INTERSECTS(${1:geography_1}, ${2:geography_2})
+    documentation: |-
+      ST_INTERSECTS(geography_1, geography_2)
+      
+      #### Description
+      `geography_1` と `geography_2` のポイントセットの交差が空でない場合は `TRUE` を返します。したがって、入力された両方の `GEOGRAPHY` に存在するポイントが 1 つ以上ある場合、この関数から `TRUE` が返されます。
+      
+      `ST_INTERSECTS` によって `TRUE` が返される場合、`ST_DISJOINT` によって `FALSE` が返されることを意味します。
+      
+      #### Return Data Types
+      BOOL
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_INTERSECTSBOX(geography, lng1, lat1, lng2, lat2)
+    body: ST_INTERSECTSBOX(${1:geography}, ${2:lng1}, ${3:lat1}, ${4:lng2}, ${5:lat2})
+    documentation: |-
+      ST_INTERSECTSBOX(geography, lng1, lat1, lng2, lat2)
+      
+      #### Description
+      `geography` が `[lng1, lng2]` と `[lat1, lat2]` の間にある矩形を交差する場合、`TRUE` を返します。矩形のエッジは経度と緯度の実線に沿っています。`lng1` と `lng2` は、矩形の境界となる最小と最大の経度線を指定します。`lat1` と `lat2` は、矩形の境界となる最小と最大の緯度の実線を指定します。
+      
+      経度と緯度の引数はすべて度数で指定します。
+      
+      #### Return Data Types
+      BOOL
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_ISCOLLECTION(geography_expression)
+    body: ST_ISCOLLECTION(${1:geography_expression})
+    documentation: |-
+      ST_ISCOLLECTION(geography_expression)
+      
+      #### Description
+      ポイント、LineString、ポリゴンの合計数が 1 以上の場合、`TRUE` を返します。
+      
+      空の `GEOGRAPHY` は集合ではありません。
+      
+      #### Return Data Types
+      BOOL
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_ISEMPTY(geography_expression)
+    body: ST_ISEMPTY(${1:geography_expression})
+    documentation: |-
+      ST_ISEMPTY(geography_expression)
+      
+      #### Description
+      指定された `GEOGRAPHY` が空の場合（つまり、`GEOGRAPHY` にポイント、ライン、ポリゴンがまったく含まれていない場合）、`TRUE` を返します。
+      
+      注: BigQuery の空の `GEOGRAPHY` は、特定のジオメトリ形状に関連付けられません。たとえば、式 `ST_GEOGFROMTEXT(&#39;POINT EMPTY&#39;)` と `ST_GEOGFROMTEXT(&#39;GEOMETRYCOLLECTION EMPTY&#39;)` の結果は同じです。
+      
+      
+      #### Return Data Types
+      BOOL
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_LENGTH(geography_expression)
+    body: ST_LENGTH(${1:geography_expression})
+    documentation: |-
+      ST_LENGTH(geography_expression[, use_spheroid])
+      
+      #### Description
+      入力された `GEOGRAPHY` に含まれるラインの長さの合計をメートル単位で返します。
+      
+      `geography_expression` がポイントまたはポリゴンの場合は、ゼロを返します。`geography_expression` が集合である場合、その集合に含まれるラインの長さを返します。集合にラインが含まれていない場合はゼロを返します。
+      
+      任意指定の `use_spheroid` パラメータは、この関数で距離が測定される方法を決定します。`use_spheroid` が `FALSE` の場合、完全な球体の表面上の距離が測定されます。
+      
+      `use_spheroid` パラメータで現在サポートされている値は `FALSE` だけです。`use_spheroid` のデフォルト値は `FALSE` です。
+      
+      #### Return Data Types
+      FLOAT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_MAKELINE(geography_1, geography_2)
+    body: ST_MAKELINE(${1:geography_1}, ${2:geography_2})
+    documentation: |-
+      ST_MAKELINE(geography_1, geography_2)
+      
+      #### Description
+      入力された各 `GEOGRAPHY` に含まれるポイントまたはラインの頂点を指定順に連結することで、1 つの LineString を含む `GEOGRAPHY` を作成します。
+      
+      `ST_MAKELINE` には 2 種類あります。最初のバリアントでは、入力は 2 つの `GEOGRAPHY` である必要があります。2 番目のバリアントでは、入力は `GEOGRAPHY` タイプの `ARRAY` でなければなりません。いずれのバリアントの場合も、各入力 `GEOGRAPHY` は次のいずれかの値で構成されている必要があります。
+      
+      - 1 つのポイント。
+      - 1 つの LineString。
+      
+      `ST_MAKELINE` の最初のバリアントで、入力 `GEOGRAPHY` が `NULL` の場合、`ST_MAKELINE` は `NULL` を返します。2 番目のバリアントで、入力 `ARRAY` または入力 `ARRAY` にある要素が `NULL` の場合、`ST_MAKELINE` は `NULL` を返します。
+      
+      #### Return Data Types
+      GEOGRAPHY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_MAKEPOLYGON(geography_expression)
+    body: ST_MAKEPOLYGON(${1:geography_expression})
+    documentation: |-
+      ST_MAKEPOLYGON(geography_expression[, array_of_geography])
+      
+      #### Description
+      入力された LineString のそれぞれがポリゴンリングの構成に使用される LineString の入力から、1 つのポリゴンを含む `GEOGRAPHY` を作成します。
+      
+      `ST_MAKEPOLYGON` には 2 種類あります。最初のバリアントでは、1 つの LineString のみを含む単一の `GEOGRAPHY` によって入力 LineString が提供されます。2 つ目のバリアントでは、入力が 1 つの `GEOGRAPHY` と複数 `GEOGRAPHY` からなる配列で構成され、各配列には 1 つの LineString のみが含まれます。各バリアントの最初の `GEOGRAPHY` が、ポリゴンシェルの作成に使用されます。入力 `ARRAY` で提供された追加の `GEOGRAPHY` は、ポリゴンホールを指定します。1 つの LineString のみを含む入力 `GEOGRAPHY` はすべて、次の条件に合致している必要があります。
+      
+      - LineString が、少なくとも 3 つの個別の頂点で構成されていること。
+      - LineString は閉じている必要があります。つまり、最初と最後の頂点が同じでなければなりません。最初と最後の頂点が異なる場合、この関数によって最初の頂点から最後の頂点に至る最後のエッジが作成されます。
+      
+      
+      `ST_MAKEPOLYGON` の最初のバリアントでは、入力 `GEOGRAPHY` が `NULL` の場合、`ST_MAKEPOLYGON` は `NULL` を返します。2 番目のバリアントでは、入力 `ARRAY` または入力 `ARRAY` 内のいずれかの要素が `NULL` の場合、`ST_MAKEPOLYGON` は `NULL` を返します。
+      
+      #### Return Data Types
+      GEOGRAPHY
+
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_MAKEPOLYGONORIENTED(array_of_geography)
+    body: ST_MAKEPOLYGONORIENTED(${1:array_of_geography})
+    documentation: |-
+      ST_MAKEPOLYGONORIENTED(array_of_geography)
+      
+      #### Description
+      `ST_MAKEPOLYGON` と同様ですが、入力された各 LineString の頂点の順序で、各ポリゴンリングの方向が決定されます。ポリゴンリングの方向は、ポリゴンの内部を次のように定義します。すなわち、入力された頂点の順序でポリゴンの境界に沿って進んだ場合、ポリゴンの内部は左側になります。これは指定された各ポリゴンリングに適用されます。
+      
+      `ST_MAKEPOLYGONORIENTED` では、内部がポリゴンリングのいずれの側になってもポリゴンを作成できるため、このコンストラクタはポリゴン コンストラクタのバリエーションの中でも柔軟性の高いものです。ただし、必要とされるポリゴンを作成するには、ポリゴンリングの方向を正しく設定することが重要です。
+      
+      入力 `ARRAY` または入力 `ARRAY` にある要素が `NULL` の場合、`ST_MAKEPOLYGONORIENTED` は `NULL` を返します。
+      
+      #### Return Data Types
+      GEOGRAPHY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_MAXDISTANCE(geography_1, geography_2)
+    body: ST_MAXDISTANCE(${1:geography_1}, ${2:geography_2})
+    documentation: |-
+      ST_MAXDISTANCE(geography_1, geography_2[, use_spheroid])
+      
+      #### Description
+      空でない 2 つの `GEOGRAPHY` の間の最長距離（つまり、最初の `GEOGRAPHY` に含まれる最初の頂点から 2 番目の `GEOGRAPHY` に含まれる 2 番目の頂点までの距離）をメートル単位で返します。`geography_1` と `geography_2` が同じ `GEOGRAPHY` である場合、この関数は、その `GEOGRAPHY` に含まれる最も離れた 2 つの頂点の間の距離を返します。
+      
+      入力された `GEOGRAPHY` のいずれかが空の場合、`ST_MAXDISTANCE` から `NULL` が返されます。
+      
+      任意指定の `use_spheroid` パラメータは、この関数で距離が測定される方法を決定します。`use_spheroid` が `FALSE` の場合、完全な球体の表面上の距離が測定されます。
+      
+      `use_spheroid` パラメータで現在サポートされている値は `FALSE` だけです。`use_spheroid` のデフォルト値は `FALSE` です。
+      
+      #### Return Data Types
+      FLOAT64
+
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_NUMPOINTS(geography_expression)
+    body: ST_NUMPOINTS(${1:geography_expression})
+    documentation: |-
+      ST_NUMPOINTS(geography_expression)
+      
+      #### Description
+      入力された `GEOGRAPHY` に含まれる頂点の数を返します。これには、ポイントの数、LineString の頂点の数、ポリゴンの頂点の数が含まれます。
+      
+      #### Return Data Types
+      INT64
+
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_PERIMETER(geography_expression)
+    body: ST_PERIMETER(${1:geography_expression})
+    documentation: |-
+      ST_PERIMETER(geography_expression[, use_spheroid])
+      
+      #### Description
+      入力された `GEOGRAPHY` に含まれるポリゴンの境界の長さをメートル単位で返します。
+      
+      `geography_expression` がポイントまたはラインの場合は、ゼロを返します。`geography_expression` が集合の場合、その集合に含まれるポリゴンの外周を返します。集合にポリゴンが含まれていない場合はゼロを返します。
+      
+      任意の `use_spheroid` パラメータにより、この関数で距離が測定される方法が決まります。`use_spheroid` が `FALSE` の場合、完全な球体の表面上の距離が測定されます。
+      
+      `use_spheroid` パラメータで現在サポートされている値は `FALSE` だけです。`use_spheroid` のデフォルト値は `FALSE` です。
+      
+      #### Return Data Types
+      FLOAT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_SIMPLIFY(geography, tolerance_meters)
+    body: ST_SIMPLIFY(${1:geography}, ${2:tolerance_meters})
+    documentation: |-
+      ST_SIMPLIFY(geography, tolerance_meters)
+      
+      #### Description
+      `geography`（入力された `GEOGRAPHY`）の簡略化されたバージョンを返します。入力された `GEOGRAPHY` は、短いエッジのほぼ真っ直ぐなチェーンを 1 つの長いエッジに置き換えることによって簡略化されます。入力された `geography` は、`tolerance_meters` で指定された許容値を超えて変更されることはありません。したがって、簡略化されたエッジは、そのエッジから削除されたすべての頂点の元の位置から `tolerance_meters` 以内に存在することが保証されます。`tolerance_meters` は、地球表面上でのメートル数で指定します。
+      
+      `ST_SIMPLIFY` はトポロジ関係を保持します。したがって、交差するエッジが新たに作成されることはなく、出力は有効であり続けます。許容値が十分に大きい場合は、隣接する複数の形状が 1 つのオブジェクトにまとめられる場合があります。また、形状がより低い次元の形状に簡略化される場合もあります。
+      
+      #### Return Data Types
+      GEOGRAPHY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_SNAPTOGRID(geography_expression, grid_size)
+    body: ST_SNAPTOGRID(${1:geography_expression}, ${2:grid_size})
+    documentation: |-
+      ST_SNAPTOGRID(geography_expression, grid_size)
+      
+      #### Description
+      入力された `GEOGRAPHY` を、各頂点を経度 / 緯度のグリッドにスナップして返します。グリッドサイズは、度数で指定される `grid_size` パラメータの値によって決まります。
+      
+      #### Return Data Types
+      GEOGRAPHY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_TOUCHES(geography_1, geography_2)
+    body: ST_TOUCHES(${1:geography_1}, ${2:geography_2})
+    documentation: |-
+      ST_TOUCHES(geography_1, geography_2)
+      
+      #### Description
+      次の 2 つの条件が満たされている場合、`TRUE` を返します。
+      
+      - `geography_1` が `geography_2` を交差している。
+      - `geography_1` の内部と `geography_2` の内部が切り離されている。
+      
+      #### Return Data Types
+      BOOL
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_UNION(geography_1, geography_2)
+    body: ST_UNION(${1:geography_1}, ${2:geography_2})
+    documentation: |-
+      ST_UNION(geography_1, geography_2)
+      
+      #### Description
+      入力されたすべての `GEOGRAPHY` のポイントセットのユニオンに相当する `GEOGRAPHY` を返します。
+      
+      `ST_UNION` には 2 種類あります。最初のバリアントでは、入力は 2 つの `GEOGRAPHY` である必要があります。2 番目では、入力は `GEOGRAPHY` タイプの `ARRAY` です。
+      
+      `ST_UNION` の最初のバリアントで、入力 `GEOGRAPHY` が `NULL` の場合、`ST_UNION` は `NULL` を返します。2 番目のバリアントで、入力 `ARRAY` の値が `NULL` の場合、`ST_UNION` は `NULL` を返します。`NULL` 以外の入力 `ARRAY` では、ユニオンが計算され、`NULL` 要素は出力に影響を与えないように無視されます。
+      
+      `ST_UNION` の集計バージョンについては、`ST_UNION_AGG` をご覧ください。
+      
+      #### Return Data Types
+      GEOGRAPHY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_UNION_AGG(geography)
+    body: ST_UNION_AGG(${1:geography})
+    documentation: |-
+      ST_UNION_AGG(geography)
+      
+      #### Description
+      入力されたすべての `GEOGRAPHY` のポイントセットのユニオンに相当する `GEOGRAPHY` を返します。
+      
+      `ST_UNION_AGG` は、`NULL` 入力の `GEOGRAPHY` 値を無視します。
+      
+      `ST_UNION_AGG` の非集計バージョンについては、`ST_UNION` をご覧ください。
+      
+      #### Return Data Types
+      GEOGRAPHY
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_WITHIN(geography_1, geography_2)
+    body: ST_WITHIN(${1:geography_1}, ${2:geography_2})
+    documentation: |-
+      ST_WITHIN(geography_1, geography_2)
+      
+      #### Description
+      `geography_1` に `geography_2` の外部にあるポイントがなく、`geography_1` と `geography_2` の内部が交差している場合、`TRUE` を返します。
+      
+      `a` と `b` の 2 つの地理表現がある場合、`ST_WITHIN(a, b)` は `ST_CONTAINS``(b, a)` と同じ結果を返します。引数の順序が逆になっている点に注意してください。
+      
+      #### Return Data Types
+      BOOL
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_X(geography_expression)
+    body: ST_X(${1:geography_expression})
+    documentation: |-
+      ST_X(geography_expression)
+      
+      #### Description
+      入力された単一点の `GEOGRAPHY` の経度を度数で返します。
+      
+      入力された `GEOGRAPHY` が単一点ではなく、空の `GEOGRAPHY` を含んでいる場合、`ST_X` からエラーが返されます。`NULL` を取得するには、`SAFE.` 接頭辞を使用してください。
+      
+      #### Return Data Types
+      FLOAT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ST_Y(geography_expression)
+    body: ST_Y(${1:geography_expression})
+    documentation: |-
+      ST_Y(geography_expression)
+      
+      #### Description
+      入力された単一点の `GEOGRAPHY` の緯度を度数で返します。
+      
+      入力された `GEOGRAPHY` が単一点ではなく、空の `GEOGRAPHY` を含んでいる場合、`ST_Y` からエラーが返されます。代わりに `NULL` が返されるようにするには、`SAFE.` 接頭辞を使用してください。
+      
+      #### Return Data Types
+      FLOAT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)

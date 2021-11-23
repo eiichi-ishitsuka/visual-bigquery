@@ -1,0 +1,516 @@
+name: Mathematical Functions
+description: |-
+  数学関数
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+  - label: ABS(X)
+    body: ABS(${1:X})
+    documentation: |-
+      ABS(X)
+      
+      #### Description
+      絶対値を計算します。引数が整数で、出力値を同じ型で表せない場合、エラーを返します（これは、正の表記が含まれていない最大の負の入力値に対してのみ発生します）。`+/-inf` 引数に対しては `+inf` を返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: SIGN(X)
+    body: SIGN(${1:X})
+    documentation: |-
+      SIGN(X)
+      
+      #### Description
+      負、ゼロ、正の引数に対してそれぞれ -1、0、+1 を返します。浮動小数点引数では、正と負のゼロは区別されません。`NaN` 引数に対しては `NaN` を返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: IS_INF(X)
+    body: IS_INF(${1:X})
+    documentation: |-
+      IS_INF(X)
+      
+      #### Description
+      値が正または負の無限大の場合に `TRUE` を返します。
+      
+      `NULL` 入力に対しては `NULL` を返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: IS_NAN(X)
+    body: IS_NAN(${1:X})
+    documentation: |-
+      IS_NAN(X)
+      
+      #### Description
+      値が `NaN` 値である場合、`TRUE` を返します。
+      
+      `NULL` 入力に対しては `NULL` を返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: IEEE_DIVIDE(X, Y)
+    body: IEEE_DIVIDE(${1:X}, ${1:Y})
+    documentation: |-
+      IEEE_DIVIDE(X, Y)
+      
+      #### Description
+      X を Y で除算します。この関数が失敗することはありません。`FLOAT64` を返します。除算演算子（/）とは異なり、この関数はゼロまたはオーバーフローによる除算エラーを生成しません。
+      
+      特殊ケース:
+      
+      - 結果がオーバーフローした場合は、`+/-inf` を返します。
+      - Y=0 かつ X=0 の場合、`NaN` を返します。
+      - Y=0 かつ X!=0 の場合、`+/-inf` を返します。
+      - X = `+/-inf` かつ Y = `+/-inf` の場合、`NaN` を返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: RAND()
+    body: RAND()
+    documentation: |-
+      RAND()
+      
+      #### Description
+      [0, 1) の範囲の FLOAT64 型の疑似ランダム値を生成します。0 は含まれますが、1 は含まれません。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: SQRT(X)
+    body: SQRT(${1:X})
+    documentation: |-
+      SQRT(X)
+      
+      #### Description
+      X の平方根を計算します。X が 0 未満の場合にエラーを生成します。
+      
+      X が `+inf` の場合、`+inf` を返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: POW(X, Y)
+    body: POW(${1:X}, ${1:Y})
+    documentation: |-
+      POW(X, Y)
+      
+      #### Description
+      X を Y 乗した値を返します。結果がアンダーフローし、表現できない場合、関数は値 0 を返します。次のいずれかの条件を満たす場合、エラーを返します。
+      
+      - X が 0 未満の有限の値で、かつ Y が整数値でない場合
+      - X が 0 で、かつ Y が 0 未満の有限の値の場合
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: POWER(X, Y)
+    body: POWER(${1:X}, ${1:Y})
+    documentation: |-
+      POWER(X, Y)
+      
+      #### Description
+      `POW()` と同等です。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: EXP(X)
+    body: EXP(${1:X})
+    documentation: |-
+      EXP(X)
+      
+      #### Description
+      e の X 乗を計算します（自然指数関数）。結果がアンダーフローする場合、ゼロを返します。結果がオーバーフローする場合は、エラーを生成します。X が `+/-inf` である場合、この関数は `+inf` または 0 を返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: LN(X)
+    body: LN(${1:X})
+    documentation: |-
+      LN(X)
+      
+      #### Description
+      X の自然対数を計算します。X が 0 以下の場合、エラーを生成します。X が `+inf` の場合、`+inf` を返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: LOG(X)
+    body: LOG(${1:X})
+    documentation: |-
+      LOG(X [, Y])
+      
+      #### Description
+      X のみが存在する場合、`LOG` は `LN` と同義です。Y も存在する場合、`LOG` は Y を底とする X の対数を計算します。次の場合はエラーを生成します。
+      
+      - X がゼロ以下
+      - Y が 1.0
+      - Y がゼロ以下
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: LOG10(X)
+    body: LOG10(${1:X})
+    documentation: |-
+      LOG10(X)
+      
+      #### Description
+      `LOG` と似ていますが、10 を底とする対数を計算します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: GREATEST(X1)
+    body: GREATEST(${1:X1})
+    documentation: |-
+      GREATEST(X1,...,XN)
+      
+      #### Description
+      入力のいずれかが `NULL` の場合 `NULL` を返します。入力のいずれかが `NaN` の場合 `NaN` を返します。それ以外では、&lt; 比較によって X1,...,XN の間の最大値を返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: LEAST(X1)
+    body: LEAST(${1:X1})
+    documentation: |-
+      LEAST(X1,...,XN)
+      
+      #### Description
+      入力のいずれかが `NULL` の場合、`NULL` を返します。入力のいずれかが `NaN` の場合、`NaN` を返します。それ以外では、> 比較によって X1,...,XN の間の最小値を返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: DIV(X, Y)
+    body: DIV(${1:X}, ${1:Y})
+    documentation: |-
+      DIV(X, Y)
+      
+      #### Description
+      Y による X の整数除算の結果を返します。ゼロ除算はエラーを返します。-1 による除算はオーバーフローする可能性があります。   考えられる結果の型については、`DIV(X, Y)` と `MOD(X, Y)` の結果の型をご覧ください。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: SAFE_DIVIDE(X, Y)
+    body: SAFE_DIVIDE(${1:X}, ${1:Y})
+    documentation: |-
+      SAFE_DIVIDE(X, Y)
+      
+      #### Description
+      除算演算子（`/`）と同じですが、0 で割った場合など、エラーがあると `NULL` を返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: SAFE_MULTIPLY(X, Y)
+    body: SAFE_MULTIPLY(${1:X}, ${1:Y})
+    documentation: |-
+      SAFE_MULTIPLY(X, Y)
+      
+      #### Description
+      乗算演算子（`*`）と同じですが、オーバーフローが発生すると `NULL` を返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: SAFE_NEGATE(X)
+    body: SAFE_NEGATE(${1:X})
+    documentation: |-
+      SAFE_NEGATE(X)
+      
+      #### Description
+      単項マイナス演算子（`-`）と同じですが、オーバーフローが発生すると `NULL` を返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: SAFE_ADD(X, Y)
+    body: SAFE_ADD(${1:X}, ${1:Y})
+    documentation: |-
+      SAFE_ADD(X, Y)
+      
+      #### Description
+      加算演算子（`+`）と同じですが、オーバーフローが発生すると `NULL` を返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: SAFE_SUBTRACT(X, Y)
+    body: SAFE_SUBTRACT(${1:X}, ${1:Y})
+    documentation: |-
+      SAFE_SUBTRACT(X, Y)
+      
+      #### Description
+      X から Y を減算した結果を返します。減算演算子（`-`）と同じですが、オーバーフローが発生すると `NULL` を返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: MOD(X, Y)
+    body: MOD(${1:X}, ${1:Y})
+    documentation: |-
+      MOD(X, Y)
+      
+      #### Description
+      モジュロ関数: Y による X の除算の剰余を返します。返される値は X と同じ符号を持ちます。Y が 0 の場合、エラーが発生します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ROUND(X)
+    body: ROUND(${1:X})
+    documentation: |-
+      ROUND(X [, N])
+      
+      #### Description
+      X のみが存在する場合、`ROUND` は X を最も近い整数に丸めます。N が存在する場合、`ROUND` は小数点以下の N 小数位に X を丸めます。N が負の場合、`ROUND` は小数点の左側の桁を丸めます。中間の値の場合は、ゼロから遠ざかるように丸めます。オーバーフローが発生した場合は、エラーが発生します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TRUNC(X)
+    body: TRUNC(${1:X})
+    documentation: |-
+      TRUNC(X [, N])
+      
+      #### Description
+      X のみが存在する場合、`TRUNC` は絶対値が X 以下で最も近い整数に X を丸めます。N も存在する場合、`TRUNC` の動作は `ROUND(X, N)` と似ていますが、常にゼロに近づくように丸め、オーバーフローすることはありません。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: CEIL(X)
+    body: CEIL(${1:X})
+    documentation: |-
+      CEIL(X)
+      
+      #### Description
+      X 以上で最小の整数値を（FLOAT64 型で）返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: CEILING(X)
+    body: CEILING(${1:X})
+    documentation: |-
+      CEILING(X)
+      
+      #### Description
+      CEIL(X) と同義
+
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: FLOOR(X)
+    body: FLOOR(${1:X})
+    documentation: |-
+      FLOOR(X)
+      
+      #### Description
+      X よりも大きくない最大の整数値を（FLOAT64 型で）返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: COS(X)
+    body: COS(${1:X})
+    documentation: |-
+      COS(X)
+      
+      #### Description
+      X のコサインを計算します。X は RADIANS で指定されます。失敗することはありません。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: COSH(X)
+    body: COSH(${1:X})
+    documentation: |-
+      COSH(X)
+      
+      #### Description
+      X の双曲線コサインを計算します。X は RADIANS で指定されます。オーバーフローが発生した場合は、エラーが発生します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ACOS(X)
+    body: ACOS(${1:X})
+    documentation: |-
+      ACOS(X)
+      
+      #### Description
+      X の逆コサインの主値を計算します。戻り値は [0,π] の範囲内です。X が [-1, 1] の範囲外の値である場合、エラーになります。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ACOSH(X)
+    body: ACOSH(${1:X})
+    documentation: |-
+      ACOSH(X)
+      
+      #### Description
+      X の逆双曲線コサインを計算します。X が 1 未満の値の場合、エラーになります。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: SIN(X)
+    body: SIN(${1:X})
+    documentation: |-
+      SIN(X)
+      
+      #### Description
+      X のサインを計算します。X は RADIANS で指定されます。失敗することはありません。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: SINH(X)
+    body: SINH(${1:X})
+    documentation: |-
+      SINH(X)
+      
+      #### Description
+      X の双曲線サインを計算します。X は RADIANS で指定されます。オーバーフローが発生した場合は、エラーが発生します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ASIN(X)
+    body: ASIN(${1:X})
+    documentation: |-
+      ASIN(X)
+      
+      #### Description
+      X の逆サインの主値を計算します。戻り値は [-π/2,π/2] の範囲内です。X が [-1, 1] の範囲外である場合、エラーになります。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ASINH(X)
+    body: ASINH(${1:X})
+    documentation: |-
+      ASINH(X)
+      
+      #### Description
+      X の逆双曲線正サインを計算します。失敗することはありません。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TAN(X)
+    body: TAN(${1:X})
+    documentation: |-
+      TAN(X)
+      
+      #### Description
+      X のタンジェントを計算します。X は RADIANS で指定されます。オーバーフローが発生した場合は、エラーが発生します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TANH(X)
+    body: TANH(${1:X})
+    documentation: |-
+      TANH(X)
+      
+      #### Description
+      X の双曲線タンジェントを計算します。X は RADIANS で指定されます。失敗することはありません。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ATAN(X)
+    body: ATAN(${1:X})
+    documentation: |-
+      ATAN(X)
+      
+      #### Description
+      X の逆タンジェントの主値を計算します。戻り値は [-π/2,π/2] の範囲内です。失敗することはありません。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ATANH(X)
+    body: ATANH(${1:X})
+    documentation: |-
+      ATANH(X)
+      
+      #### Description
+      X の逆双曲線タンジェントを計算します。X が [-1, 1] 未満の範囲外である場合、エラーになります。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ATAN2(Y, X)
+    body: ATAN2(${1:Y}, ${1:X})
+    documentation: |-
+      ATAN2(Y, X)
+      
+      #### Description
+      象限を判断するために 2 つの引数の符号を用いて、Y/X の逆タンジェントの主値を計算します。戻り値は [-π,π] の範囲内です。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: RANGE_BUCKET(point, boundaries_array)
+    body: RANGE_BUCKET(${1:point}, ${1:boundaries_array})
+    documentation: |-
+      RANGE_BUCKET(point, boundaries_array)
+      
+      #### Description
+      `RANGE_BUCKET` は、並べ替えられた配列をスキャンして、ポイントの上限の 0 ベースの位置を返します。ビルド パーティション、ヒストグラム、ビジネス定義ルールなどでデータをグループ化する必要がある場合に有用です。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)

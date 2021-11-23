@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.0.4 - 24 November 2021
+- Preview release
+  - Update Snippets
+  - Add Functions Documents
+
 ## 0.0.3 - 23 November 2021
 - Preview release
   - Update Snippets

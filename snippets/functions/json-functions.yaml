@@ -1,0 +1,119 @@
+name: Json Functions
+description: |-
+  JSON関数
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+  - label: JSON_EXTRACT(json_string_expr, json_path_format)
+    body: JSON_EXTRACT(${1:json_string_expr}, ${2:json_path_format})
+    documentation: |-
+      JSON_EXTRACT(json_string_expr, json_path_format)
+
+      #### Description
+      JSON 値を文字列として抽出します。
+      
+      `json_string_expr`: JSON 形式の文字列。例: `{&#34;class&#34; : {&#34;students&#34; : [{&#34;name&#34; : &#34;Jane&#34;}]}}`
+      `json_path_format`: JSONpath 形式。これは、JSON 形式の文字列から取得する値を指定します。`json_path_format` が JSON `null` を返す場合、これは SQL `NULL` に変換されます。
+      
+      JSON キーが無効な JSONPath 文字を使用した場合は、単一引用符や括弧を使用して、それらの文字をエスケープできます。
+      
+      #### Return Data Types
+      STRING 
+       
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: JSON_EXTRACT_SCALAR(json_string_expr, json_path_format)
+    body: JSON_EXTRACT_SCALAR(${1:json_string_expr}, ${2:json_path_format})
+    documentation: |-
+      JSON_EXTRACT_SCALAR(json_string_expr, json_path_format)
+      
+      #### Description
+      JSON スカラー値を文字列として抽出します。
+      
+      `json_string_expr`: JSON 形式の文字列。例: `{&#34;class&#34; : {&#34;students&#34; : [{&#34;name&#34; : &#34;Jane&#34;}]}}`
+      `json_path_format`: JSONpath 形式。これは、JSON 形式の文字列から取得する値を指定します。`json_path_format` が JSON `null` を返す場合、これは SQL `NULL` に変換されます。
+      
+      JSON キーが無効な JSONPath 文字を使用した場合は、単一引用符や括弧を使用して、それらの文字をエスケープできます。
+      
+      #### Return Data Types
+      STRING 
+       
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: JSON_EXTRACT_ARRAY(json_string_expr)
+    body: JSON_EXTRACT_ARRAY(${1:json_string_expr})
+    documentation: |-
+      JSON_EXTRACT_ARRAY(json_string_expr[, json_path_format])
+      
+      #### Description
+      JSON 形式の文字列から配列を抽出します。
+      
+      `json_string_expr`: JSON 形式の文字列。例: `{&#34;class&#34; : {&#34;students&#34; : [{&#34;name&#34; : &#34;Jane&#34;}]}}`
+      `json_path_format`: JSONpath 形式。これは、JSON 形式の文字列から取得する値を指定します。この省略可能なパラメータが指定されていない場合は、JSONPath `$` 記号が適用され、JSON 形式の文字列全体が分析されます。
+      
+      JSON キーが無効な JSONPath 文字を使用した場合は、単一引用符や括弧を使用して、それらの文字をエスケープできます。
+      
+      #### Return Data Types
+      ARRAY<STRING>
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: JSON_QUERY(json_string_expr, json_path_format)
+    body: JSON_QUERY(${1:json_string_expr}, ${2:json_path_format})
+    documentation: |-
+      JSON_QUERY(json_string_expr, json_path_format)
+
+      #### Description
+      JSON 値を文字列として抽出します。
+      
+      `json_string_expr`: JSON 形式の文字列。例: `{&#34;class&#34; : {&#34;students&#34; : [{&#34;name&#34; : &#34;Jane&#34;}]}}`
+      `json_path_format`: JSONpath 形式。これは、JSON 形式の文字列から取得する値を指定します。`json_path_format` が JSON `null` を返す場合、これは SQL `NULL` に変換されます。
+      
+      JSON キーが無効な JSONPath 文字を使用した場合は、二重引用符を使用して、それらの文字をエスケープできます。
+      
+      #### Return Data Types
+      STRING
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: JSON_VALUE(json_string_expr, json_path_format)
+    body: JSON_VALUE(${1:json_string_expr}, ${2:json_path_format})
+    documentation: |-
+      JSON_VALUE(json_string_expr, json_path_format)
+
+      #### Description
+      JSON スカラー値を文字列として抽出します。
+      
+      `json_string_expr`: JSON 形式の文字列。例: `{&#34;class&#34; : {&#34;students&#34; : [{&#34;name&#34; : &#34;Jane&#34;}]}}`
+      `json_path_format`: JSONpath 形式。これは、JSON 形式の文字列から取得する値を指定します。`json_path_format` が JSON `null` を返す場合、これは SQL `NULL` に変換されます。
+      
+      JSON キーが無効な JSONPath 文字を使用した場合は、二重引用符を使用して、それらの文字をエスケープできます。
+      
+      #### Return Data Types
+      STRING
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: TO_JSON_STRING(value)
+    body: TO_JSON_STRING(${1:value})
+    documentation: |-
+      TO_JSON_STRING(value[, pretty_print])
+      
+      #### Description
+      `value` の JSON 形式の文字列表現を返します。この関数では、省略可能な `pretty_print` パラメータを使用できます。`pretty_print` がある場合、戻り値は読みやすいように書式設定されています。
+      
+      #### Return Data Types
+      値の JSON 文字列表現。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)

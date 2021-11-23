@@ -1,0 +1,214 @@
+name: Net Functions
+description: |-
+  NET関数
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+  - label: NET.IP_FROM_STRING(addr_str)
+    body: NET.IP_FROM_STRING(${1:addr_str})
+    documentation: |-
+      NET.IP_FROM_STRING(addr_str)
+      
+      #### Description
+      IPv4 または IPv6 アドレスをネットワーク バイト順でテキスト形式（STRING）からバイナリ形式（BYTES）に変換します。
+      
+      この関数は、`addr_str` で次の形式をサポートします。
+      
+      IPv4: ドット区切り形式。たとえば、`10.1.2.3` です。
+      IPv6: コロン区切り形式。たとえば、`1234:5678:90ab:cdef:1234:5678:90ab:cdef` です。他の例については、IP バージョン 6 アドレス アーキテクチャをご覧ください。
+      
+      この関数は `10.1.2.3/32` のような CIDR 表記をサポートしていません。
+      
+      この関数は、`NULL` 入力を受信すると `NULL` を返します。入力が無効と判断されると、`OUT_OF_RANGE` エラーが発生します。
+      
+      #### Return Data Types
+      BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: NET.SAFE_IP_FROM_STRING(addr_str)
+    body: NET.SAFE_IP_FROM_STRING(${1:addr_str})
+    documentation: |-
+      NET.SAFE_IP_FROM_STRING(addr_str)
+      
+      #### Description
+      `NET.IP_FROM_STRING` に似ていますが、入力が無効の場合にエラーを発生させず、`NULL` を返します。
+      
+      #### Return Data Types
+      BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: NET.IP_TO_STRING(addr_bin)
+    body: NET.IP_TO_STRING(${1:addr_bin})
+    documentation: |-
+      NET.IP_TO_STRING(addr_bin)
+      
+      #### Description
+      IPv4 または IPv6 アドレスをネットワーク バイト順でバイナリ形式（BYTES）からテキスト形式（STRING）に変換します。
+
+      入力が 4 バイトの場合、この関数は IPv4 アドレスを STRING として返します。入力が 16 バイトの場合、IPv6 アドレスを STRING として返します。
+
+      この関数は、`NULL`入力を受信すると`NULL`を返します。入力の長さが 4 または 16 以外の場合、`OUT_OF_RANGE`エラーが発生します。
+
+      #### Return Data Types
+      STRING
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: NET.IP_NET_MASK(num_output_bytes, prefix_length)
+    body: NET.IP_NET_MASK(${1:num_output_bytes}, ${2:prefix_length})
+    documentation: |-
+      NET.IP_NET_MASK(num_output_bytes, prefix_length)
+      
+      #### Description
+      `num_output_bytes` の長さと等しいバイト シーケンスでネットワーク マスクを返します。最初の `prefix_length` ビットは 1 に設定され、他のビットは 0 に設定されます。`num_output_bytes` と `prefix_length` は INT64 です。`num_output_bytes` が 4（IPv4 の場合）または 16（IPv6 の場合）でない場合、エラーが発生します。`prefix_length` が負の数または `8 * num_output_bytes` よりも大きい場合にもエラーが発生します。
+      
+      
+      #### Return Data Types
+      BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: NET.IP_TRUNC(addr_bin, prefix_length)
+    body: NET.IP_TRUNC(${1:addr_bin}, ${2:prefix_length})
+    documentation: |-
+      NET.IP_TRUNC(addr_bin, prefix_length)
+      
+      #### Description
+      ネットワーク バイト順のバイナリ形式（BYTES）で表した IPv4 または IPv6 アドレスである `addr_bin`を受け入れ、同じ形式でサブネット アドレスを返します。結果の長さは`addr_bin`と同じになります。最初の`prefix_length`ビットは`addr_bin`と等しくなり、残りのビットは`0`になります。
+
+      `LENGTH(addr_bin)`が`4`でも`16`でもない場合、あるいは`prefix_len`が負の数であるか`LENGTH(addr_bin) * 8`より大きい場合、エラーが発生します。
+      
+      #### Return Data Types
+      BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: NET.IPV4_FROM_INT64(integer_value)
+    body: NET.IPV4_FROM_INT64(${1:integer_value})
+    documentation: |-
+      NET.IPV4_FROM_INT64(integer_value)
+      
+      #### Description
+      IPv4 アドレスをネットワーク バイト順に整数形式からバイナリ形式（BYTES）に変換します。整数入力の場合、ホストまたはクライアントのアーキテクチャに関係なく、IP アドレスの最下位ビットが整数の最下位ビットに保存されます。たとえば、`1` は `0.0.0.1` を意味し、`0x1FF` は `0.0.1.255` を意味します。
+      
+      この関数は、最上位 32 ビットがすべて 0、または最上位 33 ビットがすべて 1 になっているかどうか確認します（32 ビット整数からの符号拡張）。つまり、入力が `[-0x80000000, 0xFFFFFFFF]` の範囲に入っていない場合にエラーが発生します。
+      
+      この関数は IPv6 をサポートしていません。
+      
+      #### Return Data Types
+      BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: NET.IPV4_TO_INT64(addr_bin)
+    body: NET.IPV4_TO_INT64(${1:addr_bin})
+    documentation: |-
+      NET.IPV4_TO_INT64(addr_bin)
+      
+      #### Description
+      IPv4 アドレスをネットワーク バイト順にバイナリ形式（BYTES）から整数形式に変換します。整数出力の場合、ホストまたはクライアントのアーキテクチャに関係なく、IP アドレスの最下位ビットが整数の最下位ビットに保存されます。たとえば、`1` は `0.0.0.1` を意味し、`0x1FF` は `0.0.1.255` を意味します。出力は範囲 `[0, 0xFFFFFFFF]` 内にあります。
+      
+      入力長が 4 でない場合、エラーが発生します。
+      
+      この関数は IPv6 をサポートしていません。
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: NET.HOST(url)
+    body: NET.HOST(${1:url})
+    documentation: |-
+      NET.HOST(url)
+      
+      #### Description
+      URL を STRING として受け入れ、ホストを STRING として返します。最適な結果を得るには、URL 値が RFC 3986 で定義されている形式に準拠する必要があります。URL 値が RFC 3986 の形式設定に準拠していない場合、この関数は入力をベストエフォートで解析し、関連する結果を返します。入力を解析できない場合は NULL を返します。
+      
+      注: この関数は正規化を行いません。
+      
+      #### Return Data Types
+      STRING
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: NET.PUBLIC_SUFFIX(url)
+    body: NET.PUBLIC_SUFFIX(${1:url})
+    documentation: |-
+      NET.PUBLIC_SUFFIX(url)
+      
+      #### Description
+      URL を STRING として受け入れ、そのパブリック サフィックス（`com`、`org`、`net` など）を STRING として返します。パブリック サフィックスは、publicsuffix.org に登録されている ICANN ドメインです。最適な結果を得るには、URL 値が RFC 3986 で定義されている形式に準拠する必要があります。URL 値が RFC 3986 の形式設定に準拠していない場合、この関数は入力をベストエフォートで解析し、関連する結果を返します。
+      
+      次の条件を満たす場合、この関数は NULL を返します。
+      
+      入力からホストを解析できない。
+      解析したホストで、先頭または末尾以外の場所でドットが連続している。
+      解析したホストにパブリック サフィックスが含まれていない。
+      
+      パブリック サフィックスを検索する前に、この関数はホストを一時的に正規化します。その際、大文字の英字を小文字に変換し、ASCII 以外の文字を Punycode でエンコードします。次に、正規化されたホストではなく、元のホストの一部としてパブリック サフィックスを返します。
+      
+      注: この関数は Unicode の正規化を行いません。
+      
+      注: publicsuffix.org のパブリック サフィックス データにはプライベート ドメインも含まれます。この関数はプライベート ドメインを無視します。
+      
+      注: パブリック サフィックス データは変更される可能性があります。今後、NULL 結果を生成する入力で NULL 以外の値が生成される可能性があります。
+      
+      #### Return Data Types
+      
+      
+      STRING
+      
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: NET.REG_DOMAIN(url)
+    body: NET.REG_DOMAIN(${1:url})
+    documentation: |-
+      NET.REG_DOMAIN(url)
+      
+      #### Description
+      URL を STRING として受け入れ、登録済みまたは登録可能なドメイン（パブリック サフィックスと 1 つ前のラベル）を STRING として返します。最適な結果を得るには、URL 値が RFC 3986 で定義されている形式に準拠する必要があります。URL 値が RFC 3986 の形式設定に準拠していない場合、この関数は入力をベストエフォートで解析し、関連する結果を返します。
+      
+      次の条件を満たす場合、この関数は NULL を返します。
+      
+      入力からホストを解析できない。
+      解析したホストで、先頭または末尾以外の場所でドットが連続している。
+      解析したホストにパブリック サフィックスが含まれていない。
+      解析したホストにパブリック サフィックスが含まれているが、先頭にラベルがない。
+      
+      
+      パブリック サフィックスを検索する前に、この関数はホストを一時的に正規化します。その際、大文字の英字を小文字に変換し、ASCII 以外のすべての文字を Punycode でエンコードします。次に、正規化されたホストではなく、元のホストの一部として登録済みまたは登録可能なドメインを返します。
+      
+      注: この関数は Unicode の正規化を行いません。
+      
+      注: publicsuffix.org のパブリック サフィックス データにはプライベート ドメインも含まれます。この関数は、プライベート ドメインをパブリック サフィックスとして扱いません。たとえば「us.com」がパブリック サフィックス データ内のプライベート ドメインである場合、NET.REG_DOMAIN（「foo.us.com」）は、「foo.us.com」（プライベート ドメイン「us.com」および先行するラベル「foo」）ではなく、「us.com」（パブリック サフィックス「com」および先行するラベル「us」）を返します。
+      
+      注: パブリック サフィックス データは変更される可能性があります。今後、NULL 結果を生成する入力で NULL 以外の値が生成される可能性があります。
+      
+      
+      #### Return Data Types
+      STRING
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)

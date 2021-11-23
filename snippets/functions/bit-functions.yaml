@@ -1,0 +1,21 @@
+name: Bit Functions
+description: |-
+  Bit関数
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+  - label: BIT_COUNT(expr)
+    body: BIT_COUNT(${1:expr})
+    documentation: |-
+      BIT_COUNT(expression)
+      
+      #### Description
+      入力 `expression` は整数または BYTES にする必要があります。
+      
+      入力 `expression` で設定されたビット数を返します。符号付き整数の場合、これは 2 の補数形式になります。
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)

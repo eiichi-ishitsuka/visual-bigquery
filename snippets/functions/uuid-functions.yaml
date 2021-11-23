@@ -1,0 +1,19 @@
+name: UUID Functions
+description: |-
+  UUID関数
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+  - label: GENERATE_UUID()
+    body: GENERATE_UUID()
+    documentation: |-
+      GENERATE_UUID()
+      
+      #### Description
+      ランダムな Universally Unique Identifier（UUID）を `STRING` として返します。返される `STRING` は 32 個の 16 進数で構成され、5 つのグループがハイフンで区切られた 8-4-4-4-12 形式になります。この 16 進数は RFC 4122 セクション 4.4 に準拠し、122 個のランダムなビットと 6 個の固定ビットを表します。返される `STRING` はすべて小文字です。
+      
+      #### Return Data Types
+      STRING
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)

@@ -1,0 +1,87 @@
+name: Hash Functions
+description: |-
+  ハッシュ関数
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+  - label: FARM_FINGERPRINT(value)
+    body: FARM_FINGERPRINT(${1:value})
+    documentation: |-
+      FARM_FINGERPRINT(value)
+      
+      #### Description
+      オープンソースの FarmHash ライブラリの `Fingerprint64` 関数を使用して、`STRING` または `BYTES` 入力のフィンガープリントを計算します。特定の入力に対して、この関数の出力が変わることはありません。
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: MD5(input)
+    body: MD5(${1:input})
+    documentation: |-
+      MD5(input)
+      
+      #### Description
+      MD5 アルゴリズムを使用して、入力のハッシュを計算します。入力は `STRING` または `BYTES` のいずれかです。文字列の場合、入力はバイトの配列として扱われます。
+      
+      この関数は 16 バイトを返します。
+      
+      #### Return Data Types
+      BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: SHA1(input)
+    body: SHA1(${1:input})
+    documentation: |-
+      SHA1(input)
+      
+      #### Description
+      SHA-1 アルゴリズムを使用して入力のハッシュを計算します。入力は `STRING` または `BYTES` のいずれかです。文字列の場合、入力はバイトの配列として扱われます。
+      
+      この関数は 20 バイトを返します。
+      
+      #### Return Data Types
+      BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: SHA256(input)
+    body: SHA256(${1:input})
+    documentation: |-
+      SHA256(input)
+      
+      #### Description
+      SHA-256 アルゴリズムを使用して、入力のハッシュを計算します。入力は `STRING` または `BYTES` のいずれかです。文字列の場合、入力はバイトの配列として扱われます。
+      
+      この関数は 32 バイトを返します。
+      
+      #### Return Data Types
+      BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: SHA512(input)
+    body: SHA512(${1:input})
+    documentation: |-
+      SHA512(input)
+      
+      #### Description
+      SHA-512 アルゴリズムを使用して、入力のハッシュを計算します。入力は `STRING` または `BYTES` のいずれかです。文字列の場合、入力はバイトの配列として扱われます。
+      
+      この関数は 64 バイトを返します。
+      
+      #### Return Data Types
+      BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)

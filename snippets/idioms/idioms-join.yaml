@@ -7,9 +7,11 @@ data:
           ON ${2:expr} = ${3:expr}
     documentation: |-
       * SQL Idiom
-
+      
+      ```sql
       INNER JOIN table
           ON expr = expr
+      ```
 
   - label: INNER JOIN subquery,
     body: |-
@@ -22,7 +24,8 @@ data:
           ON ${4:expr} = ${5:expr}
     documentation: |-
       * SQL Idiom
-
+      
+      ```sql
       INNER JOIN (
           SELECT
               expr
@@ -30,6 +33,7 @@ data:
               table
       ) alias
           ON expr = expr
+      ```
 
   - label: LEFT OUTER JOIN table,
     body: |-
@@ -38,8 +42,10 @@ data:
     documentation: |-
       * SQL Idiom
 
+      ```sql
       LEFT OUTER JOIN table
           ON expr = expr
+      ```
 
   - label: LEFT OUTER JOIN subquery,
     body: |-
@@ -53,6 +59,7 @@ data:
     documentation: |-
       * SQL Idiom
 
+      ```sql
       LEFT OUTER JOIN (
           SELECT
               expr
@@ -60,6 +67,7 @@ data:
               table
       ) alias
           ON expr = expr
+      ```
 
   - label: RIGHT OUTER JOIN table,
     body: |-
@@ -68,8 +76,10 @@ data:
     documentation: |-
       * SQL Idiom
 
+      ```sql
       RIGHT OUTER JOIN table
           ON expr = expr
+      ```
 
   - label: RIGHT OUTER JOIN subquery,
     body: |-
@@ -83,6 +93,7 @@ data:
     documentation: |-
       * SQL Idiom
 
+      ```sql
       RIGHT OUTER JOIN (
           SELECT
               expr
@@ -90,6 +101,7 @@ data:
               table
       ) alias
           ON expr = expr
+      ```
 
   - label: FULL OUTER JOIN table,
     body: |-
@@ -98,8 +110,10 @@ data:
     documentation: |-
       * SQL Idiom
 
+      ```sql
       FULL OUTER JOIN table
           ON expr = expr
+      ```
 
   - label: FULL OUTER JOIN subquery,
     body: |-
@@ -112,7 +126,8 @@ data:
           ON ${4:expr} = ${5:expr}
     documentation: |-
       * SQL Idiom
-
+      
+      ```sql
       FULL OUTER JOIN (
           SELECT
               expr
@@ -120,13 +135,16 @@ data:
               table
       ) alias
           ON expr = expr
+      ```
 
   - label: CROSS JOIN table,
     body: CROSS JOIN ${1:table}
     documentation: |-
       * SQL Idiom
-
+      
+      ```sql
       CROSS JOIN table
+      ```
 
   - label: CROSS JOIN subquery,
     body: |-
@@ -139,9 +157,11 @@ data:
     documentation: |-
       * SQL Idiom
 
+      ```sql
       CROSS JOIN (
           SELECT
               expr
           FROM
               table
       ) alias
+      ```

@@ -1,0 +1,293 @@
+name: Aggregate Functions
+description: |-
+  集計関数
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+  - label: ANY_VALUE(expr)
+    body: ANY_VALUE(${1:expr})
+    documentation: |-
+      ANY_VALUE(expression)  [OVER (...)]
+      #### Description
+      
+      グループから選択された行の `expression` を返します。どの行が選択されるかは非決定的で、ランダムではありません。入力によって行が生成されない場合、`NULL` を返します。グループ内のすべての行で `expression` が `NULL` の場合、`NULL` を返します。
+      
+      `ANY_VALUE` は、あたかも `RESPECT NULLS` が指定されているかのように動作します。`expression` が `NULL` である行が考慮され、そのような行が選択される場合があります。
+      #### Supported Argument Types
+      すべて
+      #### Return Data Types
+      入力データ型と一致します。
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ARRAY_AGG(expr)
+    body: ARRAY_AGG(${1:expr})
+    documentation: |-
+      ARRAY_AGG([DISTINCT] expression [{IGNORE|RESPECT} NULLS]
+                [ORDER BY key [{ASC|DESC}] [, ... ]]  [LIMIT n])
+      [OVER (...)]
+      
+      #### Description
+      `expression` 値の配列を返します。
+
+      #### Supported Argument Types
+      ARRAY を除くすべてのデータ型。
+      
+      #### Return Data Types
+      ARRAY
+      入力行がない場合、この関数は `NULL` を返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: ARRAY_CONCAT_AGG(expr)
+    body: ARRAY_CONCAT_AGG(${1:expr})
+    documentation: |-
+      ARRAY_CONCAT_AGG(expression  [ORDER BY key [{ASC|DESC}] [, ... ]]  [LIMIT n])
+
+      #### Description
+      ARRAY 型の `expression` から要素を結合し、結果として単一の ARRAY を返します。この関数は NULL 入力配列を無視しますが、NULL 以外の入力配列に含まれる NULL 要素は無視しません。ただし、クエリの最終結果の配列に NULL 要素が含まれていると、エラーが発生します。
+
+      #### Supported Argument Types      
+      ARRAY
+
+      #### Return Data Types
+      ARRAY
+      入力行がない場合、または `expression` がすべての行で NULL と評価される場合に `NULL` を返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: AVG(expr)
+    body: AVG(${1:expr})
+    documentation: |-
+      AVG([DISTINCT] expression)  [OVER (...)]
+      
+      #### Description
+      `NULL` 以外の値の平均を返すか、入力に `NaN` が含まれる場合は `NaN` を返します。
+      
+      #### Supported Argument Types
+      INT64 のような、任意の数値入力型。浮動小数点入力型の場合、戻り値の結果は変動する可能性があります、つまり、この関数を使用するたびに異なる結果を受け取る可能性があります。
+      
+      #### Return Data Types
+      入力型が NUMERIC の場合は NUMERIC。
+      FLOAT64
+
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: BIT_AND(expr)
+    body: BIT_AND(${1:expr})
+    documentation: |-
+      BIT_AND(expression)
+      
+      #### Description
+      `expression` でビット積演算を実行し、結果を返します。
+      
+      #### Supported Argument Types
+      INT64
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: BIT_OR(expr)
+    body: BIT_OR(${1:expr})
+    documentation: |-
+      BIT_OR(expression)
+      
+      #### Description
+      `expression` に対してビット論理和演算を実行し、結果を返します。
+      
+      #### Supported Argument Types
+      INT64
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: BIT_XOR(expr)
+    body: BIT_XOR(${1:expr})
+    documentation: |-
+      BIT_XOR([DISTINCT] expression)
+      #### Description
+      `expression` でビット排他論理和演算を実行し、結果を返します。
+      
+      #### Supported Argument Types
+      INT64
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: COUNT(expr)
+    body: COUNT(${1:expr})
+    documentation: |-
+      COUNT(*)  [OVER (...)]
+
+      #### Description      
+      入力内の行数を返します。
+      `expression` が `NULL` 以外の値と評価された行の数を返します。
+      
+      #### Supported Argument Types
+      `expression` には任意のデータ型を指定できます。 `DISTINCT` が存在する場合、`expression` にはグループ化可能なデータ型のみ指定できます。
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: COUNTIF(expr)
+    body: COUNTIF(${1:expr})
+    documentation: |-
+      COUNTIF(expression)  [OVER (...)]
+      
+      #### Description
+      `expression` に対する `TRUE` の値の数を返します。入力行がない場合、または `expression` がすべての行に対して `FALSE` または `NULL` と評価される場合に `0` を返します。
+      
+      #### Supported Argument Types
+      BOOL
+      
+      #### Return Data Types
+      INT64
+
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: LOGICAL_AND(expr)
+    body: LOGICAL_AND(${1:expr})
+    documentation: |-
+      LOGICAL_AND(expression)
+      
+      #### Description
+      すべての非 `NULL` 式の論理 AND を返します。入力行がない場合、または `expression` がすべての行で `NULL` と評価される場合に `NULL` を返します。
+      
+      #### Supported Argument Types
+      BOOL
+      
+      #### Return Data Types
+      BOOL
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: LOGICAL_OR(expr)
+    body: LOGICAL_OR(${1:expr})
+    documentation: |-
+      LOGICAL_OR(expression)
+      
+      #### Description
+      すべての非 `NULL` 式の論理 OR を返します。入力行がない場合、または `expression` がすべての行で `NULL` と評価される場合に `NULL` を返します。
+      
+      #### Supported Argument Types
+      BOOL
+      
+      #### Return Data Types
+      BOOL
+
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: MAX(expr)
+    body: MAX(${1:expr})
+    documentation: |-
+      MAX(expression)  [OVER (...)]
+      
+      #### Description
+      非 `NULL` 式の最大値を返します。入力行がない場合、または `expression` がすべての行で `NULL` と評価される場合に `NULL` を返します。入力に `NaN` が含まれている場合、`NaN` を返します。
+      
+      #### Supported Argument Types
+      `ARRAY`、`STRUCT`、`GEOGRAPHY` を除くすべてのデータ型
+      
+      #### Return Data Types
+      入力値として使用されるデータ型と同じ型。
+
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: MIN(expr)
+    body: MIN(${1:expr})
+    documentation: |-
+      MIN(expression)  [OVER (...)]
+      
+      #### Description
+      非 `NULL` 式の最小値を返します。入力行がない場合、または `expression` がすべての行で `NULL` と評価される場合に `NULL` を返します。入力に `NaN` が含まれている場合、`NaN` を返します。
+      
+      #### Supported Argument Types
+      `ARRAY`、`STRUCT`、`GEOGRAPHY` を除くすべてのデータ型
+      
+      #### Return Data Types
+      入力値として使用されるデータ型と同じ型。
+
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: STRING_AGG(expr)
+    body: STRING_AGG(${1:expr})
+    documentation: |-
+      STRING_AGG([DISTINCT] expression [, delimiter]  [ORDER BY key [{ASC|DESC}] [, ... ]]  [LIMIT n])
+      [OVER (...)]
+      
+      #### Description
+      非 NULL 値を結合して得られた値（STRING または BYTES のいずれか）を返します。
+      
+      `delimiter` が指定された場合、連結された値はその区切り文字で区切られ、それ以外の場合は区切り文字としてカンマが使用されます。
+      
+      #### Supported Argument Types
+      STRING
+      BYTES
+      
+      #### Return Data Types
+      STRING
+      BYTES
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: SUM(expr)
+    body: SUM(${1:expr})
+    documentation: |-
+      SUM([DISTINCT] expression)  [OVER (...)]
+      
+      #### Description
+      NULL 以外の値の合計を返します。
+      
+      式が浮動小数点値である場合、合計は変動する可能性があります。つまり、この関数を使用するたびに異なる結果を受け取る可能性があります。
+      
+      #### Supported Argument Types
+      サポートされているすべての数値データ型。
+      
+      #### Return Data Types
+      入力が整数の場合、INT64 を返します。
+      入力型が NUMERIC の場合、NUMERIC を返します。
+      入力が浮動小数点値の場合、FLOAT64 を返します。
+      入力が `NULL` のみの場合、`NULL` を返します。
+      入力に行が含まれていない場合、`NULL` を返します。
+      入力に `Inf` が含まれている場合、`Inf` を返します。
+      入力に `-Inf` が含まれている場合、`-Inf` を返します。
+      入力に `NaN` が含まれている場合、`NaN` を返します。
+      入力に `Inf` と `-Inf` の組み合わせが含まれている場合、`NaN` を返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)

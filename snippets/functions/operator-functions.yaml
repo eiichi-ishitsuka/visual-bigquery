@@ -1,0 +1,93 @@
+name: Operators
+description: |-
+  条件式
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+  - label: CASE WHEN expr THEN expr ELSE expr END
+    body: |-
+      CASE WHEN ${1:bool_expr} THEN
+          ${2:expr}
+      ELSE
+          ${3:expr}
+      END
+    documentation: |-
+      ```sql
+      CASE WHEN bool_expr THEN
+          expr
+      ELSE
+          expr
+      END
+      ```
+
+  - label: CASE WHEN expr THEN expr ELSE expr END (inline)
+    body: CASE WHEN ${1:bool_expr} THEN ${2:expr} ELSE ${3:expr} END
+    documentation: |-
+      ```sql
+      CASE WHEN bool_expr THEN expr ELSE expr END
+      ```
+
+  - label: COALESCE(expr)
+    body: COALESCE(${1:expr})
+    documentation: |-
+      COALESCE(expr[, ...])
+      
+      #### Description
+      最初の非 NULL 式の値を返します。残りの式は評価されません。入力式には任意の型を指定できます。複数の入力式の型が存在する場合があります。すべての入力式は共通のスーパータイプに暗黙的に強制型変換できる必要があります。
+      
+      #### Return Data Types
+      `expr`[, ...] のスーパータイプ。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: IF(expr, true_result, else_result)
+    body: IF(${1:expr}, ${2:true_result}, ${3:else_result})
+    documentation: |-
+      IF(expr, true_result, else_result)
+      
+      #### Description
+      `expr` が true の場合は `true_result` を返し、それ以外の場合は `else_result` を返します。`expr` が true の場合、`else_result` は評価されません。`expr` が false または NULL の場合、`true_result` は評価されません。
+      
+      `expr` はブール式でなければなりません。`true_result` と `else_result` は、共通のスーパータイプに強制型変換できる必要があります。
+      
+      #### Return Data Types
+      `true_result` と `else_result` のスーパータイプ。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: IFNULL(expr, null_result)
+    body: IFNULL(${1:expr}, ${2:null_result})
+    documentation: |-
+      IFNULL(expr, null_result)
+      
+      #### Description
+      `expr` が NULL の場合は `null_result` を返します。それ以外の場合は、`expr` を返します。`expr` が NULL でない場合、`null_result` は評価されません。
+      
+      `expr` と `null_result` には任意の型を指定できます。また、共通のスーパータイプに暗黙的に強制型変換できる必要があります。`COALESCE(expr, null_result)` と同義。
+      
+      #### Return Data Types
+      `expr` または `null_result` のスーパータイプ。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: NULLIF(expr, expr_to_match)
+    body: NULLIF(${1:expr}, ${2:expr_to_match})
+    documentation: |-
+      NULLIF(expr, expr_to_match)
+      
+      #### Description
+      `expr = expr_to_match` が true の場合は NULL を返し、それ以外の場合は `expr` を返します。
+      
+      `expr` と `expr_to_match` は、共通のスーパータイプに暗黙的に強制型変換できる必要があります。また、比較可能型にする必要があります。
+      
+      #### Return Data Types
+      `expr` と `expr_to_match` のスーパータイプ。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)

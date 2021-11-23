@@ -1,0 +1,97 @@
+name: Approximate Aggregate Functions
+description: |-
+  近似集計関数
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators
+data:
+  - label: APPROX_COUNT_DISTINCT(expr)
+    body: APPROX_COUNT_DISTINCT(${1:expr})
+    documentation: |-
+      APPROX_COUNT_DISTINCT(expression)
+      
+      #### Description
+      `COUNT(DISTINCT expression)` の近似結果を返します。返される値は統計的な推定値であり、必ずしも実際の値ではありません。
+      
+      この関数は `COUNT(DISTINCT expression)` よりも精度は低いものの、入力値が非常に多い場合はより効率的に処理できます。
+      
+      #### Supported Argument Types
+      `ARRAY`、`STRUCT` を除くすべてのデータ型
+      
+      #### Return Data Types
+      INT64
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: APPROX_QUANTILES(expr, number)
+    body: APPROX_QUANTILES(${1:expr}, ${2:number})
+    documentation: |-
+      APPROX_QUANTILES([DISTINCT] expression, number [{IGNORE|RESPECT} NULLS])
+      
+      #### Description
+      `expression` の値のグループに対する近似境界を返します。`number` は作成する変位値の数を表します。この関数は、`number` +1 個の要素からなる配列を返します。最初の要素は近似最小値であり、最後の要素は近似最大値です。
+      
+      #### Supported Argument Types
+      `expression` には、サポートされているデータ型のうち、`ARRAY` と `STRUCT` を除くすべてのデータ型を使用できます。
+      
+      `number` は INT64 にする必要があります。
+      
+      
+      #### Return Data Types
+      `expression`パラメータで指定された型の ARRAY。
+
+      入力行がない場合、または`expression`がすべての行で`NULL`と評価される場合に`NULL`を返します。
+
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: APPROX_TOP_COUNT(expr, number)
+    body: APPROX_TOP_COUNT(${1:expr}, ${2:number})
+    documentation: |-
+      APPROX_TOP_COUNT(expression, number)
+      
+      #### Description
+      `expression` の近似トップ要素を返します。`number` パラメータで、返される要素の数を指定します。
+      
+      #### Supported Argument Types
+      `expression` には、`GROUP BY` 句がサポートしているどのデータ型も使用できます。
+      
+      `number` は INT64 にする必要があります。
+      
+      #### Return Data Types
+      STRUCT 型の ARRAY。STRUCT には 2 つのフィールドが含まれています。最初のフィールド（`value`）には入力値が含まれています。2 番目のフィールド（`count`）には、値が返された回数を示す INT64 が含まれています。
+
+      入力行がない場合、NULL を返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
+
+  - label: APPROX_TOP_SUM(expr, weight, number)
+    body: APPROX_TOP_SUM(${1:expr}, ${2:weight}, ${3:number})
+    documentation: |-
+      APPROX_TOP_SUM(expression, weight, number)
+      
+      #### Description
+      割り当てられた `weight` の合計に基づいて `expression` の近似トップ要素を返します。`number` パラメータで、返される要素の数を指定します。
+      
+      `weight` 入力が負の値または `NaN` の場合、この関数はエラーを返します。
+      
+      #### Supported Argument Types
+      `expression` には、`GROUP BY` 句がサポートしているどのデータ型も使用できます。
+      
+      `weight` は、以下のいずれかにする必要があります。
+      INT64
+      FLOAT64
+      
+      `number` は INT64 にする必要があります。
+      
+      #### Return Data Types
+      STRUCT 型の ARRAY。STRUCT は、`value` と `sum` の 2 つのフィールドで構成されます。`value` フィールドには、入力式の値が含まれます。`sum` フィールドは `weight` と同じ型であり、ここには `value` フィールドに関連付けられた `weight` 入力の近似値の合計が含まれます。
+
+      入力行がない場合、NULL を返します。
+      
+      #### Referenced
+      Updated 2021-11-23
+      Referenced By - [BigQuery | Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators)
