@@ -1,3 +1,4 @@
 node_modules
 works
 *.vsix
+out

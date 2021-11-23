@@ -1,0 +1,139 @@
+name: Idioms
+description: Idioms (Basic)
+data:
+  - label: SELECT expr FROM table
+    body: |-
+      SELECT
+          ${2:expr}
+      FROM
+          ${1:table}
+    documentation: |-
+      * SQL Idiom
+
+      SELECT
+          expr
+      FROM
+          table
+
+  - label: SELECT expr FROM table (inline)
+    body: SELECT ${2:expr} FROM ${1:table}
+    documentation: |-
+      * SQL Idiom (inline)
+
+      SELECT expr FROM table
+
+  - label: SELECT expr FROM table WHERE expr
+    body: |-
+      SELECT
+          ${2:expr}
+      FROM
+          ${1:table}
+      WHERE
+          ${3:expr}
+    documentation: |-
+      * SQL Idiom
+
+      SELECT
+          expr
+      FROM
+          table
+      WHERE
+          expr
+
+  - label: SELECT expr FROM table WHERE expr (inline)
+    body: SELECT ${2:expr} FROM ${1:table} WHERE ${3:expr}
+    documentation: |-
+      * SQL Idiom (inline)
+
+      SELECT expr FROM table WHERE expr
+
+  - label: GROUP BY expr
+    body: |-
+      GROUP BY
+          ${1:expr}
+    documentation: |-
+      * SQL Idiom
+
+      GROUP BY
+          expr
+
+  - label: HAVING expr
+    body: |-
+      HAVING
+          ${1:expr}
+    documentation: |-
+      * SQL Idiom
+
+      HAVING
+          expr
+
+  - label: QUALIFY expr
+    body: |-
+      QUALIFY
+          ${1:expr}
+    documentation: |-
+      * SQL Idiom
+
+      QUALIFY
+          expr
+
+  - label: LIMIT number
+    body: |-
+      LIMIT
+          ${1:number}
+    documentation: |-
+      * SQL Idiom
+
+      LIMIT
+          number
+
+  - label: ORDER BY expr
+    body: |-
+      ORDER BY
+          ${1:expr}
+    documentation: |-
+      * SQL Idiom
+
+      ORDER BY
+          expr
+
+  - label: CASE WHEN expr THEN expr ELSE expr END
+    body: |-
+      CASE WHEN ${1:bool_expr} THEN
+          ${2:expr}
+      ELSE
+          ${3:expr}
+      END
+    documentation: |-
+      * SQL Idiom
+
+      CASE WHEN bool_expr THEN
+          expr
+      ELSE
+          expr
+      END
+
+  - label: CASE WHEN expr THEN expr ELSE expr END (inline)
+    body: CASE WHEN ${1:bool_expr} THEN ${2:expr} ELSE ${3:expr} END
+    documentation: |-
+      * SQL Idiom (inline)
+
+      CASE WHEN ${1:bool_expr} THEN ${2:expr} ELSE ${3:expr} END
+
+  - label: WITH subquery
+    body: |-
+      WITH ${1:queryname} AS (
+          SELECT
+              ${3:expr}
+          FROM
+              ${2:table}
+      )
+    documentation: |-
+      * SQL Idiom
+
+      WITH queryname AS (
+          SELECT
+              3:expr
+          FROM
+              2:table
+      )

@@ -1,0 +1,209 @@
+name: Reserved Keywords
+description: |-
+  Reserved Keywords (NOT used in other idioms yaml)
+  https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical#reserved_keywords
+data:
+  - label: ALL
+    body: ALL
+    documentation: Reserved Keyword
+  - label: AND
+    body: AND
+    documentation: Reserved Keyword
+  - label: ANY
+    body: ANY
+    documentation: Reserved Keyword
+  - label: ARRAY
+    body: ARRAY
+    documentation: Reserved Keyword
+  - label: AS
+    body: AS
+    documentation: Reserved Keyword
+  - label: ASC
+    body: ASC
+    documentation: Reserved Keyword
+  - label: ASSERT_ROWS_MODIFIED
+    body: ASSERT_ROWS_MODIFIED
+    documentation: Reserved Keyword
+  - label: AT
+    body: AT
+    documentation: Reserved Keyword
+  - label: COLLATE
+    body: COLLATE
+    documentation: Reserved Keyword
+  - label: CONTAINS
+    body: CONTAINS
+    documentation: Reserved Keyword
+  - label: CUBE
+    body: CUBE
+    documentation: Reserved Keyword
+  - label: CURRENT
+    body: CURRENT
+    documentation: Reserved Keyword
+  - label: DEFAULT
+    body: DEFAULT
+    documentation: Reserved Keyword
+  - label: DEFINE
+    body: DEFINE
+    documentation: Reserved Keyword
+  - label: DESC
+    body: DESC
+    documentation: Reserved Keyword
+  - label: DISTINCT
+    body: DISTINCT
+    documentation: Reserved Keyword
+  - label: ENUM
+    body: ENUM
+    documentation: Reserved Keyword
+  - label: ESCAPE
+    body: ESCAPE
+    documentation: Reserved Keyword
+  - label: EXCEPT
+    body: EXCEPT
+    documentation: Reserved Keyword
+  - label: EXCLUDE
+    body: EXCLUDE
+    documentation: Reserved Keyword
+  - label: EXISTS
+    body: EXISTS
+    documentation: Reserved Keyword
+  - label: EXTRACT
+    body: EXTRACT
+    documentation: Reserved Keyword
+  - label: "FALSE"
+    body: "FALSE"
+    documentation: Reserved Keyword
+  - label: FETCH
+    body: FETCH
+    documentation: Reserved Keyword
+  - label: FOLLOWING
+    body: FOLLOWING
+    documentation: Reserved Keyword
+  - label: FOR
+    body: FOR
+    documentation: Reserved Keyword
+  - label: GROUPING
+    body: GROUPING
+    documentation: Reserved Keyword
+  - label: GROUPS
+    body: GROUPS
+    documentation: Reserved Keyword
+  - label: HASH
+    body: HASH
+    documentation: Reserved Keyword
+  - label: IF
+    body: IF
+    documentation: Reserved Keyword
+  - label: IGNORE
+    body: IGNORE
+    documentation: Reserved Keyword
+  - label: IN
+    body: IN
+    documentation: Reserved Keyword
+  - label: INTERSECT
+    body: INTERSECT
+    documentation: Reserved Keyword
+  - label: INTERVAL
+    body: INTERVAL
+    documentation: Reserved Keyword
+  - label: INTO
+    body: INTO
+    documentation: Reserved Keyword
+  - label: IS
+    body: IS
+    documentation: Reserved Keyword
+  - label: LATERAL
+    body: LATERAL
+    documentation: Reserved Keyword
+  - label: LIKE
+    body: LIKE
+    documentation: Reserved Keyword
+  - label: LOOKUP
+    body: LOOKUP
+    documentation: Reserved Keyword
+  - label: MERGE
+    body: MERGE
+    documentation: Reserved Keyword
+  - label: NATURAL
+    body: NATURAL
+    documentation: Reserved Keyword
+  - label: NEW
+    body: NEW
+    documentation: Reserved Keyword
+  - label: "NO"
+    body: "NO"
+    documentation: Reserved Keyword
+  - label: NOT
+    body: NOT
+    documentation: Reserved Keyword
+  - label: "NULL"
+    body: "NULL"
+    documentation: Reserved Keyword
+  - label: NULLS
+    body: NULLS
+    documentation: Reserved Keyword
+  - label: OF
+    body: OF
+    documentation: Reserved Keyword
+  - label: OR
+    body: OR
+    documentation: Reserved Keyword
+  - label: PRECEDING
+    body: PRECEDING
+    documentation: Reserved Keyword
+  - label: PROTO
+    body: PROTO
+    documentation: Reserved Keyword
+  - label: RANGE
+    body: RANGE
+    documentation: Reserved Keyword
+  - label: RECURSIVE
+    body: RECURSIVE
+    documentation: Reserved Keyword
+  - label: RESPECT
+    body: RESPECT
+    documentation: Reserved Keyword
+  - label: ROLLUP
+    body: ROLLUP
+    documentation: Reserved Keyword
+  - label: ROWS
+    body: ROWS
+    documentation: Reserved Keyword
+  - label: SET
+    body: SET
+    documentation: Reserved Keyword
+  - label: SOME
+    body: SOME
+    documentation: Reserved Keyword
+  - label: STRUCT
+    body: STRUCT
+    documentation: Reserved Keyword
+  - label: TABLESAMPLE
+    body: TABLESAMPLE
+    documentation: Reserved Keyword
+  - label: TO
+    body: TO
+    documentation: Reserved Keyword
+  - label: TREAT
+    body: TREAT
+    documentation: Reserved Keyword
+  - label: "TRUE"
+    body: "TRUE"
+    documentation: Reserved Keyword
+  - label: UNBOUNDED
+    body: UNBOUNDED
+    documentation: Reserved Keyword
+  - label: UNION
+    body: UNION
+    documentation: Reserved Keyword
+  - label: UNNEST
+    body: UNNEST
+    documentation: Reserved Keyword
+  - label: USING
+    body: USING
+    documentation: Reserved Keyword
+  - label: WINDOW
+    body: WINDOW
+    documentation: Reserved Keyword
+  - label: WITHIN
+    body: WITHIN
+    documentation: Reserved Keyword
