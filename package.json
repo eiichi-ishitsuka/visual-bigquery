@@ -50,33 +50,23 @@
                 "configuration": "./language-configuration.json"
             }
         ],
+        "configuration": {
+            "type": "object",
+            "title": "Visual-BigQuery",
+            "properties": {
+                "visual-bigquery.defaultTimezone": {
+                    "scope": "resource",
+                    "type": "string",
+                    "default": "Asia/Tokyo",
+                    "description": "default using Timezone"
+                }
+            }
+        },        
         "grammars": [
             {
                 "language": "sql",
                 "scopeName": "source.bigquery.sql",
                 "path": "./syntaxes/sql.tmLanguage.json"
-            }
-        ],
-        "snippets": [
-            {
-                "language": "sql",
-                "path": "./snippets/functions.code-snippets"
-            },
-            {
-                "language": "sql",
-                "path": "./snippets/idioms.code-snippets"
-            },
-            {
-                "language": "sql",
-                "path": "./snippets/idioms-join.code-snippets"
-            },
-            {
-                "language": "sql",
-                "path": "./snippets/idioms-others.code-snippets"
-            },
-            {
-                "language": "sql",
-                "path": "./snippets/idioms-window-functions.code-snippets"
             }
         ]
     },
