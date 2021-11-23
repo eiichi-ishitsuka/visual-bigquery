@@ -3,7 +3,7 @@
     "publisher": "eiichi-ishitsuka",
     "repository": {
         "type": "git",
-        "url": "git://github.com/eiichi-ishitsuka/visual-bigquery.git"
+        "url": "https://github.com/eiichi-ishitsuka/visual-bigquery"
     },
     "icon": "asset/icon.png",
     "displayName": "Visual-BigQuery",
