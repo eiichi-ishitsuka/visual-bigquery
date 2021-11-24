@@ -3,12 +3,12 @@
     "publisher": "eiichi-ishitsuka",
     "repository": {
         "type": "git",
-        "url": "git://github.com/eiichi-ishitsuka/visual-bigquery.git"
+        "url": "https://github.com/eiichi-ishitsuka/visual-bigquery"
     },
     "icon": "asset/icon.png",
     "displayName": "Visual-BigQuery",
     "description": "Support Google BigQuery SQL",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "engines": {
         "vscode": "^1.58.0"
     },
@@ -28,14 +28,14 @@
     ],
     "preview": true,
     "main": "./out/extension.js",
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
-	},
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
     "contributes": {
         "languages": [
             {
@@ -61,7 +61,7 @@
                     "description": "default using Timezone"
                 }
             }
-        },        
+        },
         "grammars": [
             {
                 "language": "sql",

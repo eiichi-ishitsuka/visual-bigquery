@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.5 - 25 November 2021
+- Preview release
+  - bug fix Auto Completes
+
 ## 0.0.4 - 24 November 2021
 - Preview release
   - Update Snippets
