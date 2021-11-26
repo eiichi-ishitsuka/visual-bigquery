@@ -97,7 +97,7 @@
 				{
 					"comment": "Types",
 					"name": "entity.name.type.sql",
-					"match": "\\b(?i:INT64|NUMERIC|BIGNUMERIC|FLOAT64|BOOL|STRING|BYTES|DATE|DATETIME|TIME|TIMESTAMP|ARRAY|STRUCT)\\b"
+					"match": "\\b(?i:INT64|NUMERIC|BIGNUMERIC|FLOAT64|BOOL|STRING|BYTES|DATE(?!\\s*\\()|DATETIME(?!\\s*\\()|TIME(?!\\s*\\()|TIMESTAMP(?!\\s*\\()|ARRAY|STRUCT)\\b"
 				},
 				{
 					"comment": "Functions",
