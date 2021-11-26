@@ -11,10 +11,12 @@ export class SqlHoverProvider {
 	}
 
     provideHover(document: any, position: any, token: any) {
-        let wordRange = document.getWordRangeAtPosition(position, /[a-zA-Z0-9_]+/);
+		// check function range
+        let wordRange = document.getWordRangeAtPosition(position, /(^|[^#]\s+)[a-zA-Z0-9_]+\(/);
+		// get word
+        let word = document.getWordRangeAtPosition(position, /[a-zA-Z0-9_]+/);
         if (wordRange === undefined) return Promise.reject("no word here");
-
-        let currentWord = document.lineAt(position.line).text.slice(wordRange.start.character, wordRange.end.character);
+        let currentWord = document.lineAt(position.line).text.slice(word.start.character, word.end.character);
 		
         return Promise.resolve(new Hover(this.hoverData[currentWord]));
     }
