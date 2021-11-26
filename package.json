@@ -59,6 +59,12 @@
                     "type": "string",
                     "default": "Asia/Tokyo",
                     "description": "default using Timezone"
+                },
+                "visual-bigquery.hover": {
+                    "scope": "resource",
+                    "type": "boolean",
+                    "default": "True",
+                    "description": "enable hover (need to reload)"
                 }
             }
         },

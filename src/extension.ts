@@ -1,5 +1,6 @@
 import {
 	languages,
+	workspace,
 	ExtensionContext
 } from 'vscode';
 
@@ -23,12 +24,17 @@ export function activate(context: ExtensionContext) {
 		)
 	);
 	// Hover Provider
-	context.subscriptions.push(
-		languages.registerHoverProvider(
-			MODE,
-			new SqlHoverProvider(providerData.hoverData)
-		)
-	);
+	let enableHover = (workspace.getConfiguration('visual-bigquery').get('hover') as boolean);
+	if (enableHover){
+		context.subscriptions.push(
+			languages.registerHoverProvider(
+				MODE,
+				new SqlHoverProvider(providerData.hoverData)
+			)
+		);
+	}
+
+
 
 }
 
