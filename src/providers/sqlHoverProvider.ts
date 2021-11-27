@@ -7,7 +7,6 @@ export class SqlHoverProvider {
 	hoverData: any;
 	constructor (hoverData: any) {
 		this.hoverData = hoverData;
-		console.log(this.hoverData);
 	}
 
     provideHover(document: any, position: any, token: any) {
