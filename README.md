@@ -7,7 +7,7 @@ Auto Complete, Snippets, and Syntax Highlight .
 Only standard SQL is supported. Legacy SQL is NOT supported.  
 Target extension: ".sql".  
 
-<img src="/asset/demo.gif" width="150">
+<img src="/asset/demo.gif" width="50%">
 
 # Auto Complete
 
