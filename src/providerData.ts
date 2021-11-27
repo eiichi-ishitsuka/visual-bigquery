@@ -78,10 +78,7 @@ export class ProviderData {
 			// Hover Data
 			if(kind ===  CompletionItemKind.Function){
 				let key = yml.data[i].label.replace(/\(.*/, '');
-				this.hoverData[key] = new MarkdownString(
-					'### ' + yml.data[i].label + ' -- Visual-BigQuery ' + yml.name + '\n'
-					+ yml.data[i].documentation
-				);
+				this.hoverData[key] = new MarkdownString(yml.data[i].documentation);
 			}
 		}
 	}
