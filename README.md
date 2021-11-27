@@ -6,7 +6,9 @@ Visual Studio Code extension for Google BigQuery SQL.
 Auto Complete, Snippets, and Syntax Highlight .  
 Only standard SQL is supported. Legacy SQL is NOT supported.  
 Target extension: ".sql".  
-  
+
+<img src="/asset/demo.gif" width="150">
+
 # Auto Complete
 
 - Reserved Keywords,
