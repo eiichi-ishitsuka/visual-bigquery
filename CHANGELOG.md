@@ -1,6 +1,6 @@
 # Change Log
 
-## 0.0.6
+## 0.0.6 - 27 November 2021
 - Preview release
   - bug fix date,time,datetime,timestamp function Highlight
   - Add Function, Hover Provider
