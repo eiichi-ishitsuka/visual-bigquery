@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.0.7 - 16 July 2022
+- Preview release
+  - bug fix
 ## 0.0.6 - 27 November 2021
 - Preview release
   - bug fix date,time,datetime,timestamp function Highlight
